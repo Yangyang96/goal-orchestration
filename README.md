@@ -1,8 +1,19 @@
 # Goal Orchestration
 
-A low-overhead Codex skill for scaling development work from a focused local change
-to durable, parallel, or unattended execution without making every task pay the
-cost of heavyweight orchestration.
+Goal Orchestration is a graph-engineering-inspired **Codex skill** for low-overhead
+**agent orchestration** and **multi-agent software development**. It routes fast
+fixes, bounded subagent work, and durable parallel goals through three modes while
+keeping context and coordination overhead small.
+
+```text
+Focused change                 → Fast Path
+One bounded Codex subagent     → Light Delegation
+Parallel, durable, or risky    → Strict Orchestration
+```
+
+Most agent workflows make everyday fixes pay for heavyweight coordination. This
+skill keeps the common path fast, then adds Git worktree isolation, persistent
+state, independent review, and context recovery only when the task needs them.
 
 ## Modes
 
@@ -25,7 +36,7 @@ review are enabled only when the task needs them.
 - Allows three focused automatic repairs in Strict mode.
 - Supports limited implementer-to-implementer interface coordination.
 - Isolates concurrent writers and high-risk changes in sibling Git worktrees.
-- Uses a soft context refresh for long-running Goals without forcing task switches.
+- Provides context management through soft refreshes for long-running Goals.
 - Adds durable `.agent/` state only for work that must survive across turns.
 
 ## Install
@@ -58,8 +69,20 @@ Invoke it explicitly:
 Use $goal-orchestration to implement this feature and keep the work resumable.
 ```
 
+For parallel development:
+
+```text
+Use $goal-orchestration to implement this migration with two parallel workers,
+preserve my dirty changes, and keep the work resumable.
+```
+
 The included metadata also permits implicit activation when a development task
 benefits from delegation or durable orchestration.
+
+Typical Strict execution uses isolated sibling Git worktrees, compact
+`fork_turns=none` task capsules, a fresh read-only reviewer, and up to three focused
+repair continuations. Fast and Light work avoid those controls unless a trigger
+requires escalation.
 
 ## Repository Layout
 
