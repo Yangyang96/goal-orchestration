@@ -16,7 +16,8 @@ when a concrete risk requires it. Activation alone creates no files.
 - Fast Path: read `references/interactive.md`.
 - Light Delegation: read `references/lightweight.md`.
 - Strict Orchestration: read `references/unattended.md`.
-- In Strict, additionally read `references/coordination.md` only for concurrent Agents.
+- In Strict, read `references/coordination.md` only for concurrent writers or
+  worktree isolation.
 - Read `references/returns.md` only when a direct return cannot safely fit or survive a
   context boundary.
 
@@ -54,7 +55,7 @@ Fast -> Light -> Strict. After acceptance, select again for the next unit.
 | Trigger | Add only this control |
 |---|---|
 | Work must survive another turn or run unattended | Three small state files described in `unattended.md` |
-| Two or more Agents run concurrently | Ownership map and coordination rules |
+| Concurrent writers or high-risk isolation | Ownership map and sibling worktrees from `coordination.md` |
 | Scoped paths are already dirty | Capture scoped status/diff before dispatch |
 | Return cannot fit directly or may cross context | Pointer return from `returns.md` |
 | Security, migration, shared contract, concurrency, or release risk | One consolidated independent review |

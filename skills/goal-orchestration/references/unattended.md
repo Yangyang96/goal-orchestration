@@ -58,7 +58,7 @@ CONTEXT: only task-local facts and at most three file pointers
 RETURN: direct contract and size cap
 ```
 
-Sequential work is the default. For concurrent Agents, load `coordination.md`.
+Sequential work is the default. For concurrency or isolation, load `coordination.md`.
 If scoped paths are dirty, capture `git status --short` plus the relevant pre-dispatch
 diff in main context. Persist that snapshot only when a context rollover could lose it.
 

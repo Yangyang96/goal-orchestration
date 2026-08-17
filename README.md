@@ -24,6 +24,7 @@ review are enabled only when the task needs them.
 - Keeps routine returns and repair prompts bounded.
 - Allows three focused automatic repairs in Strict mode.
 - Supports limited implementer-to-implementer interface coordination.
+- Isolates concurrent writers and high-risk changes in sibling Git worktrees.
 - Uses a soft context refresh for long-running Goals without forcing task switches.
 - Adds durable `.agent/` state only for work that must survive across turns.
 

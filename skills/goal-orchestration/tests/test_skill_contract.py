@@ -41,10 +41,20 @@ class GoalOrchestrationContractTests(unittest.TestCase):
 
     def test_strict_controls_are_triggered_independently(self):
         self.assertIn("Strict does not imply all of them", SKILL)
-        self.assertIn("Two or more Agents run concurrently", SKILL)
+        self.assertIn("Concurrent writers or high-risk isolation", SKILL)
         self.assertIn("Scoped paths are already dirty", SKILL)
         self.assertIn("Return cannot fit directly", SKILL)
         self.assertIn("User supplies a token budget", SKILL)
+
+    def test_worktree_triggers_location_and_dirty_rules_are_explicit(self):
+        coordination = (ROOT / "references" / "coordination.md").read_text(encoding="utf-8")
+        self.assertIn("one isolated worktree per writable implementer", coordination)
+        self.assertIn("<repo-parent>/<repo-name>-worktrees/<task-id>/", coordination)
+        self.assertIn("Do not place worktrees", coordination)
+        self.assertIn("Dirty but unrelated, disjoint paths", coordination)
+        self.assertIn("Dirty changes required by, or overlapping", coordination)
+        self.assertIn("Never stash, commit, reset, clean, relocate, or copy", coordination)
+        self.assertIn("run them sequentially", coordination)
 
     def test_repair_is_continuation_not_mode(self):
         self.assertIn("Repair is not a fourth mode", STRICT)
