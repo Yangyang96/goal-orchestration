@@ -1,0 +1,7 @@
+interface:
+  display_name: "Goal Orchestration"
+  short_description: "Scale development using only the controls it needs"
+  default_prompt: "Use $goal-orchestration to choose the lightest reliable development loop and add coordination, persistence, review, or pointer returns only when triggered."
+
+policy:
+  allow_implicit_invocation: true
