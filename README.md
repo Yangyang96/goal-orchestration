@@ -1,9 +1,9 @@
 # Goal Orchestration
 
-Goal Orchestration is a graph-engineering-inspired **Codex skill** for low-overhead
-**agent orchestration** and **multi-agent software development**. It routes fast
-fixes, bounded subagent work, and durable parallel goals through three modes while
-keeping context and coordination overhead small.
+Goal Orchestration is an **AI coding agent harness** and **agent skill** for
+**OpenAI Codex**. It provides graph-engineered **multi-agent orchestration** for
+fast fixes, bounded subagent work, and durable parallel development while keeping
+context-engineering and coordination overhead small.
 
 ```text
 Focused change                 → Fast Path
@@ -11,9 +11,10 @@ One bounded Codex subagent     → Light Delegation
 Parallel, durable, or risky    → Strict Orchestration
 ```
 
-Most agent workflows make everyday fixes pay for heavyweight coordination. This
-skill keeps the common path fast, then adds Git worktree isolation, persistent
-state, independent review, and context recovery only when the task needs them.
+Most agentic AI workflows make everyday fixes pay for heavyweight coordination.
+This Codex skill keeps the common path fast, then adds Git worktree isolation,
+persistent state, independent review, repair loops, and context recovery only when
+the task needs them.
 
 ## Modes
 
