@@ -1,21 +1,19 @@
 # Strict Orchestration Execution
 
-Strict is a durable execution loop, not a filesystem transaction protocol. Use its
-core path first; add only the triggered controls named in `SKILL.md`.
+Strict is a durable execution loop. Use its core path and only triggered controls.
 
 ## Core Path
 
-1. Define the active outcome, scope, acceptance, verification, and next action.
-2. Create or load durable state only if work must survive another turn, contains
-   multiple waves, or runs unattended.
+1. Define active outcome, scope, acceptance, verification, and next action.
+2. Load durable state only across turns, multiple waves, or unattended work.
 3. Dispatch the smallest independent task with a compact capsule.
-4. Receive a direct bounded return, inspect the real diff, and run decisive checks.
+4. Receive a direct bounded return; inspect the diff and run decisive checks.
 5. Repair with the same implementer when appropriate.
-6. Run one independent review only when a high-risk boundary or the user requires it.
-7. Persist one checkpoint after acceptance or before pausing.
+6. Review independently only for a high-risk boundary or user requirement.
+7. Checkpoint after acceptance or before pausing.
 
-The first useful repository action should follow no more than one control-only step.
-The ordinary path adds no other control files or mechanical transactions.
+Reach useful repository work after no more than one control-only step. The ordinary
+path adds no other control files or mechanical transactions.
 
 ## Minimal Durable State
 
@@ -27,22 +25,20 @@ Only the main Agent edits these files:
 .agent/STATUS.md  accepted evidence, retry count, blockers, exact next action
 ```
 
-Create or update all three in one edit batch; that batch is the single allowed
-control step before useful repository work.
+Update all three in one edit batch, the single control step before useful work.
 
-Keep their combined live content under 12 KiB. Store current facts, not transcript.
-On resume read only these three files, then inspect the exact code named by
-`STATUS.md`. Do not preload history, broad diffs, or old Agent returns.
+Keep combined live content under 12 KiB and store facts, not transcript. On resume
+read these files and code named by `STATUS.md`, not history, broad diffs, or returns.
 
-For a single user-present high-risk wave, the current task plan may hold this state;
-do not create `.agent/**` solely because the mode is Strict.
+For one user-present high-risk wave, keep state in the task plan; do not create
+`.agent/**` solely for Strict.
 
 ## Dispatch
 
 Use `fork_turns=none`. Select:
 
-- `explorer` medium for bounded research, high for architecture or cross-boundary work;
-- `worker` medium for routine implementation, high for complex implementation;
+- `explorer` medium for research, high for architecture or cross-boundary work;
+- `worker` medium for routine work, high for complex implementation;
 - fresh `default` high, read-only, for required independent review.
 
 Keep each capsule under 400 words:
@@ -64,9 +60,9 @@ diff in main context. Persist that snapshot only when a context rollover could l
 
 ## Direct Return And Acceptance
 
-Use the Light return fields. Cap routine returns at 1,200 characters and complex or
-review returns at 1,800; all at 20 lines. A reviewer reports only actionable findings
-as `P0..P3 path:line | issue | correction`, or `PASS`.
+Use Light return fields. Cap routine returns at 1,200 characters and complex or
+review returns at 1,800; all at 20 lines. Reviewer returns only actionable
+`P0..P3 path:line | issue | correction` findings, or `PASS`.
 
 Treat the return as a claim. The main Agent checks actual changed paths, inspects
 hunks, runs focused verification, and then runs the milestone gate once. Mixed-risk
@@ -92,11 +88,19 @@ unattended dispatch. Record no more than: outcome state, accepted evidence, retr
 count, blocker, and executable next action. Do not write both pre- and post-wave
 checkpoints unless a real context-loss window exists.
 
+With explicit Goal-scoped commit authority, an accepted wave is also a commit
+boundary only when its paths were clean at wave start or isolated and do not overlap
+pre-existing user changes. The main Agent stages only the exact accepted paths and
+commits the wave using repository convention and its outcome. Reuse inspected diff,
+verification, review, and ownership: do not message Agents, extend returns, rerun
+checks, calculate size, or add a checkpoint. Otherwise preserve uncommitted changes.
+Handle failure in the main thread; never repair-dispatch, commit per Agent, or create
+a final aggregate Goal commit.
+
 Use behavioral cost limits instead of exact token accounting: bounded capsules and
-returns, no repeated context, no duplicate review, maximum three concurrent Agents,
-and at most three automatic repairs. If the user supplies a token budget, record only a
-coarse remaining estimate in `STATUS.md` at accepted checkpoints and ask before the
-next dispatch that may exceed it.
+returns, no repeated context or review, three concurrent Agents maximum, and three
+automatic repairs. For a user-supplied token budget, record only a coarse remaining
+estimate at accepted checkpoints and ask before a dispatch that may exceed it.
 
 ## Soft Context Refresh
 
@@ -108,9 +112,7 @@ Recommend refresh when the next unit cannot fit the capsule and three-pointer li
 continuation requires rereading old returns or tool output, context compaction or
 fact confusion appears, or the next milestone changes module, repository, or domain.
 
-Use the existing checkpoint: compact the same three state files. Create no extra
-file, Agent, mode, or checkpoint; do not reset retries or rerun accepted checks. In
-the same task, treat `STATUS.md` as working memory and ignore older conversational
-detail. If a physical context reset is needed, ask the user to continue in a new
-Codex task; never create one implicitly. Resume by reading the three state files,
-one scoped `git status --short`, and only the code named by `STATUS.md`.
+Compact the same state files. Create no extra file, Agent, mode, or checkpoint; do
+not reset retries or rerun accepted checks. Treat `STATUS.md` as working memory. For
+a physical reset, ask the user to continue in a new Codex task; never create one
+implicitly. Resume from the state files, scoped status, and named code only.

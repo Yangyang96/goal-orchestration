@@ -45,6 +45,16 @@ class GoalOrchestrationContractTests(unittest.TestCase):
         self.assertIn("Scoped paths are already dirty", SKILL)
         self.assertIn("Return cannot fit directly", SKILL)
         self.assertIn("User supplies a token budget", SKILL)
+        self.assertIn("Explicit Goal commit authority", SKILL)
+
+    def test_accepted_wave_autocommit_reuses_existing_acceptance(self):
+        strict = re.sub(r"\s+", " ", STRICT)
+        self.assertIn("accepted wave is also a commit boundary", strict)
+        self.assertIn("stages only the exact accepted paths", strict)
+        self.assertIn("do not message Agents, extend returns, rerun checks", strict)
+        self.assertIn("never repair-dispatch, commit per Agent", strict)
+        self.assertIn("final aggregate Goal commit", strict)
+        self.assertIn("pre-existing user changes", strict)
 
     def test_worktree_triggers_location_and_dirty_rules_are_explicit(self):
         coordination = (ROOT / "references" / "coordination.md").read_text(encoding="utf-8")
@@ -74,11 +84,12 @@ class GoalOrchestrationContractTests(unittest.TestCase):
         self.assertIn("never reset retries", STRICT)
 
     def test_context_refresh_is_soft_and_reuses_state(self):
+        strict = re.sub(r"\s+", " ", STRICT)
         self.assertIn("Three accepted milestones or six subagent returns", STRICT)
         self.assertIn("trigger an assessment, not an automatic reset", STRICT)
         self.assertIn("Create no extra", STRICT)
-        self.assertIn("do not reset retries or rerun accepted checks", STRICT)
-        self.assertIn("never create one implicitly", STRICT)
+        self.assertIn("do not reset retries or rerun accepted checks", strict)
+        self.assertIn("never create one implicitly", strict)
 
     def test_all_referenced_files_exist(self):
         for name in re.findall(r"`references/([^`]+\.md)`", SKILL):

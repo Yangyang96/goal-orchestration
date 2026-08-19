@@ -7,9 +7,8 @@ description: "Choose and run a low-overhead development loop: direct main-Agent 
 
 ## Objective
 
-Maximize accepted working changes per unit of time and context. Treat local Codex
-Agents as trusted but fallible collaborators, not hostile processes. Add a control only
-when a concrete risk requires it. Activation alone creates no files.
+Maximize accepted work per unit of time and context. Add controls only for concrete
+risks; activation creates no files.
 
 ## Load Minimally
 
@@ -21,7 +20,7 @@ when a concrete risk requires it. Activation alone creates no files.
 - Read `references/returns.md` only when a direct return cannot safely fit or survive a
   context boundary.
 
-Do not load a reference twice in unchanged context. The ordinary Strict path requires
+Do not reload a reference in unchanged context. The ordinary Strict path requires
 only this file plus `references/unattended.md`.
 
 ## Select Mode Automatically
@@ -60,6 +59,7 @@ Fast -> Light -> Strict. After acceptance, select again for the next unit.
 | Return cannot fit directly or may cross context | Pointer return from `returns.md` |
 | Security, migration, shared contract, concurrency, or release risk | One consolidated independent review |
 | User supplies a token budget | Track a coarse remaining estimate at accepted checkpoints |
+| Explicit Goal commit authority; attributable paths | Commit accepted wave |
 
 These controls are independent. Strict does not imply all of them.
 
@@ -82,7 +82,8 @@ decisive verification. For a repair, reuse the original implementer and send onl
 new findings plus changed acceptance evidence. Do not re-bootstrap, replay history,
 or create a separate repair mode.
 
-For durable work, checkpoint once after an accepted wave or before a real pause.
+For durable work, apply accepted-wave autocommit from `unattended.md`, then
+checkpoint once after an accepted wave or before a real pause.
 At accepted milestone boundaries, apply the soft context-refresh rule in
 `unattended.md`; milestone or return counts trigger an assessment, never a forced
 reset.
