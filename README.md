@@ -31,7 +31,8 @@ review are enabled only when the task needs them.
 ## Highlights
 
 - Uses Codex built-in `worker`, `explorer`, and `default` subagents.
-- Uses `fork_turns=none` with compact task-local capsules.
+- Uses `fork_turns=none` when available, with compact task-local capsules and an
+  explicit fallback when history controls are unavailable.
 - Creates no custom Agent configuration.
 - Keeps routine returns and repair prompts bounded.
 - Allows three focused automatic repairs in Strict mode.
@@ -55,12 +56,17 @@ skills/goal-orchestration
 Or, after cloning or downloading this repository, copy the skill manually:
 
 ```sh
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills/goal-orchestration"
-cp -R skills/goal-orchestration/. "${CODEX_HOME:-$HOME/.codex}/skills/goal-orchestration/"
+mkdir -p "$HOME/.agents/skills/goal-orchestration"
+cp -R skills/goal-orchestration/. "$HOME/.agents/skills/goal-orchestration/"
 ```
 
 On Windows, copy `skills/goal-orchestration` to
-`%USERPROFILE%\.codex\skills\goal-orchestration`.
+`%USERPROFILE%\.agents\skills\goal-orchestration`.
+
+For a repository-scoped installation, copy it to
+`<repository>/.agents/skills/goal-orchestration`. Standalone skill folders target
+local Codex use; package the skill as a plugin when you need universal ChatGPT and
+Codex distribution.
 
 ## Use
 
@@ -80,10 +86,17 @@ preserve my dirty changes, and keep the work resumable.
 The included metadata also permits implicit activation when a development task
 benefits from delegation or durable orchestration.
 
+`fork_turns=none` limits inherited conversation turns; it does not guarantee an
+empty child context. Codex may still supply system, developer, bootstrap, or runtime
+context, so capsules remain authoritative and history control is not a security
+boundary.
+
 Typical Strict execution uses isolated sibling Git worktrees, compact
-`fork_turns=none` task capsules, a fresh read-only reviewer, and up to three focused
-repair continuations. Fast and Light work avoid those controls unless a trigger
-requires escalation.
+`fork_turns=none` task capsules when supported, a fresh reviewer instructed not to
+write, and up to three focused repair continuations. A preconfigured read-only
+sandbox or custom Agent is required when review must be technically prevented from
+writing. Fast and Light work avoid those controls unless a trigger requires
+escalation.
 
 ## Repository Layout
 

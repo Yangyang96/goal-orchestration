@@ -33,18 +33,20 @@ Evaluate the current independent unit, not the whole repository history.
 | User present; exactly one bounded subagent; one repair is likely enough | Light |
 | Unattended/resumable work, parallel Agents, cross-repository coordination, high-risk boundary, required independent review, or Light overflow | Strict |
 
-User choice overrides automatic selection. During an active unit, only upgrade
-Fast -> Light -> Strict. After acceptance, select again for the next unit.
+User choice overrides. Within a unit, only upgrade Fast -> Light -> Strict. After
+acceptance, reselect.
 
 ## Shared Execution Rules
 
-- Resolve the root from the user path, project, then cwd; never silently switch to a
-  nested repository.
+- Resolve the root from user path, project, then cwd; never silently use a nested repo.
 - Reach the first useful project action after at most one orchestration-only step.
 - Use Codex built-ins; never create custom Agent configuration automatically.
-- Spawn subagents with `fork_turns=none`. Give task-local capsules, not chat history.
-- Use medium reasoning for routine exploration or implementation, high for complex
-  cross-boundary work, and a fresh read-only `default` reviewer with high reasoning.
+- If supported, set `fork_turns=none`; it limits turns, not bootstrap context.
+  Otherwise the capsule is authoritative; tell the subagent to ignore unrelated
+  inherited context. Context control is never a security boundary.
+- Use medium reasoning for routine work and high for complex work. A fresh
+  `default` reviewer must not write; hard read-only needs a user-configured sandbox
+  or custom Agent.
 - The main Agent alone accepts work. A subagent's `DONE` is evidence.
 - Prefer direct bounded returns. Use an inbox pointer only for the explicit
   cross-context condition below.

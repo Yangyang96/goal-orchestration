@@ -77,6 +77,22 @@ class GoalOrchestrationContractTests(unittest.TestCase):
         self.assertIn("Do not perform exact token accounting by default", SKILL)
         self.assertIn("at most three focused", SKILL)
 
+    def test_context_isolation_has_an_explicit_fallback(self):
+        shared = re.sub(r"\s+", " ", SKILL)
+        strict = re.sub(r"\s+", " ", STRICT)
+        self.assertIn("If supported, set `fork_turns=none`", shared)
+        self.assertIn("limits turns, not bootstrap context", shared)
+        self.assertIn("Context control is never a security boundary", shared)
+        self.assertIn("ignore unrelated inherited context", shared)
+        self.assertIn("do not claim isolation", strict)
+
+    def test_read_only_review_does_not_overclaim_enforcement(self):
+        shared = re.sub(r"\s+", " ", SKILL)
+        strict = re.sub(r"\s+", " ", STRICT)
+        self.assertIn("reviewer must not write", shared)
+        self.assertIn("hard read-only needs a user-configured", shared)
+        self.assertIn("Never create it automatically", strict)
+
     def test_three_repairs_are_shared_across_light_and_strict(self):
         light = (ROOT / "references" / "lightweight.md").read_text(encoding="utf-8")
         self.assertIn("counts as the first of Strict's three automatic repairs", light)

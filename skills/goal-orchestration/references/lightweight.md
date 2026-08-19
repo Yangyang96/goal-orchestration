@@ -4,7 +4,9 @@ Use for one bounded, independently verifiable subtask while the user is present.
 Create no `.agent/**` state and use no independent reviewer.
 
 Before dispatch, note the scoped `git status --short` and relevant diff when those
-paths are already dirty. Spawn one built-in Agent with `fork_turns=none`:
+paths are already dirty. Spawn one built-in Agent. Set `fork_turns=none` when the
+spawn interface supports it; otherwise state in the capsule that inherited
+conversation is non-authoritative and unrelated history must be ignored:
 
 - routine implementation: `worker`, medium reasoning;
 - complex but bounded implementation: `worker`, high reasoning;

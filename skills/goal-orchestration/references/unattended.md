@@ -35,11 +35,15 @@ For one user-present high-risk wave, keep state in the task plan; do not create
 
 ## Dispatch
 
-Use `fork_turns=none`. Select:
+Set `fork_turns=none` when supported. Otherwise make the capsule authoritative,
+tell the subagent to ignore unrelated inherited context, and do not claim isolation.
+Select:
 
 - `explorer` medium for research, high for architecture or cross-boundary work;
 - `worker` medium for routine work, high for complex implementation;
-- fresh `default` high, read-only, for required independent review.
+- fresh `default` high, instructed not to write, for independent review; hard
+  enforcement needs a user-configured sandbox or custom Agent. Never create it
+  automatically.
 
 Keep each capsule under 400 words:
 
