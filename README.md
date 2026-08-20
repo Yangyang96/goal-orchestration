@@ -2,31 +2,36 @@
 
 Goal Orchestration is an **AI coding agent harness** and **agent skill** for
 **OpenAI Codex**. It provides graph-engineered **multi-agent orchestration** for
-fast fixes, bounded subagent work, and durable parallel development while keeping
-context-engineering and coordination overhead small.
+development that needs coordination, recovery, integration, or review-and-repair
+controls beyond native execution while keeping their overhead small.
 
 ```text
-Focused change                 → Fast Path
-One bounded Codex subagent     → Light Delegation
-Parallel, durable, or risky    → Strict Orchestration
+Ordinary task or one subagent  → Native Codex; do not load this skill
+Extra orchestration controls   → Goal Orchestration
 ```
 
-Most agentic AI workflows make everyday fixes pay for heavyweight coordination.
-This Codex skill keeps the common path fast, then adds Git worktree isolation,
-persistent state, independent review, repair loops, and context recovery only when
-the task needs them.
+The skill stays out of ordinary work. It adds Git worktree isolation, persistent
+state, independent review, repair continuation, and context recovery only when a
+complex task needs them.
 
-## Modes
+## Activation
 
-| Mode | Use it for |
-|---|---|
-| Fast Path | User-present work the main Agent can implement and verify directly |
-| Light Delegation | One bounded Codex subagent and one lightweight repair |
-| Strict Orchestration | Resumable, unattended, parallel, cross-repository, or high-risk work |
+Explicit `$goal-orchestration` invocation always applies. Implicit activation is
+reserved for tasks that actually require one of these controls:
 
-The skill selects the lightest suitable mode automatically. Strict controls remain
-conditional: persistence, parallel ownership, pointer returns, and independent
-review are enabled only when the task needs them.
+- ownership or worktree isolation for concurrent writers;
+- recovery across a task or runtime boundary;
+- a shared-contract integration gate across Agents or repositories;
+- multiple unattended checkpoint-and-repair waves; or
+- independent review followed by enforced repair for high-risk implementation.
+
+Durable, parallel, unattended, cross-repository, and high-risk are only signals.
+Focused work, one bounded subagent, ordinary same-task Goals, independent read-only
+parallelism, simple sequential cross-repository work, and standalone review use native
+Codex.
+
+Controls remain conditional: persistence, parallel ownership, pointer returns, and
+independent review are enabled only when the active task needs them.
 
 ## Highlights
 
@@ -35,7 +40,11 @@ review are enabled only when the task needs them.
   explicit fallback when history controls are unavailable.
 - Creates no custom Agent configuration.
 - Keeps routine returns and repair prompts bounded.
-- Allows three focused automatic repairs in Strict mode.
+- Keeps the critical decision chain in the main thread and delegates independent,
+  parallelizable, local side work.
+- Invalidates stale evidence only when its covered artifact or inputs change.
+- Uses a conditional Strict first-artifact gate before copying an unproven pattern.
+- Allows three focused automatic repairs per active unit.
 - Supports limited implementer-to-implementer interface coordination.
 - Isolates concurrent writers and high-risk changes in sibling Git worktrees.
 - Provides context management through soft refreshes for long-running Goals.
@@ -43,7 +52,7 @@ review are enabled only when the task needs them.
 
 ## Install
 
-Requires a Codex environment with Skills support. Delegated modes use Codex's
+Requires a Codex environment with Skills support. Orchestrated work uses Codex's
 built-in `worker`, `explorer`, and `default` subagents; no custom Agent definitions
 are required.
 
@@ -83,20 +92,19 @@ Use $goal-orchestration to implement this migration with two parallel workers,
 preserve my dirty changes, and keep the work resumable.
 ```
 
-The included metadata also permits implicit activation when a development task
-benefits from delegation or durable orchestration.
+The included metadata permits implicit activation only when the narrow complex-work
+description matches; explicit `$goal-orchestration` invocation remains available.
 
 `fork_turns=none` limits inherited conversation turns; it does not guarantee an
 empty child context. Codex may still supply system, developer, bootstrap, or runtime
 context, so capsules remain authoritative and history control is not a security
 boundary.
 
-Typical Strict execution uses isolated sibling Git worktrees, compact
+Typical execution uses isolated sibling Git worktrees, compact
 `fork_turns=none` task capsules when supported, a fresh reviewer instructed not to
 write, and up to three focused repair continuations. A preconfigured read-only
 sandbox or custom Agent is required when review must be technically prevented from
-writing. Fast and Light work avoid those controls unless a trigger requires
-escalation.
+writing.
 
 ## Repository Layout
 
@@ -118,6 +126,9 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover \
 ```
 
 The skill has no external runtime dependencies.
+
+Maintainer-only runtime observations and the repeatable context probe live in
+`evaluations/runtime-surfaces.md`; they are not loaded by the skill.
 
 ## Contributing
 
