@@ -35,9 +35,10 @@ independent review are enabled only when the active task needs them.
 
 ## Highlights
 
-- Uses Codex built-in `worker`, `explorer`, and `default` subagents.
-- Uses `fork_turns=none` when available, with compact task-local capsules and an
-  explicit fallback when history controls are unavailable.
+- Uses `worker`, `explorer`, and `default` when the active Codex spawn interface
+  exposes them, with a generic-Agent fallback.
+- Requests `fork_turns=none` when accepted, with compact task-local capsules and an
+  explicit fallback when history controls are unavailable or behavior is uncertain.
 - Creates no custom Agent configuration.
 - Keeps routine returns and repair prompts bounded.
 - Keeps the critical decision chain in the main thread and delegates independent,
@@ -52,9 +53,10 @@ independent review are enabled only when the active task needs them.
 
 ## Install
 
-Requires a Codex environment with Skills support. Orchestrated work uses Codex's
-built-in `worker`, `explorer`, and `default` subagents; no custom Agent definitions
-are required.
+Requires a Codex environment with Skills support. The currently observed Codex
+Desktop spawn interface accepts `worker`, `explorer`, and `default`; other runtimes
+may expose only a generic Agent. No custom Agent definitions are required because the
+skill preserves capsule, acceptance, and review semantics when typed roles are absent.
 
 Ask Codex to install the `goal-orchestration` skill from this repository at:
 
@@ -95,16 +97,22 @@ preserve my dirty changes, and keep the work resumable.
 The included metadata permits implicit activation only when the narrow complex-work
 description matches; explicit `$goal-orchestration` invocation remains available.
 
-`fork_turns=none` limits inherited conversation turns; it does not guarantee an
-empty child context. Codex may still supply system, developer, bootstrap, or runtime
+`fork_turns=none` is a runtime request, not a portable guarantee. The active tool
+schema says it omits surrounding turns, while observed Codex Desktop probes have not
+consistently established an empty child. Codex may still supply bootstrap or runtime
 context, so capsules remain authoritative and history control is not a security
 boundary.
 
-Typical execution uses isolated sibling Git worktrees, compact
-`fork_turns=none` task capsules when supported, a fresh reviewer instructed not to
-write, and up to three focused repair continuations. A preconfigured read-only
-sandbox or custom Agent is required when review must be technically prevented from
-writing.
+Likewise, `medium` and `high` reasoning are requested only when the child-spawn
+interface accepts an override. A successful call proves request acceptance, not the
+effective hidden compute level. If the override is absent, the child inherits the
+runtime setting; the skill cannot change the current main task's effort.
+
+Typical execution uses isolated sibling Git worktrees, compact task capsules, a new
+reviewer instructed not to write, and up to three focused repair continuations.
+Typed roles, history controls, and effort overrides are optional optimizations. A
+preconfigured read-only sandbox or custom Agent is required when review must be
+technically prevented from writing.
 
 ## Repository Layout
 

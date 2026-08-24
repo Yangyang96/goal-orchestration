@@ -44,5 +44,42 @@ measures visibility, not security isolation.
 No writes or tools were attempted by probe agents. The parent canary was placed in
 assistant commentary, which this runtime may filter from both fork modes, so its
 absence does not establish history isolation. Both `none` probes independently
-reported unrelated parent context, confirming that `fork_turns=none` must not be
-treated as a security boundary or empty-child guarantee on this observed surface.
+reported unrelated parent context, so that observed build did not support treating
+`fork_turns=none` as a security boundary or empty-child guarantee.
+
+## 2026-08-24 — Current Codex Desktop collaboration runtime
+
+The active `spawn_agent` schema exposed:
+
+- `fork_turns`: `none`, `all`, or a positive turn count;
+- `agent_type`: `explorer`, `worker`, `default`, plus runtime-specific specialist roles;
+- `reasoning_effort`: a per-child request when `fork_turns` is `none` or bounded;
+  full-history forks inherit the parent's model and effort.
+
+Schema presence was checked with no-tool, no-write calls:
+
+| Requested role | Requested fork | Requested effort | Call accepted | Effective effort observable |
+|---|---|---|---|---|
+| `explorer` | `none` | `medium` | observed 1/1 | no |
+| `worker` | `none` | `high` | observed 1/1 | no |
+| `default` | `none` | `high` | observed 1/1 | no |
+
+One parent-user visibility pair used an answer not present in either capsule. The
+`all` child returned the correct parent-user suffix; the `none` child returned
+`NOT_VISIBLE`. An earlier commentary-canary pair was inconclusive because both modes
+filtered parent commentary.
+
+| Requested history | Parent user suffix | Result |
+|---|---|---|
+| `all` | visible 1/1 | parent user turn observed |
+| `none` | not visible 1/1 | parent user turn not observed |
+
+This reverses the 2026-08-20 observation and shows why the skill must inspect the
+active schema and keep a behavioral fallback. One successful call proves parameter
+acceptance, not role semantics or effective reasoning compute. One visibility pair
+does not prove an empty child, stable behavior across builds, or security isolation.
+
+A search of official OpenAI documentation found model-level reasoning settings but
+no public contract for these Codex Desktop `spawn_agent` fields. The
+[model guidance](https://developers.openai.com/api/docs/guides/latest-model) supports
+reasoning-effort terminology, not propagation or enforcement by this desktop runtime.

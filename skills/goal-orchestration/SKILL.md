@@ -55,15 +55,19 @@ subagent capability advantage; the main Agent still owns the consuming decision.
 - Resolve root from user path, project, then cwd; never silently use a nested repo.
 - Reach the first useful project action after at most one orchestration-only step.
 - Use Codex built-ins; never create custom Agent configuration automatically.
-- If supported, set `fork_turns=none`; it limits turns, not bootstrap context.
+- When the spawn interface accepts it, request `fork_turns=none`. Treat this as a
+  history preference only: visible parent or bootstrap context is runtime-specific.
   Otherwise make the capsule authoritative and tell the subagent to ignore unrelated
   inherited context. Context control is never a security boundary.
-- Use high reasoning in the main thread for critical decisions. Use medium for
-  routine delegated work and high for complex delegated work. Raise the main thread
-  above high only for unresolved cross-boundary ambiguity, contradictory evidence,
-  or a high-consequence security, migration, concurrency, or release decision. A
-  fresh `default` reviewer must not write; hard read-only needs a user-configured
-  sandbox or custom Agent.
+- When typed roles are exposed, use `explorer` for read-only investigation, `worker`
+  for scoped implementation, and a new `default` Agent for independent review.
+  Otherwise use an available generic Agent with the same capsule and scope. Role
+  labels route work; they do not enforce permissions.
+- When per-child reasoning overrides are exposed, request medium for routine work and
+  high for complex work or review. Otherwise omit the override and inherit the
+  runtime setting. Request acceptance does not prove effective effort, and this skill
+  cannot change the current main-thread effort. A reviewer must not write; hard
+  read-only needs a user-configured sandbox or custom Agent.
 - The main Agent alone accepts work; subagent `DONE` is evidence.
 - Prefer bounded direct returns; use an inbox pointer only for the cross-context trigger.
 

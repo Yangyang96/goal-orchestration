@@ -1,30 +1,26 @@
 # Complex Orchestration Execution
 
-Use the core path and only triggered controls.
-
 ## Core Path
 
-1. Define active outcome, scope, acceptance, verification, and next action.
-2. Load durable state only across turns, multiple waves, or unattended work.
+1. Define outcome, scope, acceptance, verification, and next action.
+2. Load state only across turns, waves, or unattended work.
 3. Dispatch the smallest independent task with a compact capsule.
-4. Receive a direct bounded return; inspect the diff and run decisive checks.
-5. Repair with the same implementer when appropriate.
-6. Review independently only for a high-risk boundary or user requirement.
-7. Checkpoint after acceptance or before pausing.
+4. Inspect its bounded return and diff; run decisive checks.
+5. Continue repairs with the implementer; review only for risk or user requirement.
+6. Checkpoint after acceptance or before pausing.
 
 Reach useful repository work after no more than one control-only step. The ordinary
 path adds no other control files or mechanical transactions.
 
 ## Conditional First-Artifact Gate
 
-Use only before scaling parallel or unattended work that will copy an unproven pattern
-or shared contract and a wrong direction would cause broad rework. Inspect the first
-artifact against acceptance and run the nearest decisive check before further
-implementation dispatch. This gate creates no state, commit, or extra review.
+Before scaling an unproven pattern or shared contract where a wrong direction risks
+broad rework, inspect the first artifact and run the nearest decisive check. Do this
+before further implementation dispatch; create no state, commit, or extra review.
 
 ## Minimal Durable State
 
-Only the main Agent edits these files:
+Only main Agent edits:
 
 ```text
 .agent/GOAL.md    outcome, constraints, non-goals, final acceptance
@@ -32,22 +28,26 @@ Only the main Agent edits these files:
 .agent/STATUS.md  accepted evidence, retry count, blockers, exact next action
 ```
 
-Update all three in one batch before useful work. Keep live content under 12 KiB and
-store facts, not transcript. Resume from these files and code named by `STATUS.md`.
-For one user-present risky wave, use the task plan; do not create `.agent/**` solely
-for orchestration.
+Initialize all three once. Thereafter update `GOAL.md` only when outcome,
+constraints, non-goals, or acceptance changes; update `PLAN.md` only when milestone,
+tasks, dependencies, or ownership changes. A checkpoint normally updates only
+`STATUS.md`; do not touch unchanged state files. Keep total live content under 12 KiB:
+facts, not transcript. Resume from state and code named by `STATUS.md`. For one risky
+wave with the user present, use the task plan; do not create `.agent/**` for it.
 
 ## Dispatch
 
-Use `fork_turns=none` when supported; otherwise make the capsule authoritative, ignore
-unrelated inherited context, and do not claim isolation. Select:
+Request `fork_turns=none` when accepted, but do not claim isolation or an empty child.
+When typed roles are available, prefer:
 
-- `explorer`: medium research; high architecture or cross-boundary work;
+- `explorer`: medium research; high architecture/cross-boundary;
 - `worker`: medium routine; high complex implementation;
-- fresh `default` high for non-writing review. Hard enforcement needs a configured
-  sandbox or custom Agent. Never create it automatically.
+- a new `default`: high non-writing review.
 
-Keep each capsule under 400 words:
+Otherwise use a generic Agent or inherited effort. Roles and effort are routing
+hints, not observable permission or compute guarantees.
+
+Capsule limit: 400 words.
 
 ```text
 OUTCOME: active unit
@@ -57,65 +57,61 @@ NON_GOALS: exclusions
 ACCEPTANCE: observable conditions
 VERIFY: exact focused checks
 CONTEXT: only task-local facts and at most three file pointers
-RETURN: direct contract and size cap
+RETURN: fields/size cap; VALIDATION = check | covered paths/artifact | result
 ```
 
-Default to sequential work; load `coordination.md` for concurrency or isolation. For
-dirty scoped paths, capture status plus the relevant pre-dispatch diff. Persist it
-only across a possible context rollover.
+Default sequential work; load `coordination.md` for concurrency or isolation.
+For dirty scoped paths, capture status and relevant diff; persist only through
+possible context rollover.
 
 ## Direct Return And Acceptance
 
-Cap routine returns at 1,200 characters and complex or review returns at 1,800; all
-at 20 lines. Use `STATUS`, `CHANGED`, `RESULT`, `VALIDATION`, `RISKS`, and `NEXT`.
-Reviewer returns only actionable `P0..P3 path:line | issue | correction` findings, or
-`PASS`.
+Cap routine returns at 1,200 characters, complex/review at 1,800, all at 20 lines.
+Use `STATUS`, `CHANGED`, `RESULT`, `VALIDATION`, `RISKS`, and `NEXT`; follow capsule
+`VALIDATION` and omit logs/hashes unless required. Reviewers return only actionable
+`P0..P3 path:line | issue | correction` findings, or `PASS`.
 
-Treat the return as a claim. The main Agent checks actual paths, inspects hunks, runs
-focused verification, then runs the milestone gate once. Reuse evidence only while
-its covered artifact and relevant inputs remain unchanged; otherwise rerun the
-smallest affected check. Mixed-risk parallel work gets one consolidated review of the
-shared boundary, not one review per lane plus another final review.
+Returns are claims. The main Agent checks paths and hunks, runs focused verification,
+then the milestone gate once. Reuse evidence only while its covered paths or artifact
+and relevant inputs remain unchanged; otherwise rerun the smallest affected check.
+Mixed-risk parallel work gets one shared-boundary review, not per-lane plus final.
 
 ## Repair Continuation
 
-Repair is continuation, not a separate mode. Reuse the implementer while its task and owned
-scope remain stable. Send only failed evidence, required correction, and the exact
-check to rerun; do not resend the capsule, state files, diff, or history. Keep accepted
-parts. Allow three focused repairs total; the fourth needs user approval or a split.
-Never reset retries within the active unit.
+Repair is continuation, not a separate mode. Reuse the implementer while task/scope
+stay stable. Send only failed evidence, correction, and exact check; do not
+resend capsule, state, diff, or history. Keep accepted parts. Allow three focused
+repairs total; a fourth needs approval or a split. Never reset active-unit retries.
 
-Use a fresh implementer only when ownership, task boundary, or required expertise
-changes. Reuse the original reviewer for its own findings; use a fresh reviewer for a
-new boundary or final independent review.
+Start a new Agent only when task, ownership, expertise, architecture/shared contract,
+or review boundary changes; a milestone or wave alone does not. Continue stable later
+waves and focused repairs. Give a new Agent only capsule, paths, and acceptance
+evidence; never resend the previous Agent transcript. Reuse reviewers for own findings;
+use a new one for a new boundary/final review.
 
 ## Checkpoint And Cost
 
-Checkpoint `STATUS.md` once after an accepted wave or immediately before pausing or
-unattended dispatch. Record no more than: outcome state, accepted evidence, retry
-count, blocker, and executable next action. Do not write both pre- and post-wave
-checkpoints unless a real context-loss window exists.
+Checkpoint `STATUS.md` after acceptance or before a pause/unattended dispatch. Record
+outcome, evidence, retries, blocker, and next action. Write both pre- and post-wave
+checkpoints only for a real context-loss window.
 
-With explicit Goal-scoped commit authority, an accepted wave is also a commit
-boundary only when its paths were clean at wave start or isolated and do not overlap
-pre-existing user changes. The main Agent stages only the exact accepted paths and
-commits the wave using repository convention and its outcome. Reuse inspected diff,
-verification, review, and ownership: do not message Agents, extend returns, rerun
-checks, calculate size, or add a checkpoint. Otherwise preserve uncommitted changes.
-Handle failure in the main thread; never repair-dispatch, commit per Agent, or create
-a final aggregate Goal commit.
+With explicit Goal commit authority, an accepted wave is a commit boundary only when
+paths began clean/isolated and do not overlap pre-existing user changes. The main
+Agent stages only accepted paths and follows repository convention. Reuse diff,
+checks, review, and ownership: do not message Agents, extend returns, rerun checks,
+calculate size, or checkpoint. Otherwise preserve uncommitted changes. On failure,
+never repair-dispatch, commit per Agent, or create a final aggregate Goal commit.
 
 ## Soft Context Refresh
 
-Evaluate only at an accepted milestone or real pause, never during dispatch, review,
-or repair. Three accepted milestones or six subagent returns since the last refresh
-trigger an assessment, not an automatic reset.
+Evaluate only at acceptance or a real pause, never during dispatch, review, or repair.
+Three accepted milestones or six subagent returns trigger assessment, not reset.
 
-Recommend refresh when the next unit cannot fit the capsule and three-pointer limit,
-continuation requires rereading old returns or tool output, context compaction or
-fact confusion appears, or the next milestone changes module, repository, or domain.
+Recommend refresh when the next unit exceeds the capsule/three-pointer limit; needs
+old returns/tool output; shows compaction or confusion; or changes module, repository,
+or domain.
 
-Compact the same state files. Create no extra file, Agent, mode, or checkpoint; do
-not reset retries or rerun accepted checks. Treat `STATUS.md` as working memory. For
-a physical reset, ask the user to continue in a new Codex task; never create one
-implicitly. Resume from the state files, scoped status, and named code only.
+Compact the same state. Create no extra file, Agent, mode, or checkpoint; do not reset
+retries or rerun accepted checks. `STATUS.md` is working memory. A physical reset
+requires the user to continue in a new Codex task; never create one implicitly. Resume
+from state, scoped status, and named code only.
