@@ -7,9 +7,16 @@ ROOT = Path(__file__).resolve().parents[1]
 REPO_ROOT = ROOT.parents[1]
 SKILL = (ROOT / "SKILL.md").read_text(encoding="utf-8")
 STRICT = (ROOT / "references" / "unattended.md").read_text(encoding="utf-8")
+RETURNS = (ROOT / "references" / "returns.md").read_text(encoding="utf-8")
 OPENAI_YAML = (ROOT / "agents" / "openai.yaml").read_text(encoding="utf-8")
 README_PATH = REPO_ROOT / "README.md"
 README = README_PATH.read_text(encoding="utf-8") if README_PATH.is_file() else None
+DURABLE_TASK_TEMPLATE_PATH = REPO_ROOT / "evaluations" / "durable-task-template.md"
+DURABLE_TASK_TEMPLATE = (
+    DURABLE_TASK_TEMPLATE_PATH.read_text(encoding="utf-8")
+    if DURABLE_TASK_TEMPLATE_PATH.is_file()
+    else None
+)
 
 
 def words(text: str) -> int:
@@ -100,6 +107,21 @@ class GoalOrchestrationContractTests(unittest.TestCase):
         self.assertIn("normally updates only `STATUS.md`", strict)
         self.assertIn("do not touch unchanged state files", strict)
 
+    def test_durable_state_budget_is_combined_utf8_bytes(self):
+        strict = re.sub(r"\s+", " ", STRICT)
+        self.assertIn(
+            "the three files' combined live content under 12 KiB, measured in UTF-8 bytes",
+            strict,
+        )
+
+    def test_durable_state_stores_facts_not_transcript(self):
+        strict = re.sub(r"\s+", " ", STRICT)
+        self.assertIn("facts, not transcript", strict)
+
+    def test_resume_uses_state_and_status_named_code(self):
+        strict = re.sub(r"\s+", " ", STRICT)
+        self.assertIn("Resume from state and code named by `STATUS.md`", strict)
+
     def test_validation_declares_evidence_coverage_without_payload(self):
         strict = re.sub(r"\s+", " ", STRICT)
         self.assertIn(
@@ -108,6 +130,34 @@ class GoalOrchestrationContractTests(unittest.TestCase):
         )
         self.assertIn("follow capsule `VALIDATION`", strict)
         self.assertIn("omit logs/hashes unless required", strict)
+
+    @unittest.skipIf(DURABLE_TASK_TEMPLATE is None, "evaluation template is not installed with the skill")
+    def test_durable_task_template_keeps_metrics_and_token_decision_comparable(self):
+        template = re.sub(r"\s+", " ", DURABLE_TASK_TEMPLATE)
+        for section in ("Setup identity", "Wave 1", "Wave 2", "Final decision"):
+            self.assertIn(f"## {section}", DURABLE_TASK_TEMPLATE)
+
+        required_metrics = (
+            "Accepted-milestone wall time",
+            "Agent turns",
+            "Repair turns",
+            "Validation coverage",
+            "Direct-return bytes",
+            "Durable-state bytes",
+            "Durable-state rewrites",
+            "Rereads",
+            "Reruns",
+            "Correctness",
+            "Exact-token availability",
+        )
+        for metric in required_metrics:
+            self.assertIn(metric, DURABLE_TASK_TEMPLATE)
+
+        self.assertRegex(
+            template,
+            r"proxy improves while another worsens, record proxies as conflicting "
+            r"and keep token direction `UNKNOWN`",
+        )
 
     def test_strict_first_artifact_gate_is_conditional_and_non_persistent(self):
         strict = re.sub(r"\s+", " ", STRICT)
@@ -123,6 +173,48 @@ class GoalOrchestrationContractTests(unittest.TestCase):
         self.assertIn("Return cannot fit directly", SKILL)
         self.assertIn("User supplies a token budget", SKILL)
         self.assertIn("Explicit Goal commit authority", SKILL)
+
+    def test_pointer_return_trigger_is_conditional(self):
+        pointer = re.sub(r"\s+", " ", RETURNS)
+        self.assertIn("Use only when a bounded direct return cannot fit", pointer)
+        self.assertIn("or the main context may roll over before the result is consumed", pointer)
+
+    def test_pointer_return_path_is_exact_and_preserves_security_checks(self):
+        pointer = re.sub(r"\s+", " ", RETURNS)
+        self.assertIn("The subagent may write only: ```text .agent/inbox/<return-id>.md ```", pointer)
+        self.assertIn("exact assigned root-relative regular file", pointer)
+        for rejected in ("absolute paths", "traversal", "symlinks", "unexpected IDs"):
+            self.assertIn(rejected, pointer)
+
+    def test_pointer_return_has_size_and_digest_verification_before_read(self):
+        pointer = re.sub(r"\s+", " ", RETURNS)
+        self.assertIn("Cap the file at 8 KiB", pointer)
+        self.assertIn("SHA256: <digest>", RETURNS)
+        self.assertIn("the size is within the cap, and the SHA-256 matches before reading it once", pointer)
+        self.assertIn("mismatched digests", pointer)
+
+    def test_invalid_pointer_return_gets_exactly_one_bounded_retry(self):
+        pointer = re.sub(r"\s+", " ", RETURNS)
+        self.assertIn("If invalid, ask the same Agent", pointer)
+        self.assertIn("overwrite that one file with a compliant compressed return", pointer)
+        self.assertIn("retry once", pointer)
+
+    def test_accepted_pointer_return_is_removed_at_checkpoint(self):
+        pointer = re.sub(r"\s+", " ", RETURNS)
+        self.assertIn("After acceptance, summarize durable facts into `STATUS.md`", pointer)
+        self.assertIn("removes the inbox file at the accepted checkpoint", pointer)
+
+    def test_old_pointer_returns_are_never_scanned_for_context(self):
+        pointer = re.sub(r"\s+", " ", RETURNS)
+        self.assertIn("Never scan old return files for context", pointer)
+
+    @unittest.skipIf(README is None, "repository README is not installed with the skill")
+    def test_readme_exposes_bounded_pointer_return_workflow(self):
+        readme = re.sub(r"\s+", " ", README)
+        self.assertIn("Pointer returns activate only when a bounded direct return cannot fit", readme)
+        self.assertIn("exact root-relative regular file `.agent/inbox/<return-id>.md`", readme)
+        self.assertIn("verifies the 8 KiB cap and SHA-256 digest before reading the file once", readme)
+        self.assertIn("removes it at the accepted checkpoint", readme)
 
     def test_accepted_wave_autocommit_reuses_existing_acceptance(self):
         strict = re.sub(r"\s+", " ", STRICT)

@@ -97,6 +97,15 @@ preserve my dirty changes, and keep the work resumable.
 The included metadata permits implicit activation only when the narrow complex-work
 description matches; explicit `$goal-orchestration` invocation remains available.
 
+### Pointer returns
+
+Pointer returns activate only when a bounded direct return cannot fit or the main
+context may roll over before the result is consumed. The main Agent assigns a unique
+return ID, and the subagent writes only the exact root-relative regular file
+`.agent/inbox/<return-id>.md`. The main Agent verifies the 8 KiB cap and SHA-256 digest
+before reading the file once, then removes it at the accepted checkpoint after
+preserving durable facts. Old return files are never scanned for context.
+
 `fork_turns=none` is a runtime request, not a portable guarantee. The active tool
 schema says it omits surrounding turns, while observed Codex Desktop probes have not
 consistently established an empty child. Codex may still supply bootstrap or runtime
@@ -137,6 +146,11 @@ The skill has no external runtime dependencies.
 
 Maintainer-only runtime observations and the repeatable context probe live in
 `evaluations/runtime-surfaces.md`; they are not loaded by the skill.
+
+Use `evaluations/durable-task-template.md` for comparable two-wave measurements.
+The refined P1 forward evaluation is recorded in
+`evaluations/p1-three-durable-tasks-20260824.md`. Evaluation files are maintainer
+artifacts and do not enter the skill's default context.
 
 ## Contributing
 

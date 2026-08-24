@@ -31,9 +31,10 @@ Only main Agent edits:
 Initialize all three once. Thereafter update `GOAL.md` only when outcome,
 constraints, non-goals, or acceptance changes; update `PLAN.md` only when milestone,
 tasks, dependencies, or ownership changes. A checkpoint normally updates only
-`STATUS.md`; do not touch unchanged state files. Keep total live content under 12 KiB:
-facts, not transcript. Resume from state and code named by `STATUS.md`. For one risky
-wave with the user present, use the task plan; do not create `.agent/**` for it.
+`STATUS.md`; do not touch unchanged state files. Keep the three files' combined live
+content under 12 KiB, measured in UTF-8 bytes: facts, not transcript. Resume from state
+and code named by `STATUS.md`. For one risky wave with the user present, use the task
+plan; do not create `.agent/**` for it.
 
 ## Dispatch
 
