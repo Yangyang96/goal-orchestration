@@ -1,5 +1,8 @@
 # P1 Context Contract A/B — 2026-08-24
 
+> Historical snapshot of the previous three-file durable-state contract. Counts and
+> “current” wording below describe the evaluated revision, not the present skill.
+
 ## Decision
 
 Keep differential durable state. Keep evidence coverage only after moving its exact

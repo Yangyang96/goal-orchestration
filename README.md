@@ -1,161 +1,56 @@
 # Goal Orchestration
 
-Goal Orchestration is an **AI coding agent harness** and **agent skill** for
-**OpenAI Codex**. It provides graph-engineered **multi-agent orchestration** for
-development that needs coordination, recovery, integration, or review-and-repair
-controls beyond native execution while keeping their overhead small.
+Goal Orchestration adds persistence, writable-Agent isolation, accepted-checkpoint
+commits, and review/repair controls when native Codex execution needs more structure.
 
-```text
-Ordinary task or one subagent  → Native Codex; do not load this skill
-Extra orchestration controls   → Goal Orchestration
-```
+Explicit `$goal-orchestration` invocation always applies. Implicit activation is for
+concurrent writers, recovery across tasks or runtimes, unattended repair waves, or
+high-risk implementation requiring independent review and repair. Focused work, one
+bounded subagent, read-only parallelism, standalone review, and sequential
+cross-repository work stay on native Codex.
 
-The skill stays out of ordinary work. It adds Git worktree isolation, persistent
-state, independent review, repair continuation, and context recovery only when a
-complex task needs them.
+## Design
 
-## Activation
+The [entry contract](skills/goal-orchestration/SKILL.md) contains capsule, runtime
+compatibility, acceptance, commit, and repair rules. It loads only the needed control:
 
-Explicit `$goal-orchestration` invocation always applies. Implicit activation is
-reserved for tasks that actually require one of these controls:
+| Need | Contract |
+|---|---|
+| Cross-task/runtime recovery or unattended waves | [Durable state](skills/goal-orchestration/references/state.md) |
+| Concurrent writers or worktree isolation | [Writable-Agent coordination](skills/goal-orchestration/references/coordination.md) |
 
-- ownership or worktree isolation for concurrent writers;
-- recovery across a task or runtime boundary;
-- a shared-contract integration gate across Agents or repositories;
-- multiple unattended checkpoint-and-repair waves; or
-- independent review followed by enforced repair for high-risk implementation.
+The main Agent owns requirements and acceptance. Explicit writable use defaults to a
+local commit after each accepted coherent checkpoint unless the user opts out;
+implicit activation requires commit authorization. Neither mode authorizes push, PR
+creation, amend, history rewriting, or inclusion of pre-existing user changes.
 
-Durable, parallel, unattended, cross-repository, and high-risk are only signals.
-Focused work, one bounded subagent, ordinary same-task Goals, independent read-only
-parallelism, simple sequential cross-repository work, and standalone review use native
-Codex.
-
-Controls remain conditional: persistence, parallel ownership, pointer returns, and
-independent review are enabled only when the active task needs them.
-
-## Highlights
-
-- Uses `worker`, `explorer`, and `default` when the active Codex spawn interface
-  exposes them, with a generic-Agent fallback.
-- Requests `fork_turns=none` when accepted, with compact task-local capsules and an
-  explicit fallback when history controls are unavailable or behavior is uncertain.
-- Creates no custom Agent configuration.
-- Keeps routine returns and repair prompts bounded.
-- Keeps the critical decision chain in the main thread and delegates independent,
-  parallelizable, local side work.
-- Invalidates stale evidence only when its covered artifact or inputs change.
-- Uses a conditional Strict first-artifact gate before copying an unproven pattern.
-- Allows three focused automatic repairs per active unit.
-- Supports limited implementer-to-implementer interface coordination.
-- Isolates concurrent writers and high-risk changes in sibling Git worktrees.
-- Provides context management through soft refreshes for long-running Goals.
-- Adds durable `.agent/` state only for work that must survive across turns.
+`fork_turns=none`, typed `explorer`/`worker`/`default` roles, and per-child reasoning
+settings are requested only when exposed by the active runtime. They are routing
+hints, not guarantees of context isolation, permissions, or effective compute. See
+[runtime observations](evaluations/runtime-surfaces.md).
 
 ## Install
 
-Requires a Codex environment with Skills support. The currently observed Codex
-Desktop spawn interface accepts `worker`, `explorer`, and `default`; other runtimes
-may expose only a generic Agent. No custom Agent definitions are required because the
-skill preserves capsule, acceptance, and review semantics when typed roles are absent.
-
-Ask Codex to install the `goal-orchestration` skill from this repository at:
-
-```text
-skills/goal-orchestration
-```
-
-Or, after cloning or downloading this repository, copy the skill manually:
-
-```sh
-mkdir -p "$HOME/.agents/skills/goal-orchestration"
-cp -R skills/goal-orchestration/. "$HOME/.agents/skills/goal-orchestration/"
-```
-
-On Windows, copy `skills/goal-orchestration` to
-`%USERPROFILE%\.agents\skills\goal-orchestration`.
-
-For a repository-scoped installation, copy it to
-`<repository>/.agents/skills/goal-orchestration`. Standalone skill folders target
-local Codex use; package the skill as a plugin when you need universal ChatGPT and
-Codex distribution.
+Ask Codex to install `skills/goal-orchestration`, or copy that directory to
+`$HOME/.agents/skills/goal-orchestration`. A repository-scoped installation may use
+`<repository>/.agents/skills/goal-orchestration`.
 
 ## Use
 
-Invoke it explicitly:
-
 ```text
-Use $goal-orchestration to implement this feature and keep the work resumable.
-```
-
-For parallel development:
-
-```text
-Use $goal-orchestration to implement this migration with two parallel workers,
+Use $goal-orchestration to implement this migration with concurrent writers,
 preserve my dirty changes, and keep the work resumable.
 ```
 
-The included metadata permits implicit activation only when the narrow complex-work
-description matches; explicit `$goal-orchestration` invocation remains available.
-
-### Pointer returns
-
-Pointer returns activate only when a bounded direct return cannot fit or the main
-context may roll over before the result is consumed. The main Agent assigns a unique
-return ID, and the subagent writes only the exact root-relative regular file
-`.agent/inbox/<return-id>.md`. The main Agent verifies the 8 KiB cap and SHA-256 digest
-before reading the file once, then removes it at the accepted checkpoint after
-preserving durable facts. Old return files are never scanned for context.
-
-`fork_turns=none` is a runtime request, not a portable guarantee. The active tool
-schema says it omits surrounding turns, while observed Codex Desktop probes have not
-consistently established an empty child. Codex may still supply bootstrap or runtime
-context, so capsules remain authoritative and history control is not a security
-boundary.
-
-Likewise, `medium` and `high` reasoning are requested only when the child-spawn
-interface accepts an override. A successful call proves request acceptance, not the
-effective hidden compute level. If the override is absent, the child inherits the
-runtime setting; the skill cannot change the current main task's effort.
-
-Typical execution uses isolated sibling Git worktrees, compact task capsules, a new
-reviewer instructed not to write, and up to three focused repair continuations.
-Typed roles, history controls, and effort overrides are optional optimizations. A
-preconfigured read-only sandbox or custom Agent is required when review must be
-technically prevented from writing.
-
-## Repository Layout
-
-```text
-skills/goal-orchestration/
-├── SKILL.md
-├── agents/openai.yaml
-├── references/
-└── tests/
-```
-
-## Test
-
-From the repository root:
+## Verify
 
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover \
   -s skills/goal-orchestration/tests -v
 ```
 
-The skill has no external runtime dependencies.
-
-Maintainer-only runtime observations and the repeatable context probe live in
-`evaluations/runtime-surfaces.md`; they are not loaded by the skill.
-
-Use `evaluations/durable-task-template.md` for comparable two-wave measurements.
-The refined P1 forward evaluation is recorded in
-`evaluations/p1-three-durable-tasks-20260824.md`. Evaluation files are maintainer
-artifacts and do not enter the skill's default context.
-
-## Contributing
-
-Focused issues and pull requests are welcome. Keep the default path lightweight and
-run the test command before submitting changes.
+The skill has no external runtime dependency. Maintainer evaluations under
+`evaluations/` are not loaded by the skill.
 
 ## License
 

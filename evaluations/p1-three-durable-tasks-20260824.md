@@ -1,5 +1,8 @@
 # P1 Three Durable Tasks — 2026-08-24
 
+> Historical snapshot of the previous three-file durable-state and pointer-return
+> contract. Counts and “current” wording below describe the evaluated revision.
+
 ## Decision Question
 
 Does the refined P1 contract improve accepted-work efficiency without adding Agent

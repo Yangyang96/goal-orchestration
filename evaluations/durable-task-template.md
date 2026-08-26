@@ -50,9 +50,9 @@ Excluded or interrupted runs (ID + reason, maximum 3): ___
 - Validation coverage is `acceptance requirements with passing evidence / total
   acceptance requirements`; name the check and covered paths/artifact.
 - Direct-return bytes are `sum/max` across all completed subagent responses.
-- Durable state is `.agent/GOAL.md`, `PLAN.md`, and `STATUS.md`: report
-  `start/end/peak` total bytes. A rewrite is a write to an already-existing state
-  file; report rewrite counts as `GOAL/PLAN/STATUS` (initial creation is not one).
+- Durable state is `.agent/STATE.md`: report `start/end/peak` total bytes. A section
+  edit changes Goal, Plan, or Status in the existing file; report edit counts as
+  `Goal/Plan/Status` (initial creation is not one).
 - Rereads are repeated reads of an unchanged revision after its first read; reruns
   are repeated identical checks. Report `total/with no relevant input change`.
 - Exact tokens are input, output, cache-read, and cache-write tokens from runtime
@@ -72,7 +72,7 @@ Stable setup: YES/NO/U; variance (one line): ___
 | Validation coverage (`passing/total`) | ___ [O]/U | ___ [O]/U | n/a |
 | Direct-return bytes (`sum/max`) | ___ [O]/U | ___ [O]/U | P |
 | Durable-state bytes (`start/end/peak`) | ___ [O]/U | ___ [O]/U | P |
-| Durable-state rewrites (`GOAL/PLAN/STATUS`) | ___ [O]/U | ___ [O]/U | P |
+| Durable-state section edits (`Goal/Plan/Status`) | ___ [O]/U | ___ [O]/U | P |
 | Rereads (`total/unchanged-input`) | ___ [O]/U | ___ [O]/U | P |
 | Reruns (`total/unchanged-input`) | ___ [O]/U | ___ [O]/U | P |
 | Correctness (`PASS/FAIL`; unmet count) | ___ [O]/U | ___ [O]/U | n/a |
@@ -102,7 +102,7 @@ Stable setup: YES/NO/U; variance (one line): ___
 | Validation coverage (`passing/total`) | ___ [O]/U | ___ [O]/U | n/a |
 | Direct-return bytes (`sum/max`) | ___ [O]/U | ___ [O]/U | P |
 | Durable-state bytes (`start/end/peak`) | ___ [O]/U | ___ [O]/U | P |
-| Durable-state rewrites (`GOAL/PLAN/STATUS`) | ___ [O]/U | ___ [O]/U | P |
+| Durable-state section edits (`Goal/Plan/Status`) | ___ [O]/U | ___ [O]/U | P |
 | Rereads (`total/unchanged-input`) | ___ [O]/U | ___ [O]/U | P |
 | Reruns (`total/unchanged-input`) | ___ [O]/U | ___ [O]/U | P |
 | Correctness (`PASS/FAIL`; unmet count) | ___ [O]/U | ___ [O]/U | n/a |
@@ -150,7 +150,7 @@ for both stable, correct waves and B meets the pre-registered token threshold. C
 `SAVINGS THRESHOLD NOT MET` only when that telemetry is complete but B misses the
 threshold. Otherwise token direction is `UNKNOWN`.
 
-Wall time, turns, return/state bytes, rewrites, rereads, and reruns are independent
+Wall time, turns, return/state bytes, section edits, rereads, and reruns are independent
 proxies. Never sum, weight, or translate them into token savings. If any proxy improves
 while another worsens, record proxies as conflicting and keep token direction
 `UNKNOWN`; aligned proxies may support a hypothesis, never a token-savings claim.

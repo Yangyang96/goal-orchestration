@@ -1,107 +1,71 @@
 ---
 name: goal-orchestration
-description: "Orchestrate Codex development that needs controls beyond native execution: concurrent-writer ownership or isolation, cross-task recovery, shared-contract integration across Agents or repositories, unattended multi-wave repair, or high-risk independent review with repair. Explicit invocation always applies. Do not use for focused work, one bounded subagent, ordinary same-task Goals, independent read-only parallelism, or simple sequential cross-repository work."
+description: "Orchestrate Codex development when concurrent writers need ownership or worktree isolation, work must resume across tasks or runtimes, unattended repair spans multiple waves, or high-risk implementation needs independent review and repair. Explicit invocation always applies. Use native Codex for focused work, one bounded subagent, read-only parallelism, standalone review, or sequential cross-repository work."
 ---
 
 # Goal Orchestration
 
-## Objective
+Add only the missing controls. Activation alone creates no files or authority.
 
-Maximize accepted work per unit of time and context. Add controls only for concrete
-risks. Activation creates no files.
+## Select Controls
 
-## Activation Boundary
+Read each triggered reference once:
 
-Apply when explicitly invoked. Otherwise activate only when native execution lacks a
-control the task actually needs:
-
-- concurrent writers require ownership boundaries or worktree isolation;
-- state must recover across a task or runtime boundary;
-- multiple Agents or repositories share a contract and require an integration gate;
-- unattended work requires multiple checkpoint-and-repair waves; or
-- high-risk implementation requires independent review followed by enforced repair.
-
-Durable, parallel, unattended, cross-repository, and high-risk are signals, not
-triggers by themselves. Do not activate for focused work, one bounded subagent,
-ordinary same-task Goals, independent read-only parallelism, simple sequential
-cross-repository work, or a standalone review; use native Codex.
-
-## Load Minimally
-
-- Read `references/unattended.md` after activation.
-- Add `references/coordination.md` only for concurrent writers or isolation.
-- Add `references/returns.md` only when a direct return cannot fit or cross context.
-
-Do not reload a reference in unchanged context. The ordinary path requires
-only this file plus `references/unattended.md`.
-
-## Route Work
-
-Label each delegation candidate:
-
-- **Independent:** no unstated main-Agent decision.
-- **Parallelizable:** main can continue useful, non-overlapping work.
-- **Local:** bounded scope, acceptance, and verification.
-
-Keep the critical decision chain in the main thread: work that determines the next
-action, resolves requirements or architecture ambiguity, or integrates acceptance
-evidence. Even if independent and local, do not delegate when dispatch would leave
-the main Agent waiting. Delegate work satisfying all three labels and continue
-non-overlapping critical-path work. Exceptions require user request or a concrete
-subagent capability advantage; the main Agent still owns the consuming decision.
-
-## Shared Execution Rules
-
-- Resolve root from user path, project, then cwd; never silently use a nested repo.
-- Reach the first useful project action after at most one orchestration-only step.
-- Use Codex built-ins; never create custom Agent configuration automatically.
-- When the spawn interface accepts it, request `fork_turns=none`. Treat this as a
-  history preference only: visible parent or bootstrap context is runtime-specific.
-  Otherwise make the capsule authoritative and tell the subagent to ignore unrelated
-  inherited context. Context control is never a security boundary.
-- When typed roles are exposed, use `explorer` for read-only investigation, `worker`
-  for scoped implementation, and a new `default` Agent for independent review.
-  Otherwise use an available generic Agent with the same capsule and scope. Role
-  labels route work; they do not enforce permissions.
-- When per-child reasoning overrides are exposed, request medium for routine work and
-  high for complex work or review. Otherwise omit the override and inherit the
-  runtime setting. Request acceptance does not prove effective effort, and this skill
-  cannot change the current main-thread effort. A reviewer must not write; hard
-  read-only needs a user-configured sandbox or custom Agent.
-- The main Agent alone accepts work; subagent `DONE` is evidence.
-- Prefer bounded direct returns; use an inbox pointer only for the cross-context trigger.
-
-## Conditional Controls
-
-| Trigger | Add only this control |
+| Need | Reference |
 |---|---|
-| Work must survive another turn or run unattended | Three small state files described in `unattended.md` |
-| Concurrent writers or high-risk isolation | Ownership map and sibling worktrees from `coordination.md` |
-| Scoped paths are already dirty | Capture scoped status/diff before dispatch |
-| Return cannot fit directly or may cross context | Pointer return from `returns.md` |
-| Security, migration, shared contract, concurrency, or release risk | One consolidated independent review |
-| User supplies a token budget | Track a coarse remaining estimate at accepted checkpoints |
-| Explicit Goal commit authority; attributable paths | Commit accepted wave |
+| Cross-task/runtime recovery or unattended waves | `references/state.md` |
+| Concurrent writers or requested worktree isolation | `references/coordination.md` |
 
-These controls are independent. Activation does not imply all of them.
+Keep requirements, architecture choices, next-action decisions, and final acceptance
+in the main thread. Delegate only scoped, verifiable work while the main Agent can
+continue non-overlapping work. Inspect the first artifact before scaling an unproven
+pattern or shared contract.
 
-## Cost Guardrails
+## Dispatch
 
-Capsules are at most 400 words. Return limits: routine 1,200 Unicode characters;
-complex/reviewer 1,800; context/blocker 600. Run at most three concurrent Agents and
-one consolidated reviewer per risky boundary. After one implementation dispatch,
-allow at most three focused repairs; a fourth requires approval or a task split.
+Give each Agent an authoritative capsule:
 
-Do not perform exact token accounting by default. Avoid repeated context, duplicate
-reviews, duplicate checkpoints, and controls costlier than the failure they prevent.
+```text
+TASK: outcome and non-goals
+SCOPE: writable or read-only paths
+ACCEPT: observable conditions and exact focused checks
+CONTEXT: task-local facts and paths only
+RETURN: RESULT; CHANGED; VALIDATION = check | covered paths/artifact | result; RISKS/NEXT if relevant
+```
 
-## Acceptance
+Before writable dispatch on dirty scoped paths, capture relevant status and diff.
+Default to sequential work; read `coordination.md` before concurrent writes.
 
-Inspect actual changes, preserve pre-existing work, and run the smallest decisive
-verification. For repair, reuse the implementer and send only new findings plus
-changed acceptance evidence. Do not re-bootstrap, replay history, or add a repair mode.
+When supported, request `fork_turns=none`; it is a history preference, not isolation,
+an empty-child guarantee, or a security boundary. Otherwise rely on the capsule and
+tell the child to ignore unrelated inherited context.
 
-For durable work, apply accepted-wave autocommit from `unattended.md`, then checkpoint
-once after acceptance or before a real pause. At accepted milestones, apply its soft
-context-refresh rule; counts trigger assessment, never forced reset.
-Conclude with the result, verification, residual risk, and executable next action.
+When exposed, use `explorer` for investigation, `worker` for implementation, and a
+new `default` Agent for independent review; otherwise use a generic Agent. Request
+child reasoning only when supported; otherwise inherit the runtime setting. These
+options route work but do not prove permissions or effective compute. A reviewer must
+not write; hard read-only requires a user-configured sandbox or custom Agent.
+
+## Accept, Commit, And Continue
+
+Keep direct returns within 1,200 characters. Point to task artifacts when detail does
+not fit. Reviewers return actionable `P0..P3 path:line | issue | correction` findings,
+or `PASS`.
+
+Agent returns are claims. The main Agent alone inspects changes, preserves pre-existing
+work, runs the smallest decisive check, and accepts. Reuse evidence only while its
+covered artifact and relevant inputs remain unchanged; otherwise rerun the smallest
+affected check. Use one consolidated reviewer at a risky shared seam.
+
+Explicit writable invocation defaults to one local commit after each accepted coherent
+unit unless the user opts out. Commit only attributable task paths after the decisive
+check, with the repository usable; exclude `.agent/**` and pre-existing user changes.
+Implicit activation commits only with user authorization. Never push, open a PR,
+amend, or rewrite history without explicit authorization. If attribution is unsafe or
+commit fails, preserve the changes and report the skipped checkpoint.
+
+Reuse the implementer while task and scope stay stable, including later waves and
+repairs. Send only the failed evidence and correction needed. Keep accepted work and
+allow three focused repairs per active unit; a fourth needs approval or a task split.
+Start a new Agent only when task, ownership, expertise, architecture/shared contract,
+or review independence changes.

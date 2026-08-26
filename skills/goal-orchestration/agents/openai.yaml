@@ -1,7 +1,7 @@
 interface:
   display_name: "Goal Orchestration"
-  short_description: "Add controls for complex multi-agent development"
-  default_prompt: "Use $goal-orchestration to run this complex development task with only the persistence, coordination, and review controls it needs."
+  short_description: "Add only needed controls for complex Codex development"
+  default_prompt: "Use $goal-orchestration to add only the durable-state, writable-Agent isolation, accepted-checkpoint commit, and review/repair controls this task needs."
 
 policy:
   allow_implicit_invocation: true
