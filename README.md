@@ -29,11 +29,20 @@ settings are requested only when exposed by the active runtime. They are routing
 hints, not guarantees of context isolation, permissions, or effective compute. See
 [runtime observations](evaluations/runtime-surfaces.md).
 
-## Install
+## Install or Update
 
-Ask Codex to install `skills/goal-orchestration`, or copy that directory to
-`$HOME/.agents/skills/goal-orchestration`. A repository-scoped installation may use
-`<repository>/.agents/skills/goal-orchestration`.
+From the repository root, synchronize the packaged skill into the current user's
+Codex skill directory:
+
+```sh
+skill_target="${CODEX_HOME:-$HOME/.codex}/skills/goal-orchestration"
+mkdir -p "$skill_target"
+rsync -a --delete skills/goal-orchestration/ "$skill_target/"
+```
+
+`--delete` removes obsolete files only inside this skill's target directory, which is
+required when an update removes or renames a reference. Back up intentional local
+edits in that directory before synchronizing.
 
 ## Use
 
