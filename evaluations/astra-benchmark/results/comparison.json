@@ -1,0 +1,2285 @@
+{
+  "scope": "Mechanical acceptance; consult independent grades for scope and workflow behavior.",
+  "frozen_common_inputs_equal": true,
+  "primary_groups": {
+    "native": {
+      "cases": 6,
+      "mechanically_accepted_cases": 6,
+      "invocations": 6,
+      "cumulative_seconds": 1377.558,
+      "median_case_seconds": 205.288,
+      "usage_complete": true,
+      "input_plus_output_tokens": 1048136,
+      "cached_input_tokens_subset": 811264,
+      "uncached_input_tokens": 205024,
+      "output_tokens": 31848,
+      "commands": 69
+    },
+    "new": {
+      "cases": 6,
+      "mechanically_accepted_cases": 6,
+      "invocations": 6,
+      "cumulative_seconds": 1375.667,
+      "median_case_seconds": 205.93,
+      "usage_complete": true,
+      "input_plus_output_tokens": 1169011,
+      "cached_input_tokens_subset": 973440,
+      "uncached_input_tokens": 162629,
+      "output_tokens": 32942,
+      "commands": 63
+    },
+    "old": {
+      "cases": 6,
+      "mechanically_accepted_cases": 5,
+      "invocations": 6,
+      "cumulative_seconds": 1536.514,
+      "median_case_seconds": 254.538,
+      "usage_complete": true,
+      "input_plus_output_tokens": 1095132,
+      "cached_input_tokens_subset": 887936,
+      "uncached_input_tokens": 170681,
+      "output_tokens": 36515,
+      "commands": 72
+    }
+  },
+  "handoff_groups": {
+    "native": {
+      "cases": 2,
+      "mechanically_accepted_cases": 2,
+      "invocations": 4,
+      "cumulative_seconds": 986.55,
+      "median_case_seconds": 493.275,
+      "usage_complete": true,
+      "input_plus_output_tokens": 729033,
+      "cached_input_tokens_subset": 592000,
+      "uncached_input_tokens": 111431,
+      "output_tokens": 25602,
+      "commands": 38
+    },
+    "new": {
+      "cases": 2,
+      "mechanically_accepted_cases": 2,
+      "invocations": 4,
+      "cumulative_seconds": 1012.885,
+      "median_case_seconds": 506.443,
+      "usage_complete": true,
+      "input_plus_output_tokens": 847625,
+      "cached_input_tokens_subset": 672640,
+      "uncached_input_tokens": 148241,
+      "output_tokens": 26744,
+      "commands": 51
+    },
+    "old": {
+      "cases": 2,
+      "mechanically_accepted_cases": 2,
+      "invocations": 4,
+      "cumulative_seconds": 1022.658,
+      "median_case_seconds": 511.329,
+      "usage_complete": true,
+      "input_plus_output_tokens": 765926,
+      "cached_input_tokens_subset": 626560,
+      "uncached_input_tokens": 113251,
+      "output_tokens": 26115,
+      "commands": 44
+    }
+  },
+  "supplementary_all_task_groups": {
+    "native": {
+      "cases": 8,
+      "mechanically_accepted_cases": 8,
+      "invocations": 10,
+      "cumulative_seconds": 2364.108,
+      "median_case_seconds": 265.879,
+      "usage_complete": true,
+      "input_plus_output_tokens": 1777169,
+      "cached_input_tokens_subset": 1403264,
+      "uncached_input_tokens": 316455,
+      "output_tokens": 57450,
+      "commands": 107
+    },
+    "new": {
+      "cases": 8,
+      "mechanically_accepted_cases": 8,
+      "invocations": 10,
+      "cumulative_seconds": 2388.552,
+      "median_case_seconds": 257.034,
+      "usage_complete": true,
+      "input_plus_output_tokens": 2016636,
+      "cached_input_tokens_subset": 1646080,
+      "uncached_input_tokens": 310870,
+      "output_tokens": 59686,
+      "commands": 114
+    },
+    "old": {
+      "cases": 8,
+      "mechanically_accepted_cases": 7,
+      "invocations": 10,
+      "cumulative_seconds": 2559.172,
+      "median_case_seconds": 278.798,
+      "usage_complete": true,
+      "input_plus_output_tokens": 1861058,
+      "cached_input_tokens_subset": 1514496,
+      "uncached_input_tokens": 283932,
+      "output_tokens": 62630,
+      "commands": 116
+    }
+  },
+  "by_task": {
+    "delivery": {
+      "native": {
+        "cases": 2,
+        "mechanically_accepted_cases": 2,
+        "invocations": 2,
+        "cumulative_seconds": 638.026,
+        "median_case_seconds": 319.013,
+        "usage_complete": true,
+        "input_plus_output_tokens": 503782,
+        "cached_input_tokens_subset": 426240,
+        "uncached_input_tokens": 63346,
+        "output_tokens": 14196,
+        "commands": 37
+      },
+      "new": {
+        "cases": 2,
+        "mechanically_accepted_cases": 2,
+        "invocations": 2,
+        "cumulative_seconds": 633.801,
+        "median_case_seconds": 316.9,
+        "usage_complete": true,
+        "input_plus_output_tokens": 556512,
+        "cached_input_tokens_subset": 485248,
+        "uncached_input_tokens": 56393,
+        "output_tokens": 14871,
+        "commands": 24
+      },
+      "old": {
+        "cases": 2,
+        "mechanically_accepted_cases": 1,
+        "invocations": 2,
+        "cumulative_seconds": 625.087,
+        "median_case_seconds": 312.543,
+        "usage_complete": true,
+        "input_plus_output_tokens": 481696,
+        "cached_input_tokens_subset": 399616,
+        "uncached_input_tokens": 66143,
+        "output_tokens": 15937,
+        "commands": 26
+      }
+    },
+    "handoff": {
+      "native": {
+        "cases": 2,
+        "mechanically_accepted_cases": 2,
+        "invocations": 4,
+        "cumulative_seconds": 986.55,
+        "median_case_seconds": 493.275,
+        "usage_complete": true,
+        "input_plus_output_tokens": 729033,
+        "cached_input_tokens_subset": 592000,
+        "uncached_input_tokens": 111431,
+        "output_tokens": 25602,
+        "commands": 38
+      },
+      "new": {
+        "cases": 2,
+        "mechanically_accepted_cases": 2,
+        "invocations": 4,
+        "cumulative_seconds": 1012.885,
+        "median_case_seconds": 506.443,
+        "usage_complete": true,
+        "input_plus_output_tokens": 847625,
+        "cached_input_tokens_subset": 672640,
+        "uncached_input_tokens": 148241,
+        "output_tokens": 26744,
+        "commands": 51
+      },
+      "old": {
+        "cases": 2,
+        "mechanically_accepted_cases": 2,
+        "invocations": 4,
+        "cumulative_seconds": 1022.658,
+        "median_case_seconds": 511.329,
+        "usage_complete": true,
+        "input_plus_output_tokens": 765926,
+        "cached_input_tokens_subset": 626560,
+        "uncached_input_tokens": 113251,
+        "output_tokens": 26115,
+        "commands": 44
+      }
+    },
+    "ordinary": {
+      "native": {
+        "cases": 2,
+        "mechanically_accepted_cases": 2,
+        "invocations": 2,
+        "cumulative_seconds": 328.956,
+        "median_case_seconds": 164.478,
+        "usage_complete": true,
+        "input_plus_output_tokens": 233728,
+        "cached_input_tokens_subset": 158464,
+        "uncached_input_tokens": 67169,
+        "output_tokens": 8095,
+        "commands": 13
+      },
+      "new": {
+        "cases": 2,
+        "mechanically_accepted_cases": 2,
+        "invocations": 2,
+        "cumulative_seconds": 330.007,
+        "median_case_seconds": 165.003,
+        "usage_complete": true,
+        "input_plus_output_tokens": 256897,
+        "cached_input_tokens_subset": 196736,
+        "uncached_input_tokens": 52406,
+        "output_tokens": 7755,
+        "commands": 16
+      },
+      "old": {
+        "cases": 2,
+        "mechanically_accepted_cases": 2,
+        "invocations": 2,
+        "cumulative_seconds": 402.35,
+        "median_case_seconds": 201.175,
+        "usage_complete": true,
+        "input_plus_output_tokens": 216672,
+        "cached_input_tokens_subset": 160256,
+        "uncached_input_tokens": 48835,
+        "output_tokens": 7581,
+        "commands": 19
+      }
+    },
+    "recovery": {
+      "native": {
+        "cases": 2,
+        "mechanically_accepted_cases": 2,
+        "invocations": 2,
+        "cumulative_seconds": 410.576,
+        "median_case_seconds": 205.288,
+        "usage_complete": true,
+        "input_plus_output_tokens": 310626,
+        "cached_input_tokens_subset": 226560,
+        "uncached_input_tokens": 74509,
+        "output_tokens": 9557,
+        "commands": 19
+      },
+      "new": {
+        "cases": 2,
+        "mechanically_accepted_cases": 2,
+        "invocations": 2,
+        "cumulative_seconds": 411.859,
+        "median_case_seconds": 205.93,
+        "usage_complete": true,
+        "input_plus_output_tokens": 355602,
+        "cached_input_tokens_subset": 291456,
+        "uncached_input_tokens": 53830,
+        "output_tokens": 10316,
+        "commands": 23
+      },
+      "old": {
+        "cases": 2,
+        "mechanically_accepted_cases": 2,
+        "invocations": 2,
+        "cumulative_seconds": 509.077,
+        "median_case_seconds": 254.538,
+        "usage_complete": true,
+        "input_plus_output_tokens": 396764,
+        "cached_input_tokens_subset": 328064,
+        "uncached_input_tokens": 55703,
+        "output_tokens": 12997,
+        "commands": 27
+      }
+    }
+  },
+  "cases": [
+    {
+      "task": "ordinary",
+      "variant": "old",
+      "repeat": 1,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "01-ordinary-old-r1",
+          "task": "ordinary",
+          "variant": "old",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/01-ordinary-old-r1/workspace",
+          "base_commit": "358494f186dafdf9553aab90b54ecd9548497af6",
+          "prompt_sha256": "778f233b7aff7d5e535c27e1982e51210c94842f66d04ff67e07b541ee1da7d2",
+          "initial_status": "",
+          "started_at": "2026-09-06T18:57:05.340331+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 180.403,
+          "usage": {
+            "input_tokens": 124768,
+            "cached_input_tokens": 98816,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4264,
+            "reasoning_output_tokens": 1863
+          },
+          "commands": 13,
+          "failed_commands": 2,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization": true,
+              "exact_money": true,
+              "invalid_amount_row_numbers": true,
+              "legacy_api": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M ledger.py\n M test_ledger.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "ordinary",
+      "variant": "new",
+      "repeat": 1,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "02-ordinary-new-r1",
+          "task": "ordinary",
+          "variant": "new",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/02-ordinary-new-r1/workspace",
+          "base_commit": "71285ab009b0d90bdc9d407cb3a220250c32d531",
+          "prompt_sha256": "20bfc5c3791be1fc682c70d185edaa0b57cdbfd834e54639b157e58ee21b6565",
+          "initial_status": "",
+          "started_at": "2026-09-06T18:57:05.341414+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 170.628,
+          "usage": {
+            "input_tokens": 143386,
+            "cached_input_tokens": 115072,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3880,
+            "reasoning_output_tokens": 1844
+          },
+          "commands": 7,
+          "failed_commands": 2,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization": true,
+              "exact_money": true,
+              "invalid_amount_row_numbers": true,
+              "legacy_api": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M ledger.py\n M test_ledger.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "ordinary",
+      "variant": "native",
+      "repeat": 1,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "03-ordinary-native-r1",
+          "task": "ordinary",
+          "variant": "native",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/03-ordinary-native-r1/workspace",
+          "base_commit": "71285ab009b0d90bdc9d407cb3a220250c32d531",
+          "prompt_sha256": "81eb5b18e6d3e7bf6082ed6580194a007b3cd54f5909e2a855b6007efe856b1b",
+          "initial_status": "",
+          "started_at": "2026-09-06T18:59:56.310812+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 150.906,
+          "usage": {
+            "input_tokens": 92246,
+            "cached_input_tokens": 70016,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3751,
+            "reasoning_output_tokens": 1550
+          },
+          "commands": 6,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization": true,
+              "exact_money": true,
+              "invalid_amount_row_numbers": true,
+              "legacy_api": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M ledger.py\n M test_ledger.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "recovery",
+      "variant": "old",
+      "repeat": 1,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "07-recovery-old-r1",
+          "task": "recovery",
+          "variant": "old",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/07-recovery-old-r1/workspace",
+          "base_commit": "b8fb1fdeaa46623ca06fe41338d0cd3ad47438e9",
+          "prompt_sha256": "baa006b61ebb24169d565f49abfc4177d218c58c20a65d9545567bc6ecac57ae",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:07:30.139389+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 259.865,
+          "usage": {
+            "input_tokens": 188714,
+            "cached_input_tokens": 160384,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6879,
+            "reasoning_output_tokens": 1033
+          },
+          "commands": 11,
+          "failed_commands": 2,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "v1_migration_preserves_data_and_reopens": true,
+              "idempotent_retries_and_conflicts": true,
+              "rollback_and_recovery": true,
+              "input_validation_is_atomic": true,
+              "incident_reproduction": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M store.py\n M test_store.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "recovery",
+      "variant": "native",
+      "repeat": 1,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "08-recovery-native-r1",
+          "task": "recovery",
+          "variant": "native",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/08-recovery-native-r1/workspace",
+          "base_commit": "b8fb1fdeaa46623ca06fe41338d0cd3ad47438e9",
+          "prompt_sha256": "320ce8c396ef1099b4e9d0bbe432eb7b6febb633aac76cd84204c216b578e314",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:09:45.467086+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 217.104,
+          "usage": {
+            "input_tokens": 159721,
+            "cached_input_tokens": 113024,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4836,
+            "reasoning_output_tokens": 983
+          },
+          "commands": 10,
+          "failed_commands": 2,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "v1_migration_preserves_data_and_reopens": true,
+              "idempotent_retries_and_conflicts": true,
+              "rollback_and_recovery": true,
+              "input_validation_is_atomic": true,
+              "incident_reproduction": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M store.py\n M test_store.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "recovery",
+      "variant": "new",
+      "repeat": 1,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "09-recovery-new-r1",
+          "task": "recovery",
+          "variant": "new",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/09-recovery-new-r1/workspace",
+          "base_commit": "7bb9120fb16d11ce47ad61f78782af0550194a58",
+          "prompt_sha256": "2a4a2e9b69f9bc993ac5ea9c023ca97c674e545aec3a30185e9fbca2639680a9",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:11:50.405211+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 214.148,
+          "usage": {
+            "input_tokens": 182841,
+            "cached_input_tokens": 151936,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5367,
+            "reasoning_output_tokens": 1761
+          },
+          "commands": 11,
+          "failed_commands": 3,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "v1_migration_preserves_data_and_reopens": true,
+              "idempotent_retries_and_conflicts": true,
+              "rollback_and_recovery": true,
+              "input_validation_is_atomic": true,
+              "incident_reproduction": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M store.py\n M test_store.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "ordinary",
+      "variant": "native",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "10-ordinary-native-r2",
+          "task": "ordinary",
+          "variant": "native",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/10-ordinary-native-r2/workspace",
+          "base_commit": "179b1d93ea149f37de8110cc36aa1696befaa16d",
+          "prompt_sha256": "81eb5b18e6d3e7bf6082ed6580194a007b3cd54f5909e2a855b6007efe856b1b",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:13:23.135286+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 178.05,
+          "usage": {
+            "input_tokens": 133387,
+            "cached_input_tokens": 88448,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4344,
+            "reasoning_output_tokens": 2081
+          },
+          "commands": 7,
+          "failed_commands": 2,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization": true,
+              "exact_money": true,
+              "invalid_amount_row_numbers": true,
+              "legacy_api": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M ledger.py\n M test_ledger.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "ordinary",
+      "variant": "new",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "11-ordinary-new-r2",
+          "task": "ordinary",
+          "variant": "new",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/11-ordinary-new-r2/workspace",
+          "base_commit": "179b1d93ea149f37de8110cc36aa1696befaa16d",
+          "prompt_sha256": "b7428a0bdac0df6741ec7d1f9bd2c3f2465d9a705c1d5aa1fed4b467f5b4474e",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:15:25.076034+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 159.379,
+          "usage": {
+            "input_tokens": 105756,
+            "cached_input_tokens": 81664,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3875,
+            "reasoning_output_tokens": 1720
+          },
+          "commands": 9,
+          "failed_commands": 2,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization": true,
+              "exact_money": true,
+              "invalid_amount_row_numbers": true,
+              "legacy_api": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M ledger.py\n M test_ledger.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "ordinary",
+      "variant": "old",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "12-ordinary-old-r2",
+          "task": "ordinary",
+          "variant": "old",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/12-ordinary-old-r2/workspace",
+          "base_commit": "179b1d93ea149f37de8110cc36aa1696befaa16d",
+          "prompt_sha256": "623cecab3e716f68567cfe1051ec3dd32588c4780078cf0f20f47ffa4a0948ab",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:16:21.615930+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 221.947,
+          "usage": {
+            "input_tokens": 84323,
+            "cached_input_tokens": 61440,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3317,
+            "reasoning_output_tokens": 1350
+          },
+          "commands": 6,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json",
+            "Reconnecting... 1/5 (stream disconnected before completion: Transport error: network error: error decoding response body)"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization": true,
+              "exact_money": true,
+              "invalid_amount_row_numbers": true,
+              "legacy_api": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M ledger.py\n M test_ledger.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "recovery",
+      "variant": "old",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "16-recovery-old-r2",
+          "task": "recovery",
+          "variant": "old",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/16-recovery-old-r2/workspace",
+          "base_commit": "a1e8f8e09d8a6a4f1bce6a67e1e1be2f08b6907c",
+          "prompt_sha256": "4b56bf168b953e4b80503dc1011ba248d9063682c568f550502064513a66acbc",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:25:15.407593+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 249.212,
+          "usage": {
+            "input_tokens": 195053,
+            "cached_input_tokens": 167680,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6118,
+            "reasoning_output_tokens": 2174
+          },
+          "commands": 16,
+          "failed_commands": 4,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "v1_migration_preserves_data_and_reopens": true,
+              "idempotent_retries_and_conflicts": true,
+              "rollback_and_recovery": true,
+              "input_validation_is_atomic": true,
+              "incident_reproduction": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M store.py\n M test_store.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "recovery",
+      "variant": "new",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "17-recovery-new-r2",
+          "task": "recovery",
+          "variant": "new",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/17-recovery-new-r2/workspace",
+          "base_commit": "a1e8f8e09d8a6a4f1bce6a67e1e1be2f08b6907c",
+          "prompt_sha256": "2dc3cf35dc0953697b78765d315fb570c569c107beb21969f7a32ec819b1b90e",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:27:49.787674+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 197.711,
+          "usage": {
+            "input_tokens": 162445,
+            "cached_input_tokens": 139520,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4949,
+            "reasoning_output_tokens": 1499
+          },
+          "commands": 12,
+          "failed_commands": 3,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "v1_migration_preserves_data_and_reopens": true,
+              "idempotent_retries_and_conflicts": true,
+              "rollback_and_recovery": true,
+              "input_validation_is_atomic": true,
+              "incident_reproduction": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M store.py\n M test_store.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "recovery",
+      "variant": "native",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "18-recovery-native-r2",
+          "task": "recovery",
+          "variant": "native",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/18-recovery-native-r2/workspace",
+          "base_commit": "200f52745698751aaddd0479d5aa0575d45fc9a5",
+          "prompt_sha256": "320ce8c396ef1099b4e9d0bbe432eb7b6febb633aac76cd84204c216b578e314",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:29:25.227745+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 193.472,
+          "usage": {
+            "input_tokens": 141348,
+            "cached_input_tokens": 113536,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4721,
+            "reasoning_output_tokens": 1061
+          },
+          "commands": 9,
+          "failed_commands": 3,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "v1_migration_preserves_data_and_reopens": true,
+              "idempotent_retries_and_conflicts": true,
+              "rollback_and_recovery": true,
+              "input_validation_is_atomic": true,
+              "incident_reproduction": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M store.py\n M test_store.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "delivery",
+      "variant": "old",
+      "repeat": 1,
+      "accepted": false,
+      "runs": [
+        {
+          "run_id": "01-delivery-old-r1",
+          "task": "delivery",
+          "variant": "old",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/delivery-corrected/runs/01-delivery-old-r1/workspace",
+          "base_commit": "464c08d27ef8c6bd885ec25df239f41ea7a01c55",
+          "prompt_sha256": "40345f38043637bcf8aab119953b09877dd295fd485f808403832365c919eda2",
+          "initial_status": "M NOTES.md",
+          "started_at": "2026-09-06T19:58:56.806680+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 297.73,
+          "usage": {
+            "input_tokens": 202739,
+            "cached_input_tokens": 158592,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7953,
+            "reasoning_output_tokens": 1377
+          },
+          "commands": 11,
+          "failed_commands": 2,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 1,
+          "validation": {
+            "checks": {
+              "public_api_and_nested_include": true,
+              "validation_and_cycle_errors": true,
+              "stdin_and_legacy_cli": true,
+              "public_tests": true,
+              "one_local_commit": false,
+              "user_dirty_content_preserved": true,
+              "commit_scope_and_dirty_ownership": false
+            },
+            "details": {
+              "one_local_commit": "AssertionError: '1' != '2'",
+              "commit_scope_and_dirty_ownership": "AssertionError: fatal: invalid object name 'HEAD~'.\n"
+            }
+          },
+          "accepted": false,
+          "final_status": "M NOTES.md\n M README.md\n M routebook/__init__.py\n M routebook/__main__.py\n M routebook/core.py\n M test_routes.py",
+          "commits_added": 0
+        }
+      ]
+    },
+    {
+      "task": "delivery",
+      "variant": "new",
+      "repeat": 1,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "02-delivery-new-r1",
+          "task": "delivery",
+          "variant": "new",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/delivery-corrected/runs/02-delivery-new-r1/workspace",
+          "base_commit": "464c08d27ef8c6bd885ec25df239f41ea7a01c55",
+          "prompt_sha256": "4e6672a4e1530e49046640c7c98470b26b6a6362dc4107a56846756bc5cf094f",
+          "initial_status": "M NOTES.md",
+          "started_at": "2026-09-06T19:58:56.807478+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 333.88,
+          "usage": {
+            "input_tokens": 301122,
+            "cached_input_tokens": 272000,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7695,
+            "reasoning_output_tokens": 1374
+          },
+          "commands": 13,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "public_api_and_nested_include": true,
+              "validation_and_cycle_errors": true,
+              "stdin_and_legacy_cli": true,
+              "public_tests": true,
+              "one_local_commit": true,
+              "user_dirty_content_preserved": true,
+              "commit_scope_and_dirty_ownership": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M NOTES.md",
+          "commits_added": 1
+        }
+      ]
+    },
+    {
+      "task": "delivery",
+      "variant": "native",
+      "repeat": 1,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "03-delivery-native-r1",
+          "task": "delivery",
+          "variant": "native",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/delivery-corrected/runs/03-delivery-native-r1/workspace",
+          "base_commit": "464c08d27ef8c6bd885ec25df239f41ea7a01c55",
+          "prompt_sha256": "eb7d3bc73f6501238f01995973258ee0eb1f4d1dd3ff274278e0a073304d5e8b",
+          "initial_status": "M NOTES.md",
+          "started_at": "2026-09-06T20:03:55.694418+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 314.653,
+          "usage": {
+            "input_tokens": 270068,
+            "cached_input_tokens": 248832,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7163,
+            "reasoning_output_tokens": 945
+          },
+          "commands": 25,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "public_api_and_nested_include": true,
+              "validation_and_cycle_errors": true,
+              "stdin_and_legacy_cli": true,
+              "public_tests": true,
+              "one_local_commit": true,
+              "user_dirty_content_preserved": true,
+              "commit_scope_and_dirty_ownership": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M NOTES.md",
+          "commits_added": 1
+        }
+      ]
+    },
+    {
+      "task": "delivery",
+      "variant": "new",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "04-delivery-new-r2",
+          "task": "delivery",
+          "variant": "new",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/delivery-corrected/runs/04-delivery-new-r2/workspace",
+          "base_commit": "d2f79e1099326fbc4712bec6ad36c12aaa07a439",
+          "prompt_sha256": "4212e51684e9095419d0d2277af2a8952debe7266fd2b17d01e5cc8e6fe3f3f1",
+          "initial_status": "M NOTES.md",
+          "started_at": "2026-09-06T20:04:32.309472+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 299.921,
+          "usage": {
+            "input_tokens": 240519,
+            "cached_input_tokens": 213248,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7176,
+            "reasoning_output_tokens": 1294
+          },
+          "commands": 11,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "public_api_and_nested_include": true,
+              "validation_and_cycle_errors": true,
+              "stdin_and_legacy_cli": true,
+              "public_tests": true,
+              "one_local_commit": true,
+              "user_dirty_content_preserved": true,
+              "commit_scope_and_dirty_ownership": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M NOTES.md",
+          "commits_added": 1
+        }
+      ]
+    },
+    {
+      "task": "delivery",
+      "variant": "native",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "05-delivery-native-r2",
+          "task": "delivery",
+          "variant": "native",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/delivery-corrected/runs/05-delivery-native-r2/workspace",
+          "base_commit": "d2f79e1099326fbc4712bec6ad36c12aaa07a439",
+          "prompt_sha256": "eb7d3bc73f6501238f01995973258ee0eb1f4d1dd3ff274278e0a073304d5e8b",
+          "initial_status": "M NOTES.md",
+          "started_at": "2026-09-06T20:09:12.132771+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 323.373,
+          "usage": {
+            "input_tokens": 219518,
+            "cached_input_tokens": 177408,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7033,
+            "reasoning_output_tokens": 1194
+          },
+          "commands": 12,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "public_api_and_nested_include": true,
+              "validation_and_cycle_errors": true,
+              "stdin_and_legacy_cli": true,
+              "public_tests": true,
+              "one_local_commit": true,
+              "user_dirty_content_preserved": true,
+              "commit_scope_and_dirty_ownership": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M NOTES.md",
+          "commits_added": 1
+        }
+      ]
+    },
+    {
+      "task": "delivery",
+      "variant": "old",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "06-delivery-old-r2",
+          "task": "delivery",
+          "variant": "old",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/delivery-corrected/runs/06-delivery-old-r2/workspace",
+          "base_commit": "d2f79e1099326fbc4712bec6ad36c12aaa07a439",
+          "prompt_sha256": "6fe5cc1151590f0881a6e63f842cac6361125be57be12954d37f6ad966c3e39d",
+          "initial_status": "M NOTES.md",
+          "started_at": "2026-09-06T20:09:33.700494+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 327.357,
+          "usage": {
+            "input_tokens": 263020,
+            "cached_input_tokens": 241024,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7984,
+            "reasoning_output_tokens": 1642
+          },
+          "commands": 15,
+          "failed_commands": 2,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "public_api_and_nested_include": true,
+              "validation_and_cycle_errors": true,
+              "stdin_and_legacy_cli": true,
+              "public_tests": true,
+              "one_local_commit": true,
+              "user_dirty_content_preserved": true,
+              "commit_scope_and_dirty_ownership": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M NOTES.md",
+          "commits_added": 1
+        }
+      ]
+    },
+    {
+      "task": "handoff",
+      "variant": "old",
+      "repeat": 1,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "01-handoff-old-r1",
+          "task": "handoff",
+          "variant": "old",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/01-handoff-old-r1/workspace",
+          "base_commit": "75e3da951817851619b9a75a341d7e4a6adb12d3",
+          "prompt_sha256": "1403ce9b110e8c8992f6b14ffde03bf3fb70defa193317231136ce183d65ea7c",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:32:43.518866+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 237.175,
+          "usage": {
+            "input_tokens": 172173,
+            "cached_input_tokens": 142848,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5542,
+            "reasoning_output_tokens": 919
+          },
+          "commands": 10,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M test_notebatch.py\n?? .agent/",
+          "commits_added": 0
+        },
+        {
+          "run_id": "01-handoff-old-r1-wave2",
+          "task": "handoff",
+          "variant": "old",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/01-handoff-old-r1/workspace",
+          "base_commit": "75e3da951817851619b9a75a341d7e4a6adb12d3",
+          "prompt_sha256": "69ebd6d5bc8f07a7228a43d4620131da07a157008d120cb59be0a0413f32188b",
+          "initial_status": "",
+          "wave": 2,
+          "started_at": "2026-09-06T19:36:41.661611+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 250.628,
+          "usage": {
+            "input_tokens": 185182,
+            "cached_input_tokens": 149120,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6645,
+            "reasoning_output_tokens": 1163
+          },
+          "commands": 12,
+          "failed_commands": 2,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true,
+              "stdin_and_format_contract": true,
+              "casefold_unique_contract": true,
+              "atomic_error_contract": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M notebatch/__main__.py\n M test_notebatch.py\n?? .agent/",
+          "commits_added": 0
+        }
+      ],
+      "phase1_full_validation": {
+        "checks": {
+          "normalization_and_nonmutation": true,
+          "input_contract": true,
+          "legacy_file_cli": true,
+          "public_tests": true,
+          "no_unrequested_commit": true,
+          "stdin_and_format_contract": false,
+          "casefold_unique_contract": false,
+          "atomic_error_contract": false
+        },
+        "details": {
+          "stdin_and_format_contract": "AssertionError: 1 != 0",
+          "casefold_unique_contract": "AssertionError: 2 != 0",
+          "atomic_error_contract": "AssertionError: usage: python3.14 -m notebatch [-h] input\npython3.14 -m notebatch: error: unrecognized arguments: --format json\n"
+        }
+      }
+    },
+    {
+      "task": "handoff",
+      "variant": "new",
+      "repeat": 1,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "02-handoff-new-r1",
+          "task": "handoff",
+          "variant": "new",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/02-handoff-new-r1/workspace",
+          "base_commit": "75e3da951817851619b9a75a341d7e4a6adb12d3",
+          "prompt_sha256": "4b205e50dbb8693d34fa2f930616abbe1cb3034bbfb88095e9b23bebeaddd9d6",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:32:43.519786+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 234.87,
+          "usage": {
+            "input_tokens": 165869,
+            "cached_input_tokens": 128512,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6246,
+            "reasoning_output_tokens": 1419
+          },
+          "commands": 13,
+          "failed_commands": 2,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M test_notebatch.py\n?? .agent/",
+          "commits_added": 0
+        },
+        {
+          "run_id": "02-handoff-new-r1-wave2",
+          "task": "handoff",
+          "variant": "new",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/02-handoff-new-r1/workspace",
+          "base_commit": "75e3da951817851619b9a75a341d7e4a6adb12d3",
+          "prompt_sha256": "60d6643657526028f1cd7ca07987b54ca2700f1c5617731a103802e027d267eb",
+          "initial_status": "",
+          "wave": 2,
+          "started_at": "2026-09-06T19:36:39.375516+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 289.848,
+          "usage": {
+            "input_tokens": 270257,
+            "cached_input_tokens": 231936,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7567,
+            "reasoning_output_tokens": 1642
+          },
+          "commands": 15,
+          "failed_commands": 2,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true,
+              "stdin_and_format_contract": true,
+              "casefold_unique_contract": true,
+              "atomic_error_contract": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M notebatch/__main__.py\n M test_notebatch.py\n?? .agent/",
+          "commits_added": 0
+        }
+      ],
+      "phase1_full_validation": {
+        "checks": {
+          "normalization_and_nonmutation": true,
+          "input_contract": true,
+          "legacy_file_cli": true,
+          "public_tests": true,
+          "no_unrequested_commit": true,
+          "stdin_and_format_contract": false,
+          "casefold_unique_contract": false,
+          "atomic_error_contract": false
+        },
+        "details": {
+          "stdin_and_format_contract": "AssertionError: 1 != 0",
+          "casefold_unique_contract": "AssertionError: 2 != 0",
+          "atomic_error_contract": "AssertionError: usage: python3.14 -m notebatch [-h] input\npython3.14 -m notebatch: error: unrecognized arguments: --format json\n"
+        }
+      }
+    },
+    {
+      "task": "handoff",
+      "variant": "native",
+      "repeat": 1,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "03-handoff-native-r1",
+          "task": "handoff",
+          "variant": "native",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/03-handoff-native-r1/workspace",
+          "base_commit": "75e3da951817851619b9a75a341d7e4a6adb12d3",
+          "prompt_sha256": "4d43f658cec25a44b6b82c539ad8bcdaf3b1c68ec9dac9d4dccf42f5cf01ee8f",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:40:56.777923+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 195.415,
+          "usage": {
+            "input_tokens": 109020,
+            "cached_input_tokens": 81408,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5103,
+            "reasoning_output_tokens": 671
+          },
+          "commands": 10,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M test_notebatch.py\n?? HANDOFF.md",
+          "commits_added": 0
+        },
+        {
+          "run_id": "03-handoff-native-r1-wave2",
+          "task": "handoff",
+          "variant": "native",
+          "repeat": 1,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/03-handoff-native-r1/workspace",
+          "base_commit": "75e3da951817851619b9a75a341d7e4a6adb12d3",
+          "prompt_sha256": "5f02d24ebf67c9fa0d6b21267e9e559f4fbce0eb2596994f297d7b25ba0bbe24",
+          "initial_status": "",
+          "wave": 2,
+          "started_at": "2026-09-06T19:44:13.296869+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 260.077,
+          "usage": {
+            "input_tokens": 227405,
+            "cached_input_tokens": 199168,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6612,
+            "reasoning_output_tokens": 1052
+          },
+          "commands": 9,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true,
+              "stdin_and_format_contract": true,
+              "casefold_unique_contract": true,
+              "atomic_error_contract": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M notebatch/__main__.py\n M test_notebatch.py\n?? HANDOFF.md",
+          "commits_added": 0
+        }
+      ],
+      "phase1_full_validation": {
+        "checks": {
+          "normalization_and_nonmutation": true,
+          "input_contract": true,
+          "legacy_file_cli": true,
+          "public_tests": true,
+          "no_unrequested_commit": true,
+          "stdin_and_format_contract": false,
+          "casefold_unique_contract": false,
+          "atomic_error_contract": false
+        },
+        "details": {
+          "stdin_and_format_contract": "AssertionError: 1 != 0",
+          "casefold_unique_contract": "AssertionError: 2 != 0",
+          "atomic_error_contract": "AssertionError: usage: python3.14 -m notebatch [-h] input\npython3.14 -m notebatch: error: unrecognized arguments: --format json\n"
+        }
+      }
+    },
+    {
+      "task": "handoff",
+      "variant": "new",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "04-handoff-new-r2",
+          "task": "handoff",
+          "variant": "new",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/04-handoff-new-r2/workspace",
+          "base_commit": "895c81aab26841ae7357acd43f60f8779b04bdb2",
+          "prompt_sha256": "4d551b2a2fbf0d53f18c987067a435f6bc9dcefa8f99a6a229ccacea26be244f",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:41:35.864798+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 239.448,
+          "usage": {
+            "input_tokens": 169736,
+            "cached_input_tokens": 136320,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6436,
+            "reasoning_output_tokens": 1397
+          },
+          "commands": 12,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M test_notebatch.py\n?? .agent/",
+          "commits_added": 0
+        },
+        {
+          "run_id": "04-handoff-new-r2-wave2",
+          "task": "handoff",
+          "variant": "new",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/04-handoff-new-r2/workspace",
+          "base_commit": "895c81aab26841ae7357acd43f60f8779b04bdb2",
+          "prompt_sha256": "96a8671f215be0effc4f034cb88d1e81a9e82893210a9a96c20db517caf0fc60",
+          "initial_status": "",
+          "wave": 2,
+          "started_at": "2026-09-06T19:45:36.535014+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 248.719,
+          "usage": {
+            "input_tokens": 215019,
+            "cached_input_tokens": 175872,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6495,
+            "reasoning_output_tokens": 1091
+          },
+          "commands": 11,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true,
+              "stdin_and_format_contract": true,
+              "casefold_unique_contract": true,
+              "atomic_error_contract": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M notebatch/__main__.py\n M test_notebatch.py\n?? .agent/",
+          "commits_added": 0
+        }
+      ],
+      "phase1_full_validation": {
+        "checks": {
+          "normalization_and_nonmutation": true,
+          "input_contract": true,
+          "legacy_file_cli": true,
+          "public_tests": true,
+          "no_unrequested_commit": true,
+          "stdin_and_format_contract": false,
+          "casefold_unique_contract": false,
+          "atomic_error_contract": false
+        },
+        "details": {
+          "stdin_and_format_contract": "AssertionError: 1 != 0",
+          "casefold_unique_contract": "AssertionError: 2 != 0",
+          "atomic_error_contract": "AssertionError: usage: python3.14 -m notebatch [-h] input\npython3.14 -m notebatch: error: unrecognized arguments: --format json\n"
+        }
+      }
+    },
+    {
+      "task": "handoff",
+      "variant": "native",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "05-handoff-native-r2",
+          "task": "handoff",
+          "variant": "native",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/05-handoff-native-r2/workspace",
+          "base_commit": "895c81aab26841ae7357acd43f60f8779b04bdb2",
+          "prompt_sha256": "4d43f658cec25a44b6b82c539ad8bcdaf3b1c68ec9dac9d4dccf42f5cf01ee8f",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:48:43.799555+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 232.697,
+          "usage": {
+            "input_tokens": 135089,
+            "cached_input_tokens": 108544,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5906,
+            "reasoning_output_tokens": 1317
+          },
+          "commands": 9,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M test_notebatch.py\n?? HANDOFF.md",
+          "commits_added": 0
+        },
+        {
+          "run_id": "05-handoff-native-r2-wave2",
+          "task": "handoff",
+          "variant": "native",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/05-handoff-native-r2/workspace",
+          "base_commit": "895c81aab26841ae7357acd43f60f8779b04bdb2",
+          "prompt_sha256": "5f02d24ebf67c9fa0d6b21267e9e559f4fbce0eb2596994f297d7b25ba0bbe24",
+          "initial_status": "",
+          "wave": 2,
+          "started_at": "2026-09-06T19:52:37.444992+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 298.361,
+          "usage": {
+            "input_tokens": 231917,
+            "cached_input_tokens": 202880,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7981,
+            "reasoning_output_tokens": 1113
+          },
+          "commands": 10,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true,
+              "stdin_and_format_contract": true,
+              "casefold_unique_contract": true,
+              "atomic_error_contract": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M notebatch/__main__.py\n M test_notebatch.py\n?? HANDOFF.md",
+          "commits_added": 0
+        }
+      ],
+      "phase1_full_validation": {
+        "checks": {
+          "normalization_and_nonmutation": true,
+          "input_contract": true,
+          "legacy_file_cli": true,
+          "public_tests": true,
+          "no_unrequested_commit": true,
+          "stdin_and_format_contract": false,
+          "casefold_unique_contract": false,
+          "atomic_error_contract": false
+        },
+        "details": {
+          "stdin_and_format_contract": "AssertionError: 1 != 0",
+          "casefold_unique_contract": "AssertionError: 2 != 0",
+          "atomic_error_contract": "AssertionError: usage: python3.14 -m notebatch [-h] input\npython3.14 -m notebatch: error: unrecognized arguments: --format json\n"
+        }
+      }
+    },
+    {
+      "task": "handoff",
+      "variant": "old",
+      "repeat": 2,
+      "accepted": true,
+      "runs": [
+        {
+          "run_id": "06-handoff-old-r2",
+          "task": "handoff",
+          "variant": "old",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/06-handoff-old-r2/workspace",
+          "base_commit": "895c81aab26841ae7357acd43f60f8779b04bdb2",
+          "prompt_sha256": "6cea1961396ba6f73b4e5aa35eae5b31e30cc499e8a4d7b3172135a35b974a5c",
+          "initial_status": "",
+          "started_at": "2026-09-06T19:49:50.913880+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 259.944,
+          "usage": {
+            "input_tokens": 178338,
+            "cached_input_tokens": 156288,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7029,
+            "reasoning_output_tokens": 1216
+          },
+          "commands": 11,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M test_notebatch.py\n?? .agent/",
+          "commits_added": 0
+        },
+        {
+          "run_id": "06-handoff-old-r2-wave2",
+          "task": "handoff",
+          "variant": "old",
+          "repeat": 2,
+          "workspace": "/private/tmp/astra-skill-benchmark-20260907/handoff/runs/06-handoff-old-r2/workspace",
+          "base_commit": "895c81aab26841ae7357acd43f60f8779b04bdb2",
+          "prompt_sha256": "db5e42770b270229fb89122697be582185d2fbcb1436cbd91dbe408ca9c2b023",
+          "initial_status": "",
+          "wave": 2,
+          "started_at": "2026-09-06T19:54:12.101420+00:00",
+          "timed_out": false,
+          "returncode": 0,
+          "elapsed_seconds": 274.911,
+          "usage": {
+            "input_tokens": 204118,
+            "cached_input_tokens": 178304,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6899,
+            "reasoning_output_tokens": 1011
+          },
+          "commands": 11,
+          "failed_commands": 1,
+          "runtime_errors": [
+            "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+            "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+          ],
+          "validation_returncode": 0,
+          "validation": {
+            "checks": {
+              "normalization_and_nonmutation": true,
+              "input_contract": true,
+              "legacy_file_cli": true,
+              "public_tests": true,
+              "no_unrequested_commit": true,
+              "stdin_and_format_contract": true,
+              "casefold_unique_contract": true,
+              "atomic_error_contract": true
+            },
+            "details": {}
+          },
+          "accepted": true,
+          "final_status": "M README.md\n M notebatch/__init__.py\n M notebatch/__main__.py\n M test_notebatch.py\n?? .agent/",
+          "commits_added": 0
+        }
+      ],
+      "phase1_full_validation": {
+        "checks": {
+          "normalization_and_nonmutation": true,
+          "input_contract": true,
+          "legacy_file_cli": true,
+          "public_tests": true,
+          "no_unrequested_commit": true,
+          "stdin_and_format_contract": false,
+          "casefold_unique_contract": false,
+          "atomic_error_contract": false
+        },
+        "details": {
+          "stdin_and_format_contract": "AssertionError: 1 != 0",
+          "casefold_unique_contract": "AssertionError: 2 != 0",
+          "atomic_error_contract": "AssertionError: usage: python3.14 -m notebatch [-h] input\npython3.14 -m notebatch: error: unrecognized arguments: --format json\n"
+        }
+      }
+    }
+  ],
+  "paired_differences": [
+    {
+      "task": "delivery",
+      "repeat": 1,
+      "comparison": "new_minus_native",
+      "accepted_case_delta": 0,
+      "seconds_delta": 19.227,
+      "input_plus_output_token_delta": 31586
+    },
+    {
+      "task": "delivery",
+      "repeat": 1,
+      "comparison": "new_minus_old",
+      "accepted_case_delta": 1,
+      "seconds_delta": 36.15,
+      "input_plus_output_token_delta": 98125
+    },
+    {
+      "task": "delivery",
+      "repeat": 2,
+      "comparison": "new_minus_native",
+      "accepted_case_delta": 0,
+      "seconds_delta": -23.452,
+      "input_plus_output_token_delta": 21144
+    },
+    {
+      "task": "delivery",
+      "repeat": 2,
+      "comparison": "new_minus_old",
+      "accepted_case_delta": 0,
+      "seconds_delta": -27.436,
+      "input_plus_output_token_delta": -23309
+    },
+    {
+      "task": "handoff",
+      "repeat": 1,
+      "comparison": "new_minus_native",
+      "accepted_case_delta": 0,
+      "seconds_delta": 69.226,
+      "input_plus_output_token_delta": 101799
+    },
+    {
+      "task": "handoff",
+      "repeat": 1,
+      "comparison": "new_minus_old",
+      "accepted_case_delta": 0,
+      "seconds_delta": 36.915,
+      "input_plus_output_token_delta": 80397
+    },
+    {
+      "task": "handoff",
+      "repeat": 2,
+      "comparison": "new_minus_native",
+      "accepted_case_delta": 0,
+      "seconds_delta": -42.891,
+      "input_plus_output_token_delta": 16793
+    },
+    {
+      "task": "handoff",
+      "repeat": 2,
+      "comparison": "new_minus_old",
+      "accepted_case_delta": 0,
+      "seconds_delta": -46.688,
+      "input_plus_output_token_delta": 1302
+    },
+    {
+      "task": "ordinary",
+      "repeat": 1,
+      "comparison": "new_minus_native",
+      "accepted_case_delta": 0,
+      "seconds_delta": 19.722,
+      "input_plus_output_token_delta": 51269
+    },
+    {
+      "task": "ordinary",
+      "repeat": 1,
+      "comparison": "new_minus_old",
+      "accepted_case_delta": 0,
+      "seconds_delta": -9.775,
+      "input_plus_output_token_delta": 18234
+    },
+    {
+      "task": "ordinary",
+      "repeat": 2,
+      "comparison": "new_minus_native",
+      "accepted_case_delta": 0,
+      "seconds_delta": -18.671,
+      "input_plus_output_token_delta": -28100
+    },
+    {
+      "task": "ordinary",
+      "repeat": 2,
+      "comparison": "new_minus_old",
+      "accepted_case_delta": 0,
+      "seconds_delta": -62.568,
+      "input_plus_output_token_delta": 21991
+    },
+    {
+      "task": "recovery",
+      "repeat": 1,
+      "comparison": "new_minus_native",
+      "accepted_case_delta": 0,
+      "seconds_delta": -2.956,
+      "input_plus_output_token_delta": 23651
+    },
+    {
+      "task": "recovery",
+      "repeat": 1,
+      "comparison": "new_minus_old",
+      "accepted_case_delta": 0,
+      "seconds_delta": -45.717,
+      "input_plus_output_token_delta": -7385
+    },
+    {
+      "task": "recovery",
+      "repeat": 2,
+      "comparison": "new_minus_native",
+      "accepted_case_delta": 0,
+      "seconds_delta": 4.239,
+      "input_plus_output_token_delta": 21325
+    },
+    {
+      "task": "recovery",
+      "repeat": 2,
+      "comparison": "new_minus_old",
+      "accepted_case_delta": 0,
+      "seconds_delta": -51.501,
+      "input_plus_output_token_delta": -33777
+    }
+  ],
+  "infrastructure_limited_delivery_runs": [
+    {
+      "run_id": "04-delivery-new-r1",
+      "task": "delivery",
+      "variant": "new",
+      "repeat": 1,
+      "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/04-delivery-new-r1/workspace",
+      "base_commit": "3238d8eab60f699c63bfdba97f018b19031b8679",
+      "prompt_sha256": "fda06ec979df8b1ceccacef73d3edd65f0b868ecb092f14a71a2aafe24e245ed",
+      "initial_status": "M NOTES.md",
+      "started_at": "2026-09-06T19:00:06.539943+00:00",
+      "timed_out": false,
+      "returncode": 0,
+      "elapsed_seconds": 288.227,
+      "usage": {
+        "input_tokens": 225859,
+        "cached_input_tokens": 171648,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7771,
+        "reasoning_output_tokens": 1499
+      },
+      "commands": 11,
+      "failed_commands": 0,
+      "runtime_errors": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+        "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+      ],
+      "validation_returncode": 1,
+      "validation": {
+        "checks": {
+          "public_api_and_nested_include": true,
+          "validation_and_cycle_errors": true,
+          "stdin_and_legacy_cli": true,
+          "public_tests": true,
+          "one_local_commit": false,
+          "user_dirty_content_preserved": true,
+          "commit_scope_and_dirty_ownership": false
+        },
+        "details": {
+          "one_local_commit": "AssertionError: '1' != '2'",
+          "commit_scope_and_dirty_ownership": "AssertionError: fatal: invalid object name 'HEAD~'.\n"
+        }
+      },
+      "accepted": false,
+      "final_status": "M NOTES.md\n M README.md\n M routebook/__init__.py\n M routebook/__main__.py\n M routebook/core.py\n M test_routes.py",
+      "commits_added": 0
+    },
+    {
+      "run_id": "05-delivery-native-r1",
+      "task": "delivery",
+      "variant": "native",
+      "repeat": 1,
+      "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/05-delivery-native-r1/workspace",
+      "base_commit": "4daa453ec841a0d5bec3cac89c87af35f8d54446",
+      "prompt_sha256": "eb7d3bc73f6501238f01995973258ee0eb1f4d1dd3ff274278e0a073304d5e8b",
+      "initial_status": "M NOTES.md",
+      "started_at": "2026-09-06T19:02:27.726313+00:00",
+      "timed_out": false,
+      "returncode": 0,
+      "elapsed_seconds": 301.259,
+      "usage": {
+        "input_tokens": 179354,
+        "cached_input_tokens": 153216,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8042,
+        "reasoning_output_tokens": 2011
+      },
+      "commands": 9,
+      "failed_commands": 2,
+      "runtime_errors": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+        "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+      ],
+      "validation_returncode": 1,
+      "validation": {
+        "checks": {
+          "public_api_and_nested_include": true,
+          "validation_and_cycle_errors": true,
+          "stdin_and_legacy_cli": true,
+          "public_tests": true,
+          "one_local_commit": false,
+          "user_dirty_content_preserved": true,
+          "commit_scope_and_dirty_ownership": false
+        },
+        "details": {
+          "one_local_commit": "AssertionError: '1' != '2'",
+          "commit_scope_and_dirty_ownership": "AssertionError: fatal: invalid object name 'HEAD~'.\n"
+        }
+      },
+      "accepted": false,
+      "final_status": "M NOTES.md\n M README.md\n M routebook/__init__.py\n M routebook/__main__.py\n M routebook/core.py\n M test_routes.py",
+      "commits_added": 0
+    },
+    {
+      "run_id": "06-delivery-old-r1",
+      "task": "delivery",
+      "variant": "old",
+      "repeat": 1,
+      "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/06-delivery-old-r1/workspace",
+      "base_commit": "4daa453ec841a0d5bec3cac89c87af35f8d54446",
+      "prompt_sha256": "883b12415b96035abd35a1468576704c1ed31163cefecfdde57381fa711551af",
+      "initial_status": "M NOTES.md",
+      "started_at": "2026-09-06T19:04:55.985133+00:00",
+      "timed_out": false,
+      "returncode": 0,
+      "elapsed_seconds": 288.23,
+      "usage": {
+        "input_tokens": 206915,
+        "cached_input_tokens": 176384,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7796,
+        "reasoning_output_tokens": 1508
+      },
+      "commands": 10,
+      "failed_commands": 0,
+      "runtime_errors": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+        "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+      ],
+      "validation_returncode": 1,
+      "validation": {
+        "checks": {
+          "public_api_and_nested_include": true,
+          "validation_and_cycle_errors": true,
+          "stdin_and_legacy_cli": true,
+          "public_tests": true,
+          "one_local_commit": false,
+          "user_dirty_content_preserved": true,
+          "commit_scope_and_dirty_ownership": false
+        },
+        "details": {
+          "one_local_commit": "AssertionError: '1' != '2'",
+          "commit_scope_and_dirty_ownership": "AssertionError: fatal: invalid object name 'HEAD~'.\n"
+        }
+      },
+      "accepted": false,
+      "final_status": "M NOTES.md\n M README.md\n M routebook/__init__.py\n M routebook/__main__.py\n M routebook/core.py\n M test_routes.py",
+      "commits_added": 0
+    },
+    {
+      "run_id": "13-delivery-old-r2",
+      "task": "delivery",
+      "variant": "old",
+      "repeat": 2,
+      "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/13-delivery-old-r2/workspace",
+      "base_commit": "dc28a4575f3a40d034ead067c14bfa5a4715a7c4",
+      "prompt_sha256": "0a637e597525232e6886be71651ebe29a6bd64c982189977a11ecde0adf82adb",
+      "initial_status": "M NOTES.md",
+      "started_at": "2026-09-06T19:18:04.847349+00:00",
+      "timed_out": false,
+      "returncode": 0,
+      "elapsed_seconds": 283.999,
+      "usage": {
+        "input_tokens": 163492,
+        "cached_input_tokens": 146560,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7280,
+        "reasoning_output_tokens": 1252
+      },
+      "commands": 7,
+      "failed_commands": 0,
+      "runtime_errors": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+        "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+      ],
+      "validation_returncode": 1,
+      "validation": {
+        "checks": {
+          "public_api_and_nested_include": true,
+          "validation_and_cycle_errors": true,
+          "stdin_and_legacy_cli": true,
+          "public_tests": true,
+          "one_local_commit": false,
+          "user_dirty_content_preserved": true,
+          "commit_scope_and_dirty_ownership": false
+        },
+        "details": {
+          "one_local_commit": "AssertionError: '1' != '2'",
+          "commit_scope_and_dirty_ownership": "AssertionError: fatal: invalid object name 'HEAD~'.\n"
+        }
+      },
+      "accepted": false,
+      "final_status": "M NOTES.md\n M README.md\n M routebook/__init__.py\n M routebook/__main__.py\n M routebook/core.py\n M test_routes.py",
+      "commits_added": 0
+    },
+    {
+      "run_id": "14-delivery-native-r2",
+      "task": "delivery",
+      "variant": "native",
+      "repeat": 2,
+      "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/14-delivery-native-r2/workspace",
+      "base_commit": "915edb7203508430f6faced852b912b7619102c0",
+      "prompt_sha256": "eb7d3bc73f6501238f01995973258ee0eb1f4d1dd3ff274278e0a073304d5e8b",
+      "initial_status": "M NOTES.md",
+      "started_at": "2026-09-06T19:20:04.006387+00:00",
+      "timed_out": false,
+      "returncode": 0,
+      "elapsed_seconds": 310.329,
+      "usage": {
+        "input_tokens": 196741,
+        "cached_input_tokens": 169600,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8177,
+        "reasoning_output_tokens": 1776
+      },
+      "commands": 14,
+      "failed_commands": 2,
+      "runtime_errors": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+        "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+      ],
+      "validation_returncode": 1,
+      "validation": {
+        "checks": {
+          "public_api_and_nested_include": true,
+          "validation_and_cycle_errors": true,
+          "stdin_and_legacy_cli": true,
+          "public_tests": true,
+          "one_local_commit": false,
+          "user_dirty_content_preserved": true,
+          "commit_scope_and_dirty_ownership": false
+        },
+        "details": {
+          "one_local_commit": "AssertionError: '1' != '2'",
+          "commit_scope_and_dirty_ownership": "AssertionError: fatal: invalid object name 'HEAD~'.\n"
+        }
+      },
+      "accepted": false,
+      "final_status": "M NOTES.md\n M README.md\n M routebook/__init__.py\n M routebook/__main__.py\n M routebook/core.py\n M test_routes.py",
+      "commits_added": 0
+    },
+    {
+      "run_id": "15-delivery-new-r2",
+      "task": "delivery",
+      "variant": "new",
+      "repeat": 2,
+      "workspace": "/private/tmp/astra-skill-benchmark-20260907/campaign/runs/15-delivery-new-r2/workspace",
+      "base_commit": "915edb7203508430f6faced852b912b7619102c0",
+      "prompt_sha256": "4828967b960d1a2ea5dbb39ae4131b800208bdbb12a59b99c591ed2ae0cd6295",
+      "initial_status": "M NOTES.md",
+      "started_at": "2026-09-06T19:22:50.109965+00:00",
+      "timed_out": false,
+      "returncode": 0,
+      "elapsed_seconds": 298.069,
+      "usage": {
+        "input_tokens": 199826,
+        "cached_input_tokens": 165504,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8072,
+        "reasoning_output_tokens": 1698
+      },
+      "commands": 8,
+      "failed_commands": 1,
+      "runtime_errors": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/youda/.codex/config.toml.",
+        "clamping SessionEnd hook timeout to 3s in /Users/youda/.codex/hooks.json"
+      ],
+      "validation_returncode": 1,
+      "validation": {
+        "checks": {
+          "public_api_and_nested_include": true,
+          "validation_and_cycle_errors": true,
+          "stdin_and_legacy_cli": true,
+          "public_tests": true,
+          "one_local_commit": false,
+          "user_dirty_content_preserved": true,
+          "commit_scope_and_dirty_ownership": false
+        },
+        "details": {
+          "one_local_commit": "AssertionError: '1' != '2'",
+          "commit_scope_and_dirty_ownership": "AssertionError: fatal: invalid object name 'HEAD~'.\n"
+        }
+      },
+      "accepted": false,
+      "final_status": "M NOTES.md\n M README.md\n M routebook/__init__.py\n M routebook/__main__.py\n M routebook/core.py\n M test_routes.py",
+      "commits_added": 0
+    }
+  ]
+}

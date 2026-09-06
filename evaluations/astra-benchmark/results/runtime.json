@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-07",
+  "model_requested": "gpt-6-astra",
+  "reasoning_effort_requested": "xhigh",
+  "cli_version": "codex-cli 0.153.2",
+  "python": "3.14.6",
+  "sqlite": "3.53.3",
+  "transport": "Responses HTTPS",
+  "endpoint": "https://chatgpt.com/backend-api/codex",
+  "auth": "existing Codex login; no credentials copied",
+  "sandbox": "workspace-write; corrected delivery uses built-in --approve-for-me",
+  "effective_provider_internal_model_attestation": "not exposed",
+  "token_scope": "executing Agent turn usage; setup, grading and guardian compute not included",
+  "option_sha256": {
+    "cli_options_final.json": "ca1481b02101269fd67f8c1ddddfe619ca44e23d2b32b326a43cb994fe84f42c",
+    "cli_options_delivery.json": "627ac43e7f7eb5fac507f83e2c1c402b3c3efca4c414a5d21b35368b6724df7a"
+  }
+}

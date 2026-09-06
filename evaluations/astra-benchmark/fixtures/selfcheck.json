@@ -1,0 +1,101 @@
+{
+  "ordinary": {
+    "initial": {
+      "exit_code": 1,
+      "checks": {
+        "normalization": false,
+        "exact_money": false,
+        "invalid_amount_row_numbers": false,
+        "legacy_api": false,
+        "public_tests": true,
+        "no_unrequested_commit": true
+      },
+      "details": {
+        "normalization": "KeyError: 'status'",
+        "exact_money": "AssertionError: {'A': 14, 'B': 9007199254740994} != {'A': 15, 'B': 9007199254740993}",
+        "invalid_amount_row_numbers": "AssertionError: cannot convert float NaN to integer",
+        "legacy_api": "ValueError: could not convert string to float: ' '"
+      }
+    },
+    "reference_repair": {
+      "exit_code": 0,
+      "checks": {
+        "normalization": true,
+        "exact_money": true,
+        "invalid_amount_row_numbers": true,
+        "legacy_api": true,
+        "public_tests": true,
+        "no_unrequested_commit": true
+      },
+      "details": {}
+    }
+  },
+  "delivery": {
+    "initial": {
+      "exit_code": 1,
+      "checks": {
+        "public_api_and_nested_include": false,
+        "validation_and_cycle_errors": false,
+        "stdin_and_legacy_cli": false,
+        "public_tests": true,
+        "one_local_commit": false,
+        "user_dirty_content_preserved": true,
+        "commit_scope_and_dirty_ownership": false
+      },
+      "details": {
+        "public_api_and_nested_include": "AssertionError: {'root': '/current', 'login': '/login'} != {'health': '/health', 'root': '/current', 'login': '/login'}",
+        "validation_and_cycle_errors": "AssertionError: expected ValueError",
+        "stdin_and_legacy_cli": "AssertionError: {'main': '/m'} != {'base': '/b', 'main': '/m'}",
+        "one_local_commit": "AssertionError: '1' != '2'",
+        "commit_scope_and_dirty_ownership": "AssertionError: fatal: invalid object name 'HEAD~'.\n"
+      }
+    },
+    "reference_repair": {
+      "exit_code": 0,
+      "checks": {
+        "public_api_and_nested_include": true,
+        "validation_and_cycle_errors": true,
+        "stdin_and_legacy_cli": true,
+        "public_tests": true,
+        "one_local_commit": true,
+        "user_dirty_content_preserved": true,
+        "commit_scope_and_dirty_ownership": true
+      },
+      "details": {}
+    }
+  },
+  "recovery": {
+    "initial": {
+      "exit_code": 1,
+      "checks": {
+        "v1_migration_preserves_data_and_reopens": false,
+        "idempotent_retries_and_conflicts": false,
+        "rollback_and_recovery": false,
+        "input_validation_is_atomic": false,
+        "incident_reproduction": false,
+        "public_tests": true,
+        "no_unrequested_commit": true
+      },
+      "details": {
+        "v1_migration_preserves_data_and_reopens": "OperationalError: no such column: source",
+        "idempotent_retries_and_conflicts": "IntegrityError: UNIQUE constraint failed: events.id",
+        "rollback_and_recovery": "IntegrityError: UNIQUE constraint failed: events.id",
+        "input_validation_is_atomic": "KeyError: 'id'",
+        "incident_reproduction": "AssertionError: 1 != 0"
+      }
+    },
+    "reference_repair": {
+      "exit_code": 0,
+      "checks": {
+        "v1_migration_preserves_data_and_reopens": true,
+        "idempotent_retries_and_conflicts": true,
+        "rollback_and_recovery": true,
+        "input_validation_is_atomic": true,
+        "incident_reproduction": true,
+        "public_tests": true,
+        "no_unrequested_commit": true
+      },
+      "details": {}
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "delivery",
+  "source": "source",
+  "prompt": "prompt.txt",
+  "validator": "validate.py",
+  "dirty_files": {
+    "NOTES.md": "# Personal notes\n\nKeep this file out of implementation commits.\n\n用户草稿：下周再讨论 route ownership。\nDo not rewrite this sentence.\n"
+  },
+  "expected_paths": [
+    "routebook/core.py",
+    "routebook/__init__.py",
+    "routebook/__main__.py",
+    "README.md",
+    "test_routes.py"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "recovery",
+  "source": "source",
+  "prompt": "prompt.txt",
+  "validator": "validate.py",
+  "dirty_files": {},
+  "expected_paths": [
+    "store.py",
+    "test_store.py"
+  ]
+}

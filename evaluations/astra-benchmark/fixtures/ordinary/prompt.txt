@@ -1,0 +1,2 @@
+请修好这个发票 CSV 汇总器。现在有的合法导出带 BOM、表头/字段空格和大小写不同的 paid 状态，会漏算或崩溃；金额用 float/round 导致半分金额不准确，NaN 等非有限金额也没被正确拒绝。
+按 README 的输入和错误约定修复，保留 summarize(text)、render(totals) 的接口和原有行为。只校验 paid 行的金额；退款逐行 ROUND_HALF_UP；报错包含 CSV 记录结束的物理行号。补充必要的回归测试并运行。直接完成本地修复即可，不要提交 Git。

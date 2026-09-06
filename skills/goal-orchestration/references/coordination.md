@@ -1,36 +1,39 @@
 # Writable-Agent Coordination
 
-Use for concurrent writable Agents or requested worktree isolation. Keep sequential
-and read-only work in the current worktree.
+Use for concurrent writers or worktree isolation. Prefer sequential work for shared
+writable paths, unsettled interfaces, or implementation dependencies. Parallel lanes
+need stable contracts and disjoint ownership; the main Agent brokers changes to
+shared contracts and integrates the results.
 
-Use one worktree per writable implementer when writers run concurrently, the user
-requests isolation, or high-risk changes need review before touching the user's
-working copy. If lanes share writable paths, a moving interface, or an implementation
-dependency, run them sequentially.
+Inspect scoped status and diff before writable dispatch. Preserve pre-existing edits
+and tell each implementer that other writers' changes must not be reverted. Use the
+current working tree for sequential work, including tasks dependent on dirty changes.
+Do not discard, stash, or commit pre-existing user changes without authorization.
 
-Place worktrees in a sibling directory outside the repository on dedicated
-`codex/<task-id>` branches. Put the absolute worktree path in the capsule and verify it
-with `git worktree list`; a worktree separates changes but is not a security sandbox.
+Use separate worktrees when requested or when concurrent writers need independent
+branches, indexes, or validation environments. Shared-worktree parallelism is suitable
+only for disjoint edits with coordinated shared resources and no competing Git
+mutations. If isolation is unavailable, proceed sequentially unless the user requires
+isolation; then resolve that prerequisite before dependent writes.
 
-Record one ownership map in the current plan or State's Plan section:
+Choose a writable worktree location consistent with project conventions; a sibling
+directory is a preference, not a prerequisite. Use dedicated `codex/<task-id>` branches
+unless instructed otherwise. Verify worktrees with `git worktree list` and include the
+absolute path in each capsule. Worktrees isolate Git state, not permissions.
+
+For clean source, branch from the agreed base, normally current `HEAD`. If required
+changes are uncommitted, use sequential work in place or transfer a scoped patch to
+an isolated workspace when existing authorization permits. Record the base and patch
+provenance, leave source edits intact, and verify the destination. Do not silently
+substitute a clean `HEAD` for the user's intended working-tree base.
+
+Keep one ownership map in the existing plan or durable state when coordinating lanes:
 
 ```text
-agent-id | task | worktree | branch | writable paths | depends on
+agent-id | task | worktree | branch | writable paths | dependencies
 ```
 
-Writable paths must be disjoint. The main Agent brokers interface decisions and
-integrates in the main worktree.
-
-Before dispatch, inspect `git status --short` and the scoped diff:
-
-- For clean source, branch from current `HEAD`.
-- For unrelated dirty paths, record them and proceed only when ownership is disjoint.
-- For required or overlapping dirty changes, work sequentially or obtain explicit
-  approval for a temporary commit or patch transfer.
-
-Never stash, commit, reset, clean, relocate, copy, or overwrite user changes without
-explicit approval, and never silently change the task base.
-
-Accept once after inspecting each branch diff and running the combined decisive gate.
-Remove a worktree only after acceptance and a clean working tree; otherwise preserve
-it and report its path.
+Inspect branch diffs and integrate accepted changes before checking the combined
+result. Reuse valid component evidence under the entrypoint's verification rules.
+Remove task-created worktrees only after their work is integrated or explicitly
+abandoned and no unpreserved changes remain. Otherwise retain them and record paths.

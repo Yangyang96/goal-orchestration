@@ -1,0 +1,8 @@
+{
+  "file": "evidence.tar.gz",
+  "sha256": "03fb9686d9c25e30977a8fd8ae4235a9adcf931a96d8f4132cddc3ce6117b754",
+  "bytes": 1632997,
+  "regular_files": 1777,
+  "reviewed_invocations": 36,
+  "contents": "Frozen inputs, options, all 36 formal runs with workspaces/Git/phase snapshots, independent review packets/grades/mappings, calibration commit evidence, analysis tools. No auth or runtime database cache."
+}

@@ -1,5 +1,6 @@
 # Goal Orchestration 的 Codex 上下文优化：以 Pi、`context-mode` 与 `rpiv-mono` 为参照
 
+> 历史研究记录：以下建议对应当时版本，当前执行规则以 `skills/goal-orchestration/` 为准。
 > 调研日期：2026-08-21
 > 资料范围：仅使用两个官方 GitHub 仓库的 README、docs 与源码。
 > 固定版本：[`context-mode@e47942d`](https://github.com/mksglu/context-mode/tree/e47942d41d79c35ecce13013c9e75122d8470705)，[`rpiv-mono@c2f66ba`](https://github.com/juicesharp/rpiv-mono/tree/c2f66ba60658f5131d4952b77d6793383ac50e93)。

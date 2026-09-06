@@ -1,7 +1,7 @@
 interface:
   display_name: "Goal Orchestration"
   short_description: "Add only needed controls for complex Codex development"
-  default_prompt: "Use $goal-orchestration to add only the durable-state, writable-Agent isolation, accepted-checkpoint commit, and review/repair controls this task needs."
+  default_prompt: "Use $goal-orchestration to complete this project work within the agreed scope, carrying forward authorization and adding coordination or durable state only where needed."
 
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false

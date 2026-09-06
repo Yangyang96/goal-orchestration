@@ -1,0 +1,2 @@
+请完成 README 中 Routebook 的 include 和 stdin 扩展：新增公开 load_routes_text(text, *, base_dir)，复用加载逻辑，支持相对路径递归 include、本地覆盖、循环检查和结构验证；保留旧 load_routes(path) 和文件 CLI。CLI --stdin 从当前目录解析 include，参数组合按 README 约定处理。
+同步更新文档并补充回归测试，运行测试后创建一次本地 Git commit，只提交本任务的实现、文档和测试。NOTES.md 已有我的未提交改动，务必逐字保留且不要放进 commit。不要 push。

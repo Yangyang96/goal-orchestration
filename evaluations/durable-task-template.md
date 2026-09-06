@@ -2,6 +2,7 @@
 
 Use one record for one baseline/candidate comparison over exactly two accepted
 waves. Fill thresholds before either run. Replace every blank with a value or `U`.
+These are experiment controls, not runtime rules or approval requirements.
 
 ## Evidence notation
 
@@ -36,7 +37,7 @@ Excluded or interrupted runs (ID + reason, maximum 3): ___
   match across variants; only the named treatment may differ.
 - Maximum candidate wall-time regression: ___% (0–100%).
 - Maximum candidate Agent-turn increase: ___ turns (0–20).
-- Maximum repair turns: `3` per wave.
+- Maximum repair turns for this experiment: ___ per wave, or `UNBOUNDED`.
 - Exact-token improvement required for a savings claim: ___% (0–100%).
 - Primary non-token P2 measure and target: ___ (one listed measure; numeric target).
 
@@ -68,7 +69,7 @@ Stable setup: YES/NO/U; variance (one line): ___
 |---|---:|---:|---|
 | Accepted-milestone wall time (s) | ___ [O]/U | ___ [O]/U | P |
 | Agent turns (`total; implement/review`) | ___ [O]/U | ___ [O]/U | P |
-| Repair turns (subset of Agent turns; 0–3) | ___ [O]/U | ___ [O]/U | P |
+| Repair turns (subset of Agent turns) | ___ [O]/U | ___ [O]/U | P |
 | Validation coverage (`passing/total`) | ___ [O]/U | ___ [O]/U | n/a |
 | Direct-return bytes (`sum/max`) | ___ [O]/U | ___ [O]/U | P |
 | Durable-state bytes (`start/end/peak`) | ___ [O]/U | ___ [O]/U | P |
@@ -98,7 +99,7 @@ Stable setup: YES/NO/U; variance (one line): ___
 |---|---:|---:|---|
 | Accepted-milestone wall time (s) | ___ [O]/U | ___ [O]/U | P |
 | Agent turns (`total; implement/review`) | ___ [O]/U | ___ [O]/U | P |
-| Repair turns (subset of Agent turns; 0–3) | ___ [O]/U | ___ [O]/U | P |
+| Repair turns (subset of Agent turns) | ___ [O]/U | ___ [O]/U | P |
 | Validation coverage (`passing/total`) | ___ [O]/U | ___ [O]/U | n/a |
 | Direct-return bytes (`sum/max`) | ___ [O]/U | ___ [O]/U | P |
 | Durable-state bytes (`start/end/peak`) | ___ [O]/U | ___ [O]/U | P |

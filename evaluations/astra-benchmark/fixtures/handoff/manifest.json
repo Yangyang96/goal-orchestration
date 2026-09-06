@@ -1,0 +1,26 @@
+{
+  "id": "handoff",
+  "source": "source",
+  "prompt": "prompt1.txt",
+  "validator": "validate.py",
+  "dirty_files": {},
+  "expected_paths": [
+    "notebatch/__init__.py",
+    "notebatch/__main__.py",
+    "test_notebatch.py",
+    "README.md"
+  ],
+  "phases": [
+    {
+      "prompt": "prompt1.txt",
+      "validator": "validate_phase1.py",
+      "fresh_context": true
+    },
+    {
+      "prompt": "prompt2.txt",
+      "validator": "validate.py",
+      "fresh_context": true,
+      "reuse_worktree": true
+    }
+  ]
+}

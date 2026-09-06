@@ -1,30 +1,32 @@
 # Durable State
 
-Use only when work must survive another task or runtime boundary, or unattended work
-has multiple repair waves.
-
-Only the main Agent edits `.agent/STATE.md`:
+Use when work must survive a task/runtime boundary or unattended repair waves.
+Reuse an existing authoritative project progress record when it serves this purpose;
+otherwise only the main Agent maintains `.agent/STATE.md`:
 
 ```text
 # Goal    outcome, constraints, non-goals, final acceptance
-# Plan    active milestone, bounded tasks, dependencies, owned areas
-# Status  accepted evidence, retries, commits, blockers, exact next action
+# Plan    active milestone, remaining tasks, dependencies, ownership
+# Status  accepted evidence, failed hypotheses, blockers, exact next action
 ```
 
-Initialize it once. Edit only the section whose facts changed: Goal for outcome or
-acceptance, Plan for milestone or ownership, and Status for checkpoints. A checkpoint
-normally changes only Status. Keep the complete file under 12 KiB in UTF-8 bytes and
-store facts, not transcript.
+Keep facts and artifact pointers, not transcripts. Update only changed sections.
+Aim for a compact record (normally under 12 KiB); retain essential decisions,
+authorization scope, unresolved work, and recovery paths even when a size target
+would be exceeded. Record commits only when used; no skipped-commit ritual is needed.
 
-Checkpoint after acceptance and before a real pause or unattended dispatch. Record
-the outcome, decisive evidence, retry count, commit or skipped-commit reason, blocker,
-and exact next action. Write both pre- and post-wave checkpoints only when context may
-actually be lost.
+Checkpoint meaningful accepted progress and before a real pause or dispatch that may
+outlive the current context. Do not create a pause merely to checkpoint. Reuse the same
+record after compaction; condense it when needed without erasing unresolved failures.
 
-Resume from State, scoped status/diff, and code named by Status.
+Resume from the record, current scoped status/diff, and referenced artifacts. Treat
+state as recovery evidence, not fresh authority: current user instructions and actual
+repository state take precedence. Refresh stale facts and reuse checks only while
+their covered artifacts and relevant inputs remain unchanged. Continue the next
+required step without asking the user to reconfirm the recorded plan.
 
-Assess refresh only at acceptance or a real pause. If the next task cannot be stated
-in a compact capsule, context is confused, or the module, repository, or domain
-changes, compact the same State. Do not create another state file, reset retries, or
-rerun accepted checks. A new Codex task requires the user to continue there; never
-create one implicitly.
+A state file does not schedule execution or keep a runtime alive. For requested
+unattended work, use supported scheduling or continuation facilities within the
+user's authorization; if unavailable, record the next step and disclose that limit.
+Create a new user-facing task only when explicitly requested. Compaction and internal
+Agent reuse do not require a new task or user handoff.

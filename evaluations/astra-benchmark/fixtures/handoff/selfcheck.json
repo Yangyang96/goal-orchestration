@@ -1,0 +1,81 @@
+{
+  "initial_phase1": {
+    "exit_code": 1,
+    "checks": {
+      "normalization_and_nonmutation": false,
+      "input_contract": false,
+      "legacy_file_cli": false,
+      "public_tests": true,
+      "no_unrequested_commit": true
+    },
+    "details": {
+      "normalization_and_nonmutation": "AssertionError: [{'title': '  Inbox  ', 'tags': [' z ', '', 'a', 'z', ' A '], 'ignored': True}, {'title': '中文'}] != [{'title': 'Inbox', 'tags': ['A', 'a', 'z']}, {'title': '中文', 'tags': []}]",
+      "input_contract": "AssertionError: expected ValueError for {}",
+      "legacy_file_cli": "AssertionError: [{'title': '  File note  '}] != [{'title': 'File note', 'tags': []}]"
+    }
+  },
+  "initial_full": {
+    "exit_code": 1,
+    "checks": {
+      "normalization_and_nonmutation": false,
+      "input_contract": false,
+      "legacy_file_cli": false,
+      "public_tests": true,
+      "no_unrequested_commit": true,
+      "stdin_and_format_contract": false,
+      "casefold_unique_contract": false,
+      "atomic_error_contract": false
+    },
+    "details": {
+      "normalization_and_nonmutation": "AssertionError: [{'title': '  Inbox  ', 'tags': [' z ', '', 'a', 'z', ' A '], 'ignored': True}, {'title': '中文'}] != [{'title': 'Inbox', 'tags': ['A', 'a', 'z']}, {'title': '中文', 'tags': []}]",
+      "input_contract": "AssertionError: expected ValueError for {}",
+      "legacy_file_cli": "AssertionError: [{'title': '  File note  '}] != [{'title': 'File note', 'tags': []}]",
+      "stdin_and_format_contract": "AssertionError: 1 != 0",
+      "casefold_unique_contract": "AssertionError: 2 != 0",
+      "atomic_error_contract": "AssertionError: usage: python3.14 -m notebatch [-h] input\npython3.14 -m notebatch: error: unrecognized arguments: --format json\n"
+    }
+  },
+  "reference_phase1": {
+    "exit_code": 0,
+    "checks": {
+      "normalization_and_nonmutation": true,
+      "input_contract": true,
+      "legacy_file_cli": true,
+      "public_tests": true,
+      "no_unrequested_commit": true
+    },
+    "details": {}
+  },
+  "phase1_only_full": {
+    "exit_code": 1,
+    "checks": {
+      "normalization_and_nonmutation": true,
+      "input_contract": true,
+      "legacy_file_cli": true,
+      "public_tests": true,
+      "no_unrequested_commit": true,
+      "stdin_and_format_contract": false,
+      "casefold_unique_contract": false,
+      "atomic_error_contract": false
+    },
+    "details": {
+      "stdin_and_format_contract": "AssertionError: 1 != 0",
+      "casefold_unique_contract": "AssertionError: 2 != 0",
+      "atomic_error_contract": "AssertionError: usage: python3.14 -m notebatch [-h] input\npython3.14 -m notebatch: error: unrecognized arguments: --format json\n"
+    }
+  },
+  "reference_full": {
+    "exit_code": 0,
+    "checks": {
+      "normalization_and_nonmutation": true,
+      "input_contract": true,
+      "legacy_file_cli": true,
+      "public_tests": true,
+      "no_unrequested_commit": true,
+      "stdin_and_format_contract": true,
+      "casefold_unique_contract": true,
+      "atomic_error_contract": true
+    },
+    "details": {}
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "ordinary",
+  "source": "source",
+  "prompt": "prompt.txt",
+  "validator": "validate.py",
+  "dirty_files": {},
+  "expected_paths": [
+    "ledger.py",
+    "test_ledger.py"
+  ]
+}
