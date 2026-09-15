@@ -1,105 +1,70 @@
 ---
 name: goal-orchestration
-description: "Use only when the user explicitly invokes goal-orchestration. Coordinate complex Codex development requiring concurrent writer ownership, worktree isolation, recovery across tasks or runtimes, or sustained implementation and repair."
+description: Use when the user explicitly invokes goal-orchestration for complex work needing durable state, coordination, worktree isolation, recovery, or sustained implementation. Do not use for ordinary tasks.
 ---
 
 # Goal Orchestration
 
-Activate only when the user explicitly chooses this Skill.
+Coordinate complex implementation while keeping scope, authorization, ownership and
+completion evidence explicit. Invocation alone does not require Agents, state files,
+worktrees, commits or model changes.
 
-Support GPT-6 Astra's judgment with clear outcomes, authority, and evidence. Use only
-controls that help finish the requested project work; invocation alone requires no
-Agents, state files, worktrees, commits, or model-setting changes.
+## Establish the goal
 
-## Outcome And Authority
+- State the requested outcome, constraints, non-goals and observable acceptance.
+- Keep a concise plan only when dependencies or duration justify it. Use project
+  conventions and existing decisions; do not add abstractions or process without a
+  concrete benefit.
+- Carry user decisions and authorization across turns. A correction or status request
+  normally steers unfinished work; it does not cancel it.
+- Clarify only when an unresolved choice materially changes scope, public behavior,
+  reversibility or authorization. Ask at the actual boundary, after preparing the
+  authorized result; silence is not approval.
 
-Infer the outcome, constraints, non-goals, and observable acceptance from the user's
-request and project context. Keep a concise plan only when dependencies or duration
-justify it. Choose implementation details autonomously within that scope; do not add
-features, abstractions, migrations, or process unless needed for the outcome.
+## Choose controls
 
-Carry forward the user's decisions and authorization across turns. A status question
-or correction normally steers ongoing work; it does not cancel unfinished work.
-Update the outcome when the user changes it, without silently weakening acceptance.
+Keep focused or coupled work local. Delegate only bounded independent work or a useful
+independent review. The main Agent owns scope, shared contracts, integration and final
+acceptance; reviewers are read-only.
 
-Distinguish missing information from missing permission:
+Read only the relevant reference:
 
-- Clarify only when available context cannot resolve a choice that materially changes
-  the outcome, public contract, scope, or reversibility. For ordinary reversible
-  choices, use project conventions and proceed; state consequential assumptions.
-- Ask for approval only at an actual authorization boundary under applicable user,
-  project, or runtime rules. Reuse existing authorization; neither Skill invocation
-  nor a retry count adds or removes it. Before asking, complete authorized preparation
-  so the proposed action is concrete and reviewable.
-- Ask the smallest necessary question, identify what depends on it, and continue
-  independent authorized work. Silence is not an answer to a required question.
+- [Durable state](references/state.md) for recovery across tasks/runtimes or unattended waves.
+- [Coordination](references/coordination.md) for concurrent writers or worktree isolation.
 
-## Select Controls And Delegate
-
-Keep focused or tightly coupled work local. Delegate when a bounded independent
-workstream improves speed or quality, including a useful independent review. The main
-Agent owns scope, shared contracts, integration, and final acceptance; implementers
-may make local design decisions within their assigned contract.
-
-Read only the relevant reference when needed; refresh it if changed or unavailable
-in the current context:
-
-| Need | Reference |
-|---|---|
-| Recovery across tasks/runtimes or unattended waves | [Durable state](references/state.md) |
-| Concurrent writers or worktree isolation | [Coordination](references/coordination.md) |
-
-Give each Agent enough authoritative context to decide correctly:
+Dispatch with a compact capsule:
 
 ```text
 TASK: outcome, constraints, non-goals
-SCOPE: owned paths, shared interfaces, dependencies; other writers must be preserved
-ACCEPT: observable conditions; known focused checks
-CONTEXT: relevant decisions, authorization limits, facts, artifact paths
-RETURN: result, changes, validation (check / covered artifact / result), unresolved work
+SCOPE: owned paths, interfaces and dependencies
+ACCEPT: observable result and focused checks
+CONTEXT: decisions, authorization and evidence paths
+RETURN: changes, checks, evidence and unresolved work
 ```
 
-Use available roles and context controls only when useful. Preserve the configured
-model and reasoning settings unless instructed otherwise. Context trimming must not
-omit relevant decisions or authorization limits; tool availability does not expand
-permissions. Reviewers inspect without modifying the implementation.
+Do not overlap writable paths. Preserve unrelated changes. Tool availability never
+expands permission, and configured model/reasoning settings remain unchanged unless
+explicitly requested.
 
-## Verify And Continue
+## Verify and continue
 
-Inspect delegated changes and supporting evidence before accepting them. Reuse valid
-checks for unchanged artifacts and relevant inputs; run the smallest missing or
-affected checks, including combined integration checks where needed. Do not rerun
-checks merely because another Agent ran them. Add independent review where requested
-or where concrete consequences or uncertainty justify it; do not make every unit pass
-through a review ceremony. Inspect an unproven shared contract before scaling it.
+- Inspect delegated changes and evidence before accepting them. Reuse checks when inputs
+  are unchanged; run the smallest missing checks and add integration checks at contract
+  boundaries.
+- On failure, update the hypothesis from evidence and continue while a productive,
+  authorized step remains. Do not use fixed retry counts or task splits to reset retries.
+- Keep standards, spec, security and user acceptance findings distinct when reviewing.
+- Record actual modifications, validation, failures, blockers and next steps in the
+  project's single state entry. Do not rewrite historical evidence.
 
-Reuse an implementer while context remains useful. On failure, preserve accepted work
-and revise the hypothesis using the failed evidence. Continue while a justified next
-step can advance the outcome within scope and user limits. Repeated identical failure
-calls for diagnosis or a different approach, not a fixed-count approval gate or task
-split to reset retries. If no productive authorized step remains, describe the actual
-blocker and minimum input needed; finish unaffected work first.
+## Complete
 
-Keep returns concise, but retain evidence, blockers, and unmet acceptance. Review
-findings should name the affected artifact, consequence, and actionable correction;
-state limitations when verification is incomplete.
+Continue through all required in-scope steps: integrate changes, run relevant checks,
+fix failures caused by the task, and deliver the requested result. An accepted unit,
+checkpoint or Agent return is progress, not completion. A required blocked check or
+required delivery remains unfinished; report it explicitly.
 
-## Finish The User's Task
-
-An accepted unit, Agent return, checkpoint, or local commit is progress. Continue to
-the next required step until the requested outcome is integrated and verified.
-Completion requires all in-scope acceptance conditions to be met, relevant checks to
-pass, and required delivery actions to succeed. A blocked check or delivery step is
-unfinished work; report it explicitly rather than claiming completion or ending with
-an offer to do already-authorized work.
-
-Commit, push, PR, and deployment actions follow the user's request and existing
-authorization, regardless of how this Skill was activated. Prepare and perform them
-when authorized and required; otherwise a reviewed working-tree change can be the
-complete deliverable. Include only attributable task changes; keep orchestration
-state out of product commits unless the project intentionally versions it. Report a
-failed optional checkpoint and continue; a failed required delivery remains pending.
-
-Finish with the outcome, decisive validation, and any remaining limitations or
-required user action. Remove disposable artifacts created by this task when they are
-no longer needed, preserving user work and recovery evidence for unfinished work.
+Commit, push, PR and deployment follow the user's request and existing authorization.
+Keep orchestration state out of product commits unless the project versions it. Finish
+with the outcome, decisive evidence and remaining limitations. Remove disposable test
+artifacts while retaining recovery evidence for unfinished work.
