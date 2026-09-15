@@ -1,72 +1,29 @@
 # Goal Orchestration
 
-Goal Orchestration makes useful subagent delegation an explicit preference for complex
-project work. It adds delegation decisions, shared-resource coordination and recovery
-details to the user's AGENTS.md and Codex instructions.
+让 Codex 在复杂任务中主动寻找适合子 Agent 的工作，协调分工并整合结果。
 
-This Skill activates only when the user explicitly chooses it, such as by invoking
-`$goal-orchestration`. Automatic invocation is disabled.
+适合多模块开发、重构迁移，以及需要独立调查或审阅的任务。小改动可以直接交给 Codex，不必启用这个 skill。
 
-When invoked, the main Agent looks for a concrete delegation opportunity and dispatches
-it when saved elapsed time or independent scrutiny justifies the overhead. There is no
-Agent quota. Small or tightly coupled work can stay local with a brief explanation.
+## 安装与更新
 
-## Design
-
-The [entry contract](skills/goal-orchestration/SKILL.md) covers delegation selection,
-handoff interfaces and integration. It loads conditional details:
-
-| Need | Contract |
-|---|---|
-| Handoffs across contexts or runtimes | [Recovery](skills/goal-orchestration/references/state.md) |
-| Concurrent writers or worktree isolation | [Coordination](skills/goal-orchestration/references/coordination.md) |
-
-General autonomy, authorization, task persistence, Git delivery and state-file policy
-remain in the user's AGENTS.md and Codex instructions. The skill does not duplicate
-them or provide a standalone execution runtime.
-
-## Install or Update
-
-From the repository root, synchronize the packaged skill into the current user's
-Codex skill directory:
-
-```sh
-skill_target="${CODEX_HOME:-$HOME/.codex}/skills/goal-orchestration"
-mkdir -p "$skill_target"
-rsync -a --delete skills/goal-orchestration/ "$skill_target/"
-```
-
-`--delete` removes obsolete files only inside this skill's target directory, which is
-required when an update removes or renames a reference. Back up intentional local
-edits in that directory before synchronizing.
-
-## Use
+在 Codex 中发送下面这句话，安装和更新都用它：
 
 ```text
-Use $goal-orchestration for this migration. Delegate independent work that helps
-finish sooner or provides useful independent scrutiny, and integrate the results.
+请将 https://github.com/Yangyang96/goal-orchestration 仓库中的 goal-orchestration skill 安装或更新到我的 Codex。
 ```
 
-## Verify
+## 使用
 
-```sh
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover \
-  -s skills/goal-orchestration/tests -v
+描述目标时加上 `$goal-orchestration`：
+
+```text
+用 $goal-orchestration 完成这次重构：把订单校验从接口层移到独立模块，保持现有 API 行为不变，并通过相关测试。
 ```
 
-These checks validate package structure and reference integrity, not model behavior.
-The skill has no external runtime dependency. Maintainer evaluations under
-`evaluations/` are not loaded by the skill; dated records describe their evaluated
-revision, not current execution rules.
+Codex 会寻找能并行推进的工作或有价值的独立审阅，安排子 Agent，并检查、整合返回的结果。已有工作跨会话续接时，会核对产物与进度，避免重复分派。
 
-The [2026-09-07 Astra controlled pilot](evaluations/astra-benchmark/REPORT.md)
-compared native execution and two historical Skill revisions. Native Astra and the
-then-new revision completed all six primary tasks and both handoff cases; the older
-revision missed one required local commit. This small pilot found no completion-rate
-advantage over native Astra and disabled subagents in the executing model. It does not
-measure the benefit of delegation or validate the current revision. Resource
-measurements, retained failures, and scope limits are in the report.
+只有你显式调用时才会启用。是否分派取决于实际收益；拆分成本更高时，Codex 会说明原因并直接完成。
 
-## License
+## 许可
 
-MIT
+[MIT](LICENSE)
