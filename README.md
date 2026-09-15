@@ -1,37 +1,29 @@
 # Goal Orchestration
 
-Goal Orchestration supports GPT-6 Astra with clear outcomes, persistent authorization,
-proportionate verification, and optional coordination for complex project work.
-It leaves implementation choices to the model within the user's scope.
+Goal Orchestration makes useful subagent delegation an explicit preference for complex
+project work. It adds delegation decisions, shared-resource coordination and recovery
+details to the user's AGENTS.md and Codex instructions.
 
 This Skill activates only when the user explicitly chooses it, such as by invoking
 `$goal-orchestration`. Automatic invocation is disabled.
 
-Explicit invocation applies without forcing Agents, worktrees,
-state files, or commits. Focused work stays local; concurrent writers, recovery across
-tasks or runtimes, and sustained repair use only the controls they need.
+When invoked, the main Agent looks for a concrete delegation opportunity and dispatches
+it when saved elapsed time or independent scrutiny justifies the overhead. There is no
+Agent quota. Small or tightly coupled work can stay local with a brief explanation.
 
 ## Design
 
-The [entry contract](skills/goal-orchestration/SKILL.md) defines autonomy, clarification,
-approval, delegation, verification, and completion. It loads conditional controls:
+The [entry contract](skills/goal-orchestration/SKILL.md) covers delegation selection,
+handoff interfaces and integration. It loads conditional details:
 
 | Need | Contract |
 |---|---|
-| Recovery across tasks/runtimes or unattended waves | [Durable state](skills/goal-orchestration/references/state.md) |
+| Handoffs across contexts or runtimes | [Recovery](skills/goal-orchestration/references/state.md) |
 | Concurrent writers or worktree isolation | [Coordination](skills/goal-orchestration/references/coordination.md) |
 
-The main Agent owns scope and final acceptance. Routine reversible choices proceed
-without confirmation. Questions are reserved for consequential unresolved choices or
-actual authorization boundaries, using decisions and permissions already given.
-Repairs continue with new evidence, within scope and user limits; there is no fixed
-retry-count approval gate. Accepted milestones lead to the next required step until
-the complete requested outcome is integrated, verified, and delivered.
-
-Git and external delivery actions follow existing user authorization.
-Skill invocation alone does not authorize them.
-Configured model and reasoning settings are preserved. This is an instruction design
-for capable models, not a claim of measured model-specific performance gains.
+General autonomy, authorization, task persistence, Git delivery and state-file policy
+remain in the user's AGENTS.md and Codex instructions. The skill does not duplicate
+them or provide a standalone execution runtime.
 
 ## Install or Update
 
@@ -51,8 +43,8 @@ edits in that directory before synchronizing.
 ## Use
 
 ```text
-Use $goal-orchestration to implement this migration with concurrent writers,
-preserve my dirty changes, and keep the work resumable.
+Use $goal-orchestration for this migration. Delegate independent work that helps
+finish sooner or provides useful independent scrutiny, and integrate the results.
 ```
 
 ## Verify
@@ -68,11 +60,12 @@ The skill has no external runtime dependency. Maintainer evaluations under
 revision, not current execution rules.
 
 The [2026-09-07 Astra controlled pilot](evaluations/astra-benchmark/REPORT.md)
-compared native execution, the previous Skill, and this revision. Native Astra and
-this revision completed all six primary tasks and both handoff cases; the previous
-Skill missed one required local commit. This small pilot found no completion-rate
-advantage over native Astra. Use the Skill selectively for coordination needs;
-resource measurements, retained failures, and scope limits are in the report.
+compared native execution and two historical Skill revisions. Native Astra and the
+then-new revision completed all six primary tasks and both handoff cases; the older
+revision missed one required local commit. This small pilot found no completion-rate
+advantage over native Astra and disabled subagents in the executing model. It does not
+measure the benefit of delegation or validate the current revision. Resource
+measurements, retained failures, and scope limits are in the report.
 
 ## License
 

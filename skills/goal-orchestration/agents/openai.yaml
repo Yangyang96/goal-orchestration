@@ -1,7 +1,7 @@
 interface:
   display_name: "Goal Orchestration"
-  short_description: "Add only needed controls for complex Codex development"
-  default_prompt: "Use $goal-orchestration to complete this project work within the agreed scope, carrying forward authorization and adding coordination or durable state only where needed."
+  short_description: "Find useful subagent work and coordinate integration"
+  default_prompt: "Use $goal-orchestration to find and dispatch useful subagent work for this goal, keeping coordination costs proportionate and integrating the results."
 
 policy:
   allow_implicit_invocation: false

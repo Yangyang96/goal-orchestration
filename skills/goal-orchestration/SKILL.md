@@ -1,70 +1,43 @@
 ---
 name: goal-orchestration
-description: Use when the user explicitly invokes goal-orchestration for complex work needing durable state, coordination, worktree isolation, recovery, or sustained implementation. Do not use for ordinary tasks.
+description: Use when explicitly invoked to find useful subagent work and coordinate parallel implementation or cross-session recovery for a complex goal.
 ---
 
 # Goal Orchestration
 
-Coordinate complex implementation while keeping scope, authorization, ownership and
-completion evidence explicit. Invocation alone does not require Agents, state files,
-worktrees, commits or model changes.
+Explicit invocation expresses a preference for useful delegation. Actively look for
+work to delegate and dispatch it when the expected benefit outweighs briefing,
+waiting and integration costs. Do not impose an Agent count.
 
-## Establish the goal
+## Find useful delegation
 
-- State the requested outcome, constraints, non-goals and observable acceptance.
-- Keep a concise plan only when dependencies or duration justify it. Use project
-  conventions and existing decisions; do not add abstractions or process without a
-  concrete benefit.
-- Carry user decisions and authorization across turns. A correction or status request
-  normally steers unfinished work; it does not cancel it.
-- Clarify only when an unresolved choice materially changes scope, public behavior,
-  reversibility or authorization. Ask at the actual boundary, after preparing the
-  authorized result; silence is not approval.
+- During initial scoping, identify a concrete candidate, what benefit it provides,
+  and what useful work stays with the main Agent. If none is worthwhile, give a brief
+  reason and proceed locally; reconsider when a dependency or uncertainty changes.
+- Favor substantial disjoint implementation lanes, a bounded investigation alongside
+  implementation, or an independent review of a consequential assumption or result.
+- Keep shared-interface decisions and tightly coupled edits local until a stable
+  boundary emerges. A short task whose result blocks all other work rarely benefits
+  from dispatch. Judge saved elapsed time or independent scrutiny, not task size alone.
 
-## Choose controls
+## Coordinate the handoff
 
-Keep focused or coupled work local. Delegate only bounded independent work or a useful
-independent review. The main Agent owns scope, shared contracts, integration and final
-acceptance; reviewers are read-only.
+Alongside the normal task and file ownership, give each delegate the shared interface
+it must preserve, dependency readiness, acceptance evidence to return, and the result
+the main Agent will consume. Resolve proposed changes to shared interfaces centrally.
 
-Read only the relevant reference:
+For an independent review, provide the requirements and artifacts before the main
+Agent's preferred explanation, so the reviewer can form its own assessment.
 
-- [Durable state](references/state.md) for recovery across tasks/runtimes or unattended waves.
+Read the relevant reference only when needed:
+
 - [Coordination](references/coordination.md) for concurrent writers or worktree isolation.
+- [Recovery](references/state.md) when a handoff may outlive the current context or runtime.
 
-Dispatch with a compact capsule:
+## Integrate the result
 
-```text
-TASK: outcome, constraints, non-goals
-SCOPE: owned paths, interfaces and dependencies
-ACCEPT: observable result and focused checks
-CONTEXT: decisions, authorization and evidence paths
-RETURN: changes, checks, evidence and unresolved work
-```
-
-Do not overlap writable paths. Preserve unrelated changes. Tool availability never
-expands permission, and configured model/reasoning settings remain unchanged unless
-explicitly requested.
-
-## Verify and continue
-
-- Inspect delegated changes and evidence before accepting them. Reuse checks when inputs
-  are unchanged; run the smallest missing checks and add integration checks at contract
-  boundaries.
-- On failure, update the hypothesis from evidence and continue while a productive,
-  authorized step remains. Do not use fixed retry counts or task splits to reset retries.
-- Keep standards, spec, security and user acceptance findings distinct when reviewing.
-- Record actual modifications, validation, failures, blockers and next steps in the
-  project's single state entry. Do not rewrite historical evidence.
-
-## Complete
-
-Continue through all required in-scope steps: integrate changes, run relevant checks,
-fix failures caused by the task, and deliver the requested result. An accepted unit,
-checkpoint or Agent return is progress, not completion. A required blocked check or
-required delivery remains unfinished; report it explicitly.
-
-Commit, push, PR and deployment follow the user's request and existing authorization.
-Keep orchestration state out of product commits unless the project versions it. Finish
-with the outcome, decisive evidence and remaining limitations. Remove disposable test
-artifacts while retaining recovery evidence for unfinished work.
+Check that returned artifacts satisfy the consumer's interface, not merely the
+delegate's local tests. Validate the combined behavior where lanes meet. If a split
+creates repeated coordination or rework, merge the dependent lanes instead of adding
+more dispatches. Mention material delegation gains or costs in the existing delivery
+summary when observed; Agent activity alone is not evidence of benefit.
