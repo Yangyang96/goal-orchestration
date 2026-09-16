@@ -1,0 +1,36 @@
+{
+  "date": "2026-09-16",
+  "status": "OFFLINE_VALIDATED_LIVE_BLOCKED",
+  "base_skill_commit": "1d0bbb11a6662982a7f471291197667bf08353ae",
+  "unittest": {
+    "command": "python -m unittest -v test_baseline",
+    "tests_run": 33,
+    "failures": 0,
+    "errors": 0,
+    "reported_elapsed_seconds": 20.985,
+    "evidence_note": "Executed in the authoring container in this conversation; summary transcribed from actual tool output, not a live model trial. Raw log is not bundled."
+  },
+  "fixture_selfcheck": {
+    "broken_cases_rejected": 6,
+    "reference_stage_checks_passed": 7,
+    "model_calls": 0
+  },
+  "actual_launch_attempt": {
+    "planned_smoke_cases": 9,
+    "planned_parent_invocations": 12,
+    "status": "BLOCKED",
+    "cases_recorded": 0,
+    "model_calls": 0,
+    "problems": ["CODEX_EXECUTABLE_MISSING", "DEDICATED_CODEX_HOME_REQUIRED"]
+  },
+  "tested_git_blobs": {
+    "fixtures.py": "027a78aa9b650966a15b6d53bbf6ba03deb84574",
+    "runner.py": "8df8a814796594451399d6b7cb7a054640596f10",
+    "telemetry.py": "76b0c31fe15f5dfd2fce24913e636ad8bb4c2277",
+    "test_baseline.py": "f51aff67b953e149d2c1d0949265798c105be1d2"
+  },
+  "production_skill_modified": false,
+  "runtime_usage_exporter": "NOT_IMPLEMENTED_OR_CALIBRATED",
+  "independent_fixture_review": "NOT_COMPLETED",
+  "performance_verdict": "NOT_ESTABLISHED"
+}
