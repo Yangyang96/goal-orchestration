@@ -1,36 +1,81 @@
 {
   "date": "2026-09-16",
   "status": "OFFLINE_VALIDATED_LIVE_BLOCKED",
-  "base_skill_commit": "1d0bbb11a6662982a7f471291197667bf08353ae",
-  "unittest": {
-    "command": "python -m unittest -v test_baseline",
-    "tests_run": 33,
-    "failures": 0,
-    "errors": 0,
-    "reported_elapsed_seconds": 20.985,
-    "evidence_note": "Executed in the authoring container in this conversation; summary transcribed from actual tool output, not a live model trial. Raw log is not bundled."
+  "model_calls": 0,
+  "production_skill_commit": "1d0bbb11a6662982a7f471291197667bf08353ae",
+  "production_skill_changed": false,
+  "python": "3.13.5",
+  "unit_tests": {
+    "run": 33,
+    "passed": 33,
+    "log": "test-output.txt"
   },
-  "fixture_selfcheck": {
-    "broken_cases_rejected": 6,
-    "reference_stage_checks_passed": 7,
-    "model_calls": 0
-  },
-  "actual_launch_attempt": {
-    "planned_smoke_cases": 9,
-    "planned_parent_invocations": 12,
-    "status": "BLOCKED",
-    "cases_recorded": 0,
+  "selfcheck": {
+    "type": "OFFLINE_SELFCHECK_NOT_MODEL_EXECUTION",
     "model_calls": 0,
-    "problems": ["CODEX_EXECUTABLE_MISSING", "DEDICATED_CODEX_HOME_REQUIRED"]
+    "broken_cases_rejected": 6,
+    "reference_checks": [
+      {
+        "task": "tiny",
+        "phase": 1,
+        "reference_passed": true
+      },
+      {
+        "task": "parallel",
+        "phase": 1,
+        "reference_passed": true
+      },
+      {
+        "task": "dirty",
+        "phase": 1,
+        "reference_passed": true
+      },
+      {
+        "task": "review",
+        "phase": 1,
+        "reference_passed": true
+      },
+      {
+        "task": "handoff",
+        "phase": 1,
+        "reference_passed": true
+      },
+      {
+        "task": "handoff",
+        "phase": 2,
+        "reference_passed": true
+      },
+      {
+        "task": "stale",
+        "phase": 1,
+        "reference_passed": true
+      }
+    ],
+    "passed": true
   },
-  "tested_git_blobs": {
-    "fixtures.py": "027a78aa9b650966a15b6d53bbf6ba03deb84574",
-    "runner.py": "8df8a814796594451399d6b7cb7a054640596f10",
-    "telemetry.py": "76b0c31fe15f5dfd2fce24913e636ad8bb4c2277",
-    "test_baseline.py": "f51aff67b953e149d2c1d0949265798c105be1d2"
+  "preflight": {
+    "model_calls": 0,
+    "codex_found": false,
+    "git_found": true,
+    "runtime_delegation_verified": false,
+    "all_agent_telemetry_verified": false,
+    "problems": [
+      "CODEX_EXECUTABLE_MISSING",
+      "DEDICATED_AUTHENTICATED_CODEX_HOME_REQUIRED"
+    ],
+    "status": "BLOCKED"
   },
-  "production_skill_modified": false,
+  "smoke_plan": {
+    "cases": 9,
+    "parent_invocations": 12,
+    "cases_recorded": 0
+  },
   "runtime_usage_exporter": "NOT_IMPLEMENTED_OR_CALIBRATED",
-  "independent_fixture_review": "NOT_COMPLETED",
-  "performance_verdict": "NOT_ESTABLISHED"
+  "performance_verdict": "NOT_ESTABLISHED",
+  "source_sha256": {
+    "fixtures.py": "c8200c9e8b798c95bf060c394796d044e7958a1e1e2fb17b4c4b3933ff614af9",
+    "runner.py": "6d5fefe16ddd47f4452dece6badbecf4b1cefd3fdba67690519304af61dce9bc",
+    "telemetry.py": "3d8050c10ef1cb18de3b7764982f490714c4b52d829e536617a14ed03f6d2b11",
+    "test_baseline.py": "8ffb4d54f17f0f386c69dc0e2cf6bb6894fd7820a9d2f5a7fde1afb30dc6c7c7"
+  }
 }

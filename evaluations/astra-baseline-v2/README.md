@@ -1,41 +1,53 @@
 # Astra 三组基线 V2
 
-**状态：基线实现和离线检查完成；真实模型实验未执行。**
+**状态：实现与离线检查完成；真实模型对照未执行。**
 
-2026-09-16，本次会话容器没有 Codex CLI、授权模型执行通道或可调用的远程 Codex 环境。实际 launch preflight 返回 `BLOCKED`；真实模型调用数为 **0**。不要把单元测试、参考实现或计划中的样本数当成 Astra 性能结果。
+2026-09-16 当前执行容器没有 Codex CLI 或可用登录态，预检查返回 `BLOCKED`，
+真实模型调用数为 **0**。本目录的参考实现和合成记账数据绝不是 Astra 成绩。
+生产 Skill 与历史 `evaluations/astra-benchmark/` 不变。
 
-历史 `evaluations/astra-benchmark/` 与生产 Skill 不变。当前比较目标是 `1d0bbb11a6662982a7f471291197667bf08353ae` 中的 Skill；每次 campaign 仍按实际读取的文件 SHA-256 冻结，不以 Git HEAD 代替内容身份。
+## 比较对象
 
-## 三组与偏好
-
-| 组 | 唯一处理差异 | 子 Agent 工具 |
+| 组 | 处理差异 | 子 Agent 工具 |
 |---|---|---|
-| A 原生默认 | 任务 + 公共约束；不加载 Skill、不额外请求委派 | 开启，与 B/C 相同 |
+| A 原生默认 | 公共实验约束 + 业务任务，不加载 Skill、不额外提示委派 | 开启，与 B/C 相同 |
 | B 原生可委派 | A + “必要时可将独立工作交给子 Agent，以收益是否超过协调开销为准。” | 开启 |
 | C 当前 Skill | A + 显式调用冻结的当前 Skill；reference 按需读取 | 开启 |
 
-“原生”是相同受控 Codex 环境下不加载该 Skill，不是无工具裸模型，也不等同于每个人完整桌面个性化配置。三组权限、内置约束、模型和推理档位相同。不禁用 A 的委派工具、不强制 B 委派、不按 Agent 数量评分。
+A 是受控的同一 Codex 环境中的默认执行，不是没有工具的裸模型，也不是用户桌面
+全部个性化设置的精确复刻。公共约束、权限、模型和推理档位完全相同，不强制任何
+一组委派。配置请求相同不等于后端生效已证明，仍需校准/运行时审阅。
 
-公共偏好：正确性和保留用户修改优先，同时避免不必要 token 与等待。默认请求 `gpt-6-astra/xhigh`，对子模型/effort 设置同样默认值。请求配置一致不等于实际后端配置已经证明，仍需日志校准；不能伪称固定内部权重版本。
+默认请求 `gpt-6-astra/xhigh`，父/子相同。生产快照来自
+`1d0bbb11a6662982a7f471291197667bf08353ae`；campaign 按实际读取的 Skill 内容
+SHA-256 冻结，包括未提交修改，因此不要只用 Git HEAD 识别被测版本。
+C 当前版本先不改；优化候选后续用 `plan --skill OTHER_DIR` 建立独立 campaign，
+保留原生 B/当前 C 对照，并用未用于调参的任务复验，不能边看成绩边改本轮输入。
 
-C 本轮**不先应用待验证优化**，否则无法回答当前版本的增益。优化候选应在独立 campaign 与未参与调参的任务上再与 B/C 比较，不能看成绩后改本轮 Skill。内容注入不测试安装、自动发现或 UI 默认提示。
+## 场景与优化偏好
 
-## 六类任务
-
-| task | 主要验证点 | 边界 |
+| 场景 | 当前可验证内容 | 不要据此宣称 |
 |---|---|---|
-| tiny | 小修复负对照，避免为了编排而编排 | 不把零委派作为硬性得分要求 |
-| parallel | 两种解析器、SQLite 存储和 CLI 的接口集成、事务、并发 | 不是大型生产仓库 |
-| dirty | 未提交的接口契约和用户草稿必须保留 | 不强迫使用 worktree |
-| review | 金额分配与消费者的紧耦合修复；精确整数和大数 | 不是严格双盲/独立审阅认证 |
-| handoff | 两次新进程，只继承文件；阶段二需求仅在阶段一出现；禁止提前实现 CLI | 正常交接，不是随机硬崩溃或真实子任务中途丢失 |
-| stale | 已恢复 v1 草稿与新契约冲突，不能覆盖数据 | 预置旧产物，不是实时晚到结果注入 |
+| tiny | 简单开关解析修复，观察额外编排开销 | 零委派才算通过 |
+| parallel | CSV/JSONL、SQLite 原子导入/并发、CLI 跨模块整合 | 已测试大型生产系统 |
+| dirty | 未提交接口契约与用户草稿保留，避免遗漏真实输入 | 强制 worktree 或已证实硬隔离 |
+| review | 紧耦合计算与消费接口，精确整数、平局规则、>2**53 边界 | 严格双盲/独立模型审阅 |
+| handoff | 两个全新进程仅继承文件，第二阶段接口仅在第一阶段告知，禁止提前实现 | 随机崩溃、数日运行、真实在途子任务恢复 |
+| stale | 预置旧版本草稿与当前契约冲突，防止错误覆盖已有数据 | 实时晚到子 Agent 产物注入 |
 
-判卷器执行真实 API、CLI、SQLite 原子性/幂等性/并发检查，并检查 Git 状态与用户草稿字节。阶段结束后由新 Python 进程判卷，不把隐藏失败反馈给模型重试。阶段一完整执行但验收失败时仍执行阶段二，端到端样本保持失败。
+正确性、保留用户修改优先，随后分别比较总 token 与端到端等待。更快但 token
+更多应称“资源换时间”，不能说两项都改善。Agent 数量、写了多少状态文件、
+遵循了多少 Skill 术语均不计分。
 
-机械验收不取代人工审阅：文档质量、测试有效性、额外澄清、重复探索、审阅独立性和语义范围仍需检查日志与产物。夹具、判卷器、参考实现由同一作者编写，独立审查未完成。多个任务共享 Ledgerkit 背景，不能当成六个独立的大型真实项目。
+判卷使用真实 API、CLI、SQLite 和 Git。初始缺陷必须失败，参考实现必须通过。
+阶段一验收失败、进程正常结束时仍执行阶段二，但端到端结果保留失败；不向模型
+反馈隐藏判卷结果重试。任务源码没有隐藏判卷器或参考实现。
 
-## 本次已执行的离线验证
+边界：夹具、参考实现、判卷器由同一作者制作，尚未独立审查。部分场景共享
+Ledgerkit 背景，样本相关，规模较小。机械通过不等于文档/自写测试质量、语义范围、
+澄清必要性或独立审阅已通过；这些需另审日志和产物。参考实现自检不是完备性证明。
+
+## 实际完成的离线检查
 
 ```bash
 cd evaluations/astra-baseline-v2
@@ -43,19 +55,15 @@ python3 -m unittest -v test_baseline
 python3 runner.py selfcheck
 ```
 
-**33 项 unittest 通过。** 六个初始缺陷样本均被拒绝；参考实现共七个阶段检查通过。变异测试检出用户输入丢失、提前完成阶段二、事务不回滚和旧契约覆盖数据。记账测试数字全部是合成单元数据，不是模型消费。
+33 项 unittest 通过。6 个初始缺陷样本均失败，6 个参考实现共 7 个阶段检查通过。
+另检查了缓存不重复计数、缺少子线程用量、模型/effort 漂移、事件绑定、事务回滚
+变异、用户输入丢失、提前实现阶段二、旧契约覆盖等。控制器合成单元测试的结果
+只存在于临时目录，不进入正式 comparison。详见 `LOCAL_VALIDATION.json` 与日志。
 
-见 `LOCAL_VALIDATION.json`。这证明离线实现检查通过，不证明 Codex 集成已运行或 Skill 更有效。
+## 运行条件和校准
 
-## 运行前必须校准
-
-在已有授权的 Codex 环境中验证：原生 spawn/接收/关闭子 Agent、子线程实际模型与 effort、工具权限、worktree 能力、完整主/子 usage 采集。禁止用嵌套 `codex exec` 冒充原生子 Agent，禁止只为 C 放宽权限。
-
-使用专用 CODEX_HOME、`--ignore-user-config`、相同插件/记忆禁用配置，且检查有效指令是否仍有父目录、管理员或宿主注入。文件夹分开**不是硬读隔离**；正式强隔离试验需要独立容器/权限控制。不要使用有个人敏感文件的工作区。
-
-`preflight` 只检查 CLI、必要参数、登录状态和明显的额外指令路径，不调用模型。`CLI_READY_RUNTIME_CALIBRATION_REQUIRED` 不代表运行时已校准。`run` 可产生功能与 CLI 时间记录，但不会自动认证性能结论。
-
-正常登录即可；不要把凭据发到聊天、GitHub 或提交到 Git。脚本不安装 CLI、不复制 auth.json、不修改全局配置或已安装 Skill：
+本工具不安装 CLI、不复制凭据、不改已安装 Skill 或全局配置。使用正常授权的
+Codex 登录。不要把 auth.json、API key、登录 token 放进聊天或提交仓库。
 
 ```bash
 CODEX_HOME="$HOME/.codex-goal-benchmark" codex login
@@ -63,28 +71,41 @@ python3 evaluations/astra-baseline-v2/runner.py preflight \
   --codex-home "$HOME/.codex-goal-benchmark"
 ```
 
-专用 home 不应含其他 AGENTS.md、skills、agents 或 hooks。身份状态以 `codex login status` 为准，不保存凭据正文。CLI/宿主变化后要重新校准。
+专用 home 不应含额外 AGENTS、Skill、自定义 Agent 或 hooks。runner 使用
+`--ignore-user-config`，禁用额外插件/记忆，但并不能证明管理员约束、父目录指令、
+宿主注入都已隔离。运行前校准必须确认：真实原生 spawn/return/close 能用，父/子
+模型与 effort 的有效设置一致，权限和 Git/worktree 路径一致，全部子线程终结。
+不要把参数被接受当成生效证明，也不要用嵌套 CLI 模拟原生子 Agent。
 
-## 先小批验证，再完整 pilot
+`preflight` 只检查 CLI、参数、登录状态和明显的额外指令，不调用模型；
+`CLI_READY_NOT_RUNTIME_CERTIFIED` 不是运行时认证。`run` 能收集功能与 CLI
+耗时记录，但不会自动宣布性能胜负。校准的费用/耗时另列，不混入执行样本。
 
-小批 smoke：3 类 × 3 组 × 1 次 = **9 个端到端样本、12 次父进程执行**；子 Agent 调用另计。以下 `plan` 不调用模型，`run` 会消耗实际账号额度。
+模型与判卷器路径分开，**不是硬读取隔离或安全沙箱**。用户级同一文件系统仍可能
+可读。正式强隔离需要专用容器/用户权限和独立 evaluator。模型生成的代码会在
+本机运行，判卷环境不传凭据变量但仍可能读用户文件；请使用无其他敏感数据的评估
+环境。现有平台沙箱/审批始终保留，不绕过，不单独给 C 放宽权限。
+
+## 先 smoke，再完整 pilot
+
+`plan` 不调用模型；`run` 会真实消耗账号额度。先做 3 类 × 3 组 × 1 次：
+**9 个端到端样本，12 次父进程执行**，子 Agent 调用另外计入。
 
 ```bash
 python3 evaluations/astra-baseline-v2/runner.py plan \
   --output /tmp/goal-astra-smoke-v2 \
-  --tasks tiny parallel handoff --repeats 1 \
-  --model gpt-6-astra --effort xhigh
+  --tasks tiny parallel handoff --repeats 1
 python3 evaluations/astra-baseline-v2/runner.py run \
   --output /tmp/goal-astra-smoke-v2 \
   --codex-home "$HOME/.codex-goal-benchmark"
 ```
 
-smoke 验证执行/隔离/遥测后，在**新目录**创建完整 pilot：6 类 × 3 组 × 3 次 = **54 个端到端样本、63 次父进程执行**。这些是计划数，不是已完成数。
+smoke 与采集校准通过后，在**新目录**做 6 类 × 3 组 × 3 次：
+**54 个端到端样本，63 次父进程执行**。这只是计划规模，不是已完成样本。
 
 ```bash
 python3 evaluations/astra-baseline-v2/runner.py plan \
-  --output /tmp/goal-astra-pilot-v2 --repeats 3 \
-  --model gpt-6-astra --effort xhigh
+  --output /tmp/goal-astra-pilot-v2 --repeats 3
 python3 evaluations/astra-baseline-v2/runner.py run \
   --output /tmp/goal-astra-pilot-v2 \
   --codex-home "$HOME/.codex-goal-benchmark"
@@ -92,46 +113,61 @@ python3 evaluations/astra-baseline-v2/runner.py report \
   --output /tmp/goal-astra-pilot-v2
 ```
 
-顶层样本串行，内部可并行。每三轮每组在同一任务中各占一次执行顺序位置，固定排序种子不是模型采样种子。新工作树、新进程，不传入其他组聊天。
+顶层样本串行，内部可并行；每三轮同一任务每组各占一次执行顺序位置。固定随机
+种子只固定调度，不声称固定模型采样。新工作目录、新进程、不传入其他组历史。
+每父进程默认 900 秒；可在冻结前统一调整 `--timeout`。超时终止本地进程组，
+不能保证未知远程孤儿任务已停止。尚无已校准的全 Agent 硬 token/货币预算闸门。
 
-每阶段默认 900 秒，冻结前可统一设 `--timeout`。**尚无已验证的全 Agent 硬 token/货币预算闸门**，不要在额度未知时直接启动大批。超时终止本地进程组，不宣称能停止未知宿主的远程孤儿任务。
+开始后不覆盖、不挑选性重跑；失败/中断保留。继续研究时另建 campaign 并报告
+原来的失败，不把它们隐藏。不会自动恢复或重跑已开始的 campaign。
 
-不覆盖、不挑选性重跑，不抹掉失败。Ctrl-C/失败保留记录；重新执行建立新 campaign。冻结文件变化会拒绝运行。校准、搭建和判卷开销与模型试验分开记录。
+## Token 采集：明确区分已实现与缺口
 
-## 总 token：账本已实现，运行时 exporter 尚未完成
+**已实现：原始 CLI 事件保存与严格全 Agent 请求账本汇总。尚未实现/校准：
+本机具体 Codex 版本的完整主/子请求级 usage 导出适配器。**
 
-**已实现：原始 CLI 事件保留和严格请求级汇总器。尚未实现/校准：当前 Codex 宿主完整主/子 request usage 导出适配器。** 仅有 `turn.completed.usage` 时总 token 为 `null`，不是 0，更不是“节省”。
+仅有 `turn.completed.usage` 时，总 token 记为 `null/UNKNOWN`，不是 0。无法确认
+父线程用量是否已经聚合子线程时，不直接相加，也不按 Agent 数估算。
 
-经审阅校准的可信运行时 exporter 可在每个 `phase-N/usage-ledger.json` 写入 `goal-usage-v1`，结构参见 `test_baseline.py::example_ledger()`。示例数字只用于单元测试，绝不能复制成正式结果。账本不得来自模型自估。
-
-正式账本还必须附匹配该次执行的 binding：
+可信运行时 exporter 可向每阶段的 `usage-ledger.json` 写入 `goal-usage-v1`。
+示例结构见 `test_baseline.py::ledger()`，其中数字仅供记账单元测试。正式导出
+必须来自运行时，而非模型估算或自报。其 binding 还须完整绑定：
 
 ```json
 {
-  "prompt_sha256": "SHA-256 of phase prompt.txt",
-  "events_sha256": "SHA-256 of phase events.jsonl",
-  "root_thread_ids": ["actual CLI root thread id"],
-  "cli_version": "actual preflight CLI version"
+  "run_id": "001",
+  "phase": 1,
+  "prompt_sha256": "actual digest of phase prompt.txt",
+  "events_sha256": "actual digest of phase events.jsonl",
+  "root_threads": ["actual CLI root thread id"],
+  "cli_version": "actual campaign preflight CLI version"
 }
 ```
 
-账本包含完整线程树、每线程模型/effort/终止状态、请求 ID 清单、每个请求自己的 input/cached-input/output 增量。父线程已聚合子线程时不得重复相加；重复相同请求仅算一次，冲突、跨阶段/样本复用、缺子线程、未终止、漂移或未知 scope 均拒绝完整记账。缓存输入是 input 子集；reasoning 不重复加入 output。
+账本含完整线程树、每线程有效 model/effort/终止状态、完整 request-id 清单，以及
+每请求**自身增量** input/cached-input/output。input 已含缓存；output 不再重复加
+reasoning。相同 request 重复导出只计一次；冲突、跨阶段/样本重用、缺项、模型
+漂移、未终结、未校准都拒绝生成完整总数。
 
-coverage 声明与 evidence hash 不是自证：还需 exporter 源码、原始记录、宿主版本及校准证据。`COMPLETE_EXPORTED` 只代表导出声明通过结构检查。`telemetry.money()` 仅按明确给定单价计算输入/缓存/输出 token 项，不猜价格、不包含其他费用、不映射订阅额度。
+coverage 的声明与 evidence SHA **不能自证真实**；必须独立审阅 exporter 和原始
+校准证据。`COMPLETE_EXPORTED` 只表示声明通过结构检查，不是运行时真实性认证。
+本实现不猜费用、不换算订阅额度、不把缺失子 Agent 费用隐藏成节省。
 
-## 判定
+## 报告解读
 
-先看各任务验收和人工审阅，再看包含失败的全部样本资源；不同完成量不能当成同工作量效率比较。报告分任务/组给出样本数、通过数、CLI 耗时中位数、以及完整采集后才有的 token 中位数。
+`comparison.json` 逐任务/组给出计划数、记录数、机械通过数、CLI 耗时中位数，
+及完整用量才有的 token 中位数。未运行是 NOT_RUN，不当成模型失败；缺失 token
+是 null，不为部分采集排名。保留失败的真实开销，不仅比较成功样本。
 
-CLI 时间是父进程观察值，handoff 为两阶段之和，不自动等于全部子线程静止的墙钟时间。孤儿或未结束子任务需额外核对。没有完整用量不输出成本赢家。
+CLI 时间是父进程端到端观察值，handoff 为两阶段之和，不含判卷/搭建；不是 CPU
+时间，也未认证所有子线程都已静止。质量、时间、token 各自报告，不自动输出综合
+winner；C 只优于 A 未优于 B，可能只是委派提示作用，C 优于 B 才支持额外规则增益。
+三次重复不足以声称统计显著、等效或全场景获益。
 
-C 只优于 A、不优于 B，可能主要是委派提示作用；C 优于 B 才支持额外规则增益；C 更快但 token 更多是资源换时间。三次重复仍是小样本探索，不作统计显著、等效或全场景提升声明。
+在真实对照完成前，**原来的性能结论不因这次离线检查而改变**。
 
-**真实模型实测完成前，原有性能结论不因离线检查而改变。**
-
-## 官方接口依据（2026-09-16 查阅）
-
-- [Codex non-interactive mode](https://developers.openai.com/codex/noninteractive)
-- [Subagents](https://developers.openai.com/codex/subagents)
-- [Configuration reference](https://developers.openai.com/codex/config-reference)
-- [Authentication](https://developers.openai.com/codex/auth)
+官方接口依据（2026-09-16 核对，后续版本仍需校准）：
+[Non-interactive](https://developers.openai.com/codex/noninteractive)、
+[Subagents](https://developers.openai.com/codex/subagents)、
+[Configuration](https://developers.openai.com/codex/config-reference)、
+[Authentication](https://developers.openai.com/codex/auth)。

@@ -1,0 +1,41 @@
+test_conflicting_duplicate_rejected (test_baseline.AccountingTests.test_conflicting_duplicate_rejected) ... ok
+test_empty_root_usage_rejected (test_baseline.AccountingTests.test_empty_root_usage_rejected) ... ok
+test_identical_duplicate_deduplicated (test_baseline.AccountingTests.test_identical_duplicate_deduplicated) ... ok
+test_invalid_calibration_digest_rejected (test_baseline.AccountingTests.test_invalid_calibration_digest_rejected) ... ok
+test_invalid_token_counts_rejected (test_baseline.AccountingTests.test_invalid_token_counts_rejected) ... ok
+test_missing_child_usage_rejected (test_baseline.AccountingTests.test_missing_child_usage_rejected) ... ok
+test_missing_export_unknown_not_zero (test_baseline.AccountingTests.test_missing_export_unknown_not_zero) ... ok
+test_model_and_effort_drift_rejected (test_baseline.AccountingTests.test_model_and_effort_drift_rejected) ... ok
+test_own_request_totals_and_cache_subset (test_baseline.AccountingTests.test_own_request_totals_and_cache_subset) ... ok
+test_parent_aggregate_never_added_to_children (test_baseline.AccountingTests.test_parent_aggregate_never_added_to_children) ... ok
+test_raw_cli_usage_explicitly_not_all_agent_total (test_baseline.AccountingTests.test_raw_cli_usage_explicitly_not_all_agent_total) ... ok
+test_unverified_coverage_rejected (test_baseline.AccountingTests.test_unverified_coverage_rejected) ... ok
+test_wrong_parent_lineage_rejected (test_baseline.AccountingTests.test_wrong_parent_lineage_rejected) ... ok
+test_wrong_trace_binding_rejected (test_baseline.AccountingTests.test_wrong_trace_binding_rejected) ... ok
+test_blocked_run_never_creates_model_results (test_baseline.DesignTests.test_blocked_run_never_creates_model_results) ... ok
+test_completed_phase_failure_not_erased_by_later_success (test_baseline.DesignTests.test_completed_phase_failure_not_erased_by_later_success) ... {"run_id": "001", "status": "FINISHED", "accepted": false}
+{"run_id": "002", "status": "FINISHED", "accepted": false}
+{"run_id": "003", "status": "FINISHED", "accepted": false}
+ok
+test_contaminated_dedicated_home_detected (test_baseline.DesignTests.test_contaminated_dedicated_home_detected) ... ok
+test_dirty_workspace_and_no_answer_leak (test_baseline.DesignTests.test_dirty_workspace_and_no_answer_leak) ... ok
+test_frozen_inputs_checked_and_no_overwrite (test_baseline.DesignTests.test_frozen_inputs_checked_and_no_overwrite) ... ok
+test_invalid_schedule_rejected (test_baseline.DesignTests.test_invalid_schedule_rejected) ... ok
+test_no_arm_specific_runtime_capability_changes (test_baseline.DesignTests.test_no_arm_specific_runtime_capability_changes) ... ok
+test_not_run_cases_not_model_failures (test_baseline.DesignTests.test_not_run_cases_not_model_failures) ... ok
+test_order_balanced_and_deterministic (test_baseline.DesignTests.test_order_balanced_and_deterministic) ... ok
+test_plan_counts_endpoint_cases_separately_from_phases (test_baseline.DesignTests.test_plan_counts_endpoint_cases_separately_from_phases) ... ok
+test_preflight_missing_cli_no_inference (test_baseline.DesignTests.test_preflight_missing_cli_no_inference) ... ok
+test_three_arm_difference_controlled (test_baseline.DesignTests.test_three_arm_difference_controlled) ... ok
+test_all_broken_cases_fail_and_reference_stages_pass (test_baseline.FixtureTests.test_all_broken_cases_fail_and_reference_stages_pass) ... ok
+test_dirty_input_loss_detected (test_baseline.FixtureTests.test_dirty_input_loss_detected) ... ok
+test_early_clean_exit_cannot_pass (test_baseline.FixtureTests.test_early_clean_exit_cannot_pass) ... ok
+test_handoff_followup_does_not_repeat_business_requirements (test_baseline.FixtureTests.test_handoff_followup_does_not_repeat_business_requirements) ... ok
+test_stage_two_early_implementation_detected (test_baseline.FixtureTests.test_stage_two_early_implementation_detected) ... ok
+test_stale_contract_overwrite_detected (test_baseline.FixtureTests.test_stale_contract_overwrite_detected) ... ok
+test_transaction_rollback_mutation_detected (test_baseline.FixtureTests.test_transaction_rollback_mutation_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 21.506s
+
+OK

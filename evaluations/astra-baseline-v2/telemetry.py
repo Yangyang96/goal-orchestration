@@ -1,122 +1,95 @@
-"""Fail-closed all-agent accounting; raw CLI turn usage has UNVERIFIED coverage."""
+"""Request accounting contract. No undocumented Codex usage exporter is fabricated."""
 from __future__ import annotations
-
 import json
-import math
 from pathlib import Path
 
 
-def cli_observations(path: Path) -> dict:
+def read_events(path: Path) -> dict:
     events, malformed = [], 0
     if path.exists():
-        for line in path.read_text(encoding="utf-8").splitlines():
+        for line in path.read_text(encoding='utf-8').splitlines():
             try:
-                event = json.loads(line)
-                if isinstance(event, dict):
-                    events.append(event)
-                else:
-                    malformed += 1
-            except json.JSONDecodeError:
+                e = json.loads(line)
+                if not isinstance(e, dict):
+                    raise ValueError('not an object')
+                events.append(e)
+            except ValueError:
                 malformed += 1
-    completed = [e.get("usage") for e in events if e.get("type") == "turn.completed"]
-    items = [e.get("item", {}) for e in events if e.get("type") == "item.completed"]
-    return {
-        "thread_ids": sorted({e["thread_id"] for e in events if e.get("type") == "thread.started" and e.get("thread_id")}),
-        "raw_completed_turn_usage": completed,
-        "raw_usage_scope": "UNVERIFIED_DO_NOT_TREAT_AS_ALL_AGENTS",
-        "malformed_lines": malformed,
-        "completed_shell_commands": sum(x.get("type") == "command_execution" for x in items),
-        "runtime_errors": [e.get("message", e.get("error")) for e in events if e.get("type") in ("error", "turn.failed")],
-    }
+    return {'root_threads': sorted({e['thread_id'] for e in events
+                                     if e.get('type') == 'thread.started' and e.get('thread_id')}),
+            'raw_turn_usage': [e.get('usage') for e in events if e.get('type') == 'turn.completed'],
+            'raw_usage_scope': 'UNVERIFIED_NOT_ALL_AGENT_TOTAL',
+            'malformed_lines': malformed,
+            'errors': [e for e in events if e.get('type') in ('error', 'turn.failed')]}
 
 
-def account(ledger: dict | None, *, run_id: str, phase: int, model: str, effort: str, binding: dict | None = None) -> dict:
-    """Consume trusted runtime-exported request deltas, NEVER model-authored estimates.
+def account(ledger: dict | None, binding: dict, model: str, effort: str) -> dict:
+    """Validate a trusted, separately calibrated runtime export; unknown is NOT zero.
 
-    Exporter must attest complete thread/request census, own-request scope, terminal
-    state and exact runtime/config binding. This validates the envelope, not the
-    truthfulness of an exporter: its real runtime adapter needs separate calibration.
-    No adapter for undocumented Codex per-child usage semantics is fabricated here.
+    Schema example is in test_baseline.py. Coverage assertions are not self-proving;
+    exporter implementation and calibration evidence must be independently reviewed.
+    input_tokens includes cached_input_tokens; output includes reasoning if supplied.
+    Each request must be its OWN delta, never parent-plus-descendants aggregates.
     """
-    unknown = {"status": "UNKNOWN", "all_agent_tokens": None}
+    unknown = {'status': 'UNKNOWN', 'all_agent_tokens': None}
     if ledger is None:
-        return {**unknown, "reason": "No calibrated all-agent usage export"}
+        return {**unknown, 'reason': 'No calibrated runtime all-agent usage export'}
     try:
-        if ledger["schema"] != "goal-usage-v1" or ledger["run_id"] != run_id or ledger["phase"] != phase:
-            raise ValueError("ledger binding mismatch")
-        if binding is not None and ledger.get("binding") != binding:
-            raise ValueError("prompt/events/runtime binding mismatch")
-        coverage = ledger["coverage"]
-        if coverage["source"] != "runtime" or coverage["scope"] != "own_request_delta":
-            raise ValueError("not runtime own-request deltas")
-        for key in ("all_threads_enumerated", "all_requests_enumerated", "all_threads_terminal", "calibrated"):
-            if coverage.get(key) is not True:
-                raise ValueError("incomplete coverage: " + key)
-        if not coverage.get("evidence_sha256") or len(coverage["evidence_sha256"]) != 64:
-            raise ValueError("missing calibration evidence hash")
-        threads = {x["id"]: x for x in ledger["threads"]}
-        if len(threads) != len(ledger["threads"]) or not threads:
-            raise ValueError("invalid thread census")
-        roots = [key for key, x in threads.items() if x.get("parent_id") is None]
-        if len(roots) != 1:
-            raise ValueError("require one root per phase")
-        if binding is not None and binding.get("root_thread_ids") != roots:
-            raise ValueError("CLI/export root thread mismatch")
-        if not threads[roots[0]].get("request_ids"):
-            raise ValueError("empty root request census")
-        for key, t in threads.items():
-            if t["model"] != model or t["reasoning_effort"] != effort:
-                raise ValueError("model/effort drift")
-            if t["status"] != "terminal":
-                raise ValueError("unsettled thread")
-            seen, current = set(), key
+        if ledger['schema'] != 'goal-usage-v1' or ledger['binding'] != binding:
+            raise ValueError('schema or trace binding mismatch')
+        c = ledger['coverage']
+        if c['source'] != 'runtime' or c['scope'] != 'own_request_delta':
+            raise ValueError('unverified source or aggregate usage scope')
+        for k in ('all_threads', 'all_requests', 'all_terminal', 'calibrated'):
+            if c[k] is not True:
+                raise ValueError('incomplete coverage: ' + k)
+        evidence = c['evidence_sha256']
+        if not isinstance(evidence, str) or len(evidence) != 64 or any(x not in '0123456789abcdef' for x in evidence):
+            raise ValueError('missing calibration evidence digest')
+        threads = {t['id']: t for t in ledger['threads']}
+        if not threads or len(threads) != len(ledger['threads']):
+            raise ValueError('invalid thread census')
+        roots = sorted(t['id'] for t in threads.values() if t['parent_id'] is None)
+        if len(roots) != 1 or roots != binding['root_threads']:
+            raise ValueError('wrong root threads')
+        expected = {}
+        for ident, t in threads.items():
+            if t['model'] != model or t['effort'] != effort or t['status'] != 'terminal':
+                raise ValueError('model/effort drift or unsettled thread')
+            seen, current = set(), ident
             while current is not None:
                 if current in seen or current not in threads:
-                    raise ValueError("cyclic or incomplete lineage")
+                    raise ValueError('invalid lineage')
                 seen.add(current)
-                current = threads[current].get("parent_id")
-        expected_ids = []
-        for t in threads.values():
-            expected_ids.extend(t["request_ids"])
-        if len(set(expected_ids)) != len(expected_ids):
-            raise ValueError("request assigned to multiple threads")
+                current = threads[current]['parent_id']
+            for rid in t['request_ids']:
+                if rid in expected:
+                    raise ValueError('duplicate request ownership')
+                expected[rid] = ident
+        if not threads[roots[0]]['request_ids']:
+            raise ValueError('empty root usage census')
         requests = {}
-        for r in ledger["requests"]:
-            ident = r["request_id"]
-            if ident in requests and requests[ident] != r:
-                raise ValueError("conflicting duplicate request")
-            requests[ident] = r
-        if set(requests) != set(expected_ids):
-            raise ValueError("missing or extra request usage")
-        sums = {"input_tokens": 0, "cached_input_tokens": 0, "output_tokens": 0}
-        for ident, r in requests.items():
-            thread = threads.get(r["thread_id"])
-            if thread is None or ident not in thread["request_ids"]:
-                raise ValueError("wrong request owner")
-            for key in sums:
-                value = r[key]
-                if type(value) is not int or value < 0:
-                    raise ValueError("noninteger or negative usage")
-                sums[key] += value
-            if r["cached_input_tokens"] > r["input_tokens"]:
-                raise ValueError("cached input is a subset")
-        return {"status": "COMPLETE_EXPORTED", **sums,
-                "uncached_input_tokens": sums["input_tokens"] - sums["cached_input_tokens"],
-                "all_agent_tokens": sums["input_tokens"] + sums["output_tokens"],
-                "threads": len(threads), "requests": len(requests),
-                "evidence_sha256": coverage["evidence_sha256"],
-                "note": "Exporter provenance and calibration must be independently reviewed."}
-    except (KeyError, TypeError, ValueError, AttributeError) as exc:
-        return {**unknown, "reason": str(exc)}
-
-
-def money(usage: dict, rates: dict | None) -> float | None:
-    """Optional explicitly supplied token-only prices, not subscription quota."""
-    if usage.get("status") != "COMPLETE_EXPORTED" or rates is None:
-        return None
-    keys = ("uncached_input_per_million", "cached_input_per_million", "output_per_million")
-    if any(type(rates.get(k)) not in (int, float) or not math.isfinite(rates[k]) or rates[k] < 0 for k in keys):
-        raise ValueError("all three nonnegative prices must be supplied")
-    return (usage["uncached_input_tokens"] * rates[keys[0]] +
-            usage["cached_input_tokens"] * rates[keys[1]] +
-            usage["output_tokens"] * rates[keys[2]]) / 1_000_000
+        for r in ledger['requests']:
+            rid = r['request_id']
+            if rid in requests and requests[rid] != r:
+                raise ValueError('conflicting duplicate request')
+            requests[rid] = r
+        if set(expected) != set(requests):
+            raise ValueError('missing or extra request usage')
+        totals = {'input_tokens': 0, 'cached_input_tokens': 0, 'output_tokens': 0}
+        for rid, r in requests.items():
+            if r['thread_id'] != expected[rid]:
+                raise ValueError('incorrect request owner')
+            for k in totals:
+                if type(r[k]) is not int or r[k] < 0:
+                    raise ValueError('invalid token count')
+                totals[k] += r[k]
+            if r['cached_input_tokens'] > r['input_tokens']:
+                raise ValueError('cached input exceeds input')
+        return {'status': 'COMPLETE_EXPORTED', **totals,
+                'uncached_input_tokens': totals['input_tokens'] - totals['cached_input_tokens'],
+                'all_agent_tokens': totals['input_tokens'] + totals['output_tokens'],
+                'request_ids': sorted(requests), 'thread_count': len(threads),
+                'evidence_sha256': evidence}
+    except (ValueError, KeyError, TypeError, AttributeError) as exc:
+        return {**unknown, 'reason': str(exc)}
